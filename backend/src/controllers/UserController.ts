@@ -9,9 +9,12 @@ class UserController {
         const { email, password } = req.body;
         const userLogged = await this.userService.login({ email, password });
 
-        if (userLogged.erro) return res.status(userLogged.code).json(userLogged.erro);
+        console.log(userLogged);
+        
 
-        return res.status(userLogged.code).json({ user: {name: userLogged.user, token: userLogged.token } });
+        if (userLogged.erro) return res.status(userLogged.code).json({ erro: userLogged.erro } );
+
+        return res.status(userLogged.code).json({ user:{ name: userLogged.user, token: userLogged.token } });
     }
 }
 

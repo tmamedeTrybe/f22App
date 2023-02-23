@@ -7,6 +7,6 @@ const userRoutes = Router();
 
 const usercontroller = new UserController(new UserService(User));
 
-userRoutes.get('/login', usercontroller.login);
+userRoutes.post('/login', usercontroller.login);
 
 export default userRoutes;
