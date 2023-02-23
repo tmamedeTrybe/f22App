@@ -15,7 +15,7 @@ module.exports = {
         name: 'Fulano Funcionário',
         role: 'editor',
         email: 'edicao@thiagomamede.com',
-        password: '$2a$08$Y8Abi8jXvsXyqm.rmp0B.uQBA5qUz7T6Ghlg/CvVr/gLxYj5UAZVO',
+        password: '633079e0c1759ed44925eaf51cf05fb7',
         //  secretUser
       },
     ], {});
