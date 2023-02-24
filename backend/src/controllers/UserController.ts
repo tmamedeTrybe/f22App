@@ -9,12 +9,17 @@ class UserController {
         const { email, password } = req.body;
         const userLogged = await this.userService.login({ email, password });
 
-        console.log(userLogged);
-        
-
         if (userLogged.erro) return res.status(userLogged.code).json({ erro: userLogged.erro } );
 
         return res.status(userLogged.code).json({ user:{ name: userLogged.user, token: userLogged.token } });
+    }
+
+    public createUser = async (req: Request, res: Response) => {
+        const userCreated = await this.userService.createUser(req.body);
+
+        if (userCreated.erro) return res.status(userCreated.code).json({ erro: userCreated.erro });
+
+        return res.status(userCreated.code).json({ user: { name: userCreated.user, token: userCreated.token } })
     }
 }
 

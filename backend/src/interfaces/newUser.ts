@@ -1,9 +1,8 @@
-interface User {
-    id?: number;
+interface newUser {
     name: string;
     role: string;
     email: string;
     password: string;
   }
   
-  export default User;
+  export default newUser;

@@ -8,5 +8,6 @@ const userRoutes = Router();
 const usercontroller = new UserController(new UserService(User));
 
 userRoutes.post('/login', usercontroller.login);
+userRoutes.post('/register', usercontroller.createUser);
 
 export default userRoutes;
