@@ -21,8 +21,14 @@ class UserController {
             const { email, password } = req.body;
             const userLogged = yield this.userService.login({ email, password });
             if (userLogged.erro)
-                return res.status(userLogged.code).json(userLogged.erro);
+                return res.status(userLogged.code).json({ erro: userLogged.erro });
             return res.status(userLogged.code).json({ user: { name: userLogged.user, token: userLogged.token } });
+        });
+        this.createUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const userCreated = yield this.userService.createUser(req.body);
+            if (userCreated.erro)
+                return res.status(userCreated.code).json({ erro: userCreated.erro });
+            return res.status(userCreated.code).json({ user: { name: userCreated.user, token: userCreated.token } });
         });
     }
 }

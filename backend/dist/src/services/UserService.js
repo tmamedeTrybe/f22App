@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const validateLogin_1 = __importDefault(require("../validations/validateLogin"));
 const md5_1 = __importDefault(require("md5"));
 const tokenGenerate_1 = require("../helpers/tokenGenerate");
+const validateNewUser_1 = __importDefault(require("../validations/validateNewUser"));
 class UserService {
     constructor(UserModel) {
         this.UserModel = UserModel;
@@ -25,13 +26,26 @@ class UserService {
             const userExist = yield this.UserModel.findOne({ where: { email } });
             if (!userExist)
                 return { code: 400, erro: 'Email não cadastrado, criar novo usuário' };
-            console.log(userExist.password, "senha no banco");
-            console.log((0, md5_1.default)(password), 'senha transformada');
             if (userExist.password !== (0, md5_1.default)(password))
                 return { code: 400, erro: 'Senha incorreta' };
             const userToken = (0, tokenGenerate_1.tokenGenerate)(userExist);
             return { code: 200, token: userToken, user: userExist.name };
         });
+        this.createUser = (newUser) => __awaiter(this, void 0, void 0, function* () {
+            const { error } = (0, validateNewUser_1.default)(newUser);
+            if (error)
+                return { code: 400, erro: error.message };
+            const userExist = yield this.UserModel.findOne({ where: { email: newUser.email } });
+            if (userExist)
+                return { code: 400, erro: 'Email já cadastrado' };
+            const { password } = newUser;
+            const passwordHash = (0, md5_1.default)(password);
+            const userCreated = Object.assign(Object.assign({}, newUser), { password: passwordHash });
+            const newUserResult = yield this.UserModel.create(userCreated);
+            const token = (0, tokenGenerate_1.tokenGenerate)(newUserResult);
+            return { code: 200, token: token, user: newUser.name };
+        });
     }
 }
+;
 exports.default = UserService;

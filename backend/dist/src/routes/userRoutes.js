@@ -9,5 +9,6 @@ const user_1 = __importDefault(require("../database/models/user"));
 const UserService_1 = __importDefault(require("../services/UserService"));
 const userRoutes = (0, express_1.Router)();
 const usercontroller = new UserController_1.default(new UserService_1.default(user_1.default));
-userRoutes.get('/login', usercontroller.login);
+userRoutes.post('/login', usercontroller.login);
+userRoutes.post('/register', usercontroller.createUser);
 exports.default = userRoutes;
