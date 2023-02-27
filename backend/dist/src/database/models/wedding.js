@@ -12,6 +12,8 @@ Wedding.init({
     data: { type: sequelize_1.DATE, allowNull: false },
     noiva: { type: sequelize_1.STRING, allowNull: false },
     noivo: { type: sequelize_1.STRING, allowNull: false },
+    imagem: { type: sequelize_1.STRING, allowNull: false },
+    cidade: { type: sequelize_1.STRING, allowNull: false },
     localCerimonia: { type: sequelize_1.STRING, field: 'local_cerimonia' },
     localRecepcao: { type: sequelize_1.STRING, field: 'local_recepcao' },
     primeiroBackupBruto: { type: sequelize_1.INTEGER, field: 'primeiro_backup_bruto' },

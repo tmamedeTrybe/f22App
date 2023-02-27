@@ -8,6 +8,8 @@ module.exports = {
       data: { type: Sequelize.DATE, allowNull: false },
       noiva: { type: Sequelize.STRING, allowNull: false },
       noivo: { type: Sequelize.STRING, allowNull: false },
+      imagem: { type: Sequelize.STRING, allowNull: false },
+      cidade: { type: Sequelize.STRING, allowNull: false },
       localCerimonia: { type: Sequelize.STRING, field: 'local_cerimonia' },
       localRecepcao: { type: Sequelize.STRING, field: 'local_recepcao' },
       primeiroBackupBruto: { type: Sequelize.INTEGER, field: 'primeiro_backup_bruto' },
