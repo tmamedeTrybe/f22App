@@ -1,6 +1,6 @@
 interface wedding {
     id?: number;
-    data: Date;
+    data: string;
     noiva: string;
     noivo: string;
     localCerimonia?: string;

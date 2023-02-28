@@ -15,7 +15,7 @@ module.exports = {
         return __awaiter(this, void 0, void 0, function* () {
             yield queryInterface.createTable('weddings', {
                 id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-                data: { type: Sequelize.DATE, allowNull: false },
+                data: { type: Sequelize.STRING, allowNull: false },
                 noiva: { type: Sequelize.STRING, allowNull: false },
                 noivo: { type: Sequelize.STRING, allowNull: false },
                 imagem: { type: Sequelize.STRING, allowNull: false },

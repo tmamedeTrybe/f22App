@@ -21,7 +21,7 @@ class WeddingService {
         
         const result: Wedding[] | null = await this.weddingModel.findAll({ where: { [searchBy]: valueSearch } });
 
-        if (!result) return { code: 400, erro: 'Evento não encontrado' }
+        if (!result.length) return { code: 400, erro: 'Evento não encontrado' }
 
         return { code: 200, wedding: result }
 

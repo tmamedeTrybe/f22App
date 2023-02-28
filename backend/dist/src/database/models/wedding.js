@@ -9,7 +9,7 @@ class Wedding extends sequelize_1.Model {
 }
 Wedding.init({
     id: { type: sequelize_1.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    data: { type: sequelize_1.DATE, allowNull: false },
+    data: { type: sequelize_1.STRING, allowNull: false },
     noiva: { type: sequelize_1.STRING, allowNull: false },
     noivo: { type: sequelize_1.STRING, allowNull: false },
     imagem: { type: sequelize_1.STRING, allowNull: false },

@@ -17,7 +17,7 @@ module.exports = {
         return __awaiter(this, void 0, void 0, function* () {
             yield queryInterface.bulkInsert('weddings', [
                 {
-                    data: '20130710',
+                    data: '10/07/2013',
                     noiva: 'Salua',
                     noivo: 'Tiago',
                     imagem: 'Frontend/ftwentytwo-app/src/assets/images/casamentos/20130710_Salua_Tiago.jpg',
@@ -29,7 +29,7 @@ module.exports = {
                     segundo_backup: 4,
                 },
                 {
-                    data: '20181214',
+                    data: '14/12/2018',
                     noiva: 'Ana',
                     noivo: 'Mateus',
                     imagem: 'Frontend/ftwentytwo-app/src/assets/images/casamentos/20181214_Ana_Mateus.jpg',
@@ -40,7 +40,7 @@ module.exports = {
                     segundo_backup: 9,
                 },
                 {
-                    data: '20211113',
+                    data: '13/11/2021',
                     noiva: 'Luisa',
                     noivo: 'Marcelo',
                     imagem: 'Frontend/ftwentytwo-app/src/assets/images/casamentos/20211113_Luisa_Marcelo.png',

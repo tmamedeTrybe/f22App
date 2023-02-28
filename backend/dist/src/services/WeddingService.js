@@ -24,7 +24,7 @@ class WeddingService {
             // }
             // console.log(searchBy);
             const result = yield this.weddingModel.findAll({ where: { [searchBy]: valueSearch } });
-            if (!result)
+            if (!result.length)
                 return { code: 400, erro: 'Evento não encontrado' };
             return { code: 200, wedding: result };
         });

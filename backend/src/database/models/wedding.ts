@@ -4,7 +4,7 @@ import db from '.';
 
 class Wedding extends Model implements wedding {
     id?: number;
-    data!: Date;
+    data!: string;
     noiva!: string;
     noivo!: string;
     imagem?: string;
@@ -19,7 +19,7 @@ class Wedding extends Model implements wedding {
 
 Wedding.init({
     id: { type: INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    data: { type: DATE, allowNull: false },
+    data: { type: STRING, allowNull: false },
     noiva: { type: STRING, allowNull: false },
     noivo: { type: STRING, allowNull: false },
     imagem: { type: STRING, allowNull: false },
