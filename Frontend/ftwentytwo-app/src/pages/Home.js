@@ -1,20 +1,13 @@
 import OptionsCard from '../components/OptionsCard';
 import options from '../assets/options';
 import styles from '../modules/Home.module.css';
-import Logo from '../components/Logo';
+import HeaderLogo from '../components/HeaderLogo';
 
 function Home() {
-  const user = JSON.parse(localStorage.getItem('user'));
-
   return (
+
     <div className={ styles.container }>
-      <Logo />
-      <h1>Home</h1>
-      <header>
-        <h1>
-          {`Olá ${user.name}`}
-        </h1>
-      </header>
+      <HeaderLogo title="Casamentos" />
       <main className={ styles.main }>
 
         { options.map((option, i) => (
