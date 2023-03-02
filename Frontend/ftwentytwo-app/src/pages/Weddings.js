@@ -11,6 +11,7 @@ function Weddings() {
   const [weddingsFounded, setWeddingsFounded] = useState('');
   const searchOptions = ['Noiva', 'Noivo', 'Data', 'Cidade', 'Local_cerimonia', 'Local_recepcao', 'Primeiro_backup'];
   const { jobsFounded } = useContext(MyContext);
+  console.log(jobsFounded);
 
   useEffect(() => {
     setWeddingsFounded(jobsFounded);

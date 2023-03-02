@@ -7,7 +7,7 @@ function Home() {
   return (
 
     <div className={ styles.container }>
-      <HeaderLogo title="Casamentos" />
+      <HeaderLogo title="Home" />
       <main className={ styles.main }>
 
         { options.map((option, i) => (

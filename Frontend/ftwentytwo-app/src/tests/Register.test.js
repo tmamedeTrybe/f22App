@@ -3,11 +3,11 @@ import userEvent from '@testing-library/user-event';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import { renderWithRouter } from './helpers/renderWithRouter';
+import { renderWithContext } from './helpers/renderWithContext';
 
 describe('Testando a página Register', () => {
   test('se o campos de nome, acesso, email e senha estão na tela', () => {
-    renderWithRouter(<Register />);
+    renderWithContext(<Register />);
     const nameInput = screen.getByPlaceholderText('Nome');
     expect(nameInput).toBeInTheDocument();
     const roleInput = screen.getByPlaceholderText('Acesso');
@@ -18,14 +18,14 @@ describe('Testando a página Register', () => {
     expect(passwordInput).toBeInTheDocument();
   });
   test('Se existe o botão "Cadastrar" e se está desabilitado', () => {
-    renderWithRouter(<Register />);
+    renderWithContext(<Register />);
     const button = screen.getByRole('button', { name: 'Cadastrar' });
     expect(button).toBeInTheDocument();
     expect(button).toBeDisabled();
   });
   test('Se ao clicar em "Cadastrar" é direcionado para a pagina Home', () => {
-    renderWithRouter(<Register />);
-    renderWithRouter(<Home />);
+    renderWithContext(<Register />);
+    renderWithContext(<Home />);
 
     const nameInput = screen.getByPlaceholderText('Nome');
     userEvent.type(nameInput, 'Thiago Mamede');
@@ -44,8 +44,8 @@ describe('Testando a página Register', () => {
     expect(title).toBeInTheDocument();
   });
   test('Se o existe o link para retornar na página de Login e se ao clica-lo é direcionado para a página corretamente', () => {
-    renderWithRouter(<Login />);
-    renderWithRouter(<Register />);
+    renderWithContext(<Login />);
+    renderWithContext(<Register />);
 
     const linkLogin = screen.getByText(/Retornar/);
     expect(linkLogin).toBeInTheDocument();

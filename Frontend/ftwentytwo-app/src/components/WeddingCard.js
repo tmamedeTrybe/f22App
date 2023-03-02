@@ -8,7 +8,7 @@ function WeddingCard({ wedding }) {
     <Link className={ styles.link } to={ `/casamentos/detalhe/${wedding.id}` }>
       <div className={ styles.card }>
         <section>
-          <p>{`${wedding.noiva} & ${wedding.noivo}`}</p>
+          <h2>{`${wedding.noiva} & ${wedding.noivo}`}</h2>
           <p>{wedding.data}</p>
           <img
             src={ img }

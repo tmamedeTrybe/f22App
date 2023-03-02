@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
 import styles from '../modules/Login.module.css';
+import MyContext from '../context/myContext';
 
 const MIN_PASSWORD_LENGTH = 6;
 
 function Login() {
   const navigate = useNavigate();
+  const { setUser } = useContext(MyContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [erro, setErro] = useState('');
@@ -26,12 +28,12 @@ function Login() {
       }),
     });
     const userData = await response.json();
-    console.log(userData);
+    console.log(userData.user.name);
 
     if (userData.erro) {
       setErro(userData.erro);
     } else {
-      localStorage.setItem('user', JSON.stringify(userData.user));
+      setUser(userData.user.name);
       navigate('/home');
     }
   };

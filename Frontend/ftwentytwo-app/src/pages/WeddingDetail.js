@@ -37,7 +37,7 @@ function WeddingDetail() {
 
   return (
     <div className={ styles.container }>
-      <HeaderLogo title="Casamento" />
+      <HeaderLogo title="Informações" />
       <main className={ styles.main }>
         <section>
           <h1>{`${wedding.noiva} & ${wedding.noivo}`}</h1>

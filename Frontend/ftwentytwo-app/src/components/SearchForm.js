@@ -8,6 +8,7 @@ function SearchForm({ searchOptions, url }) {
   const [valueSearch, setValueSearch] = useState('');
   const [jobsFounded, setjobsFounded] = useState('');
   const [erro, setErro] = useState('');
+  console.log(searchBy, valueSearch);
 
   const { changeJobs } = useContext(MyContext);
 
@@ -41,18 +42,24 @@ function SearchForm({ searchOptions, url }) {
   return (
     <div className={ styles.container }>
       <form className={ styles.form } onSubmit={ handleSubmit }>
-        <select
-          type="text"
-          value={ searchBy }
-          onChange={ (event) => setSearchBy(event.target.value) }
-        >
-          { searchOptions.map((option, i) => (
-            <option
-              key={ i }
-            >
-              { option }
-            </option>)) }
-        </select>
+        <label className={ styles.label } aria-labelledby="searchBy">
+          Escolha a opção de busca
+          <select
+            name="searchBy"
+            type="text"
+            value={ searchBy }
+            onChange={ (event) => setSearchBy(event.target.value) }
+          >
+            { searchOptions.map((option, i) => (
+              <option
+                data-testid="select-option"
+                key={ i }
+                value={ option }
+              >
+                { option }
+              </option>)) }
+          </select>
+        </label>
         <label htmlFor="valueSearch">
           <input
             placeholder="Buscar por"
@@ -69,7 +76,7 @@ function SearchForm({ searchOptions, url }) {
         </button>
       </form>
       {
-        erro && <p>{ erro }</p>
+        erro && <h3>{ erro }</h3>
       }
     </div>
   );

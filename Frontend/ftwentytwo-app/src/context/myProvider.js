@@ -5,14 +5,15 @@ import MyContext from './myContext';
 
 function MyProvider({ children }) {
   const [jobsFounded, setjobsFounded] = useState('');
+  const [user, setUser] = useState('');
 
   const changeJobs = useCallback((jobs) => {
     setjobsFounded(jobs);
   }, [setjobsFounded]);
 
   const value = useMemo(() => ({
-    jobsFounded, changeJobs,
-  }), [jobsFounded, changeJobs]);
+    jobsFounded, user, setUser, changeJobs,
+  }), [jobsFounded, user, changeJobs]);
 
   return (
     <div>
