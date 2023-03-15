@@ -5,6 +5,7 @@ import { renderWithContext } from './helpers/renderWithContext';
 import Weddings from '../pages/Weddings';
 // import WeddingDetail from '../pages/WeddingDetail';
 import fetchOneWedding from './mocks/fetchsMock/fetchOneWeddingMock';
+import WeddingDetail from '../pages/WeddingDetail';
 
 describe('Testando a página de Casamentos', () => {
   beforeEach(() => {
@@ -64,8 +65,10 @@ describe('Testando a página de Casamentos', () => {
   //   userEvent.click(button);
   //   const link = await screen.findByRole('heading', { name: 'Ana & Mateus', level: 2 });
   //   userEvent.click(link);
+  //   renderWithContext(<WeddingDetail />);
   //   await waitFor(() => {
-  //     expect(screen.findByRole('heading', { name: 'Informações', level: 1 })).toBeInTheDocument()});
+  //     expect(screen.findByRole('heading', { name: 'Informações', level: 1 })).toBeInTheDocument();
+  //   });
   // });
 });
 

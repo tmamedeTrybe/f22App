@@ -6,7 +6,6 @@ const opcoes = [
   {
     id: 1,
     nameCard: 'Casamentos',
-    // eslint-disable-next-line max-len
     image: cardCasamentos,
     path: '/casamentos',
   },

@@ -10,10 +10,10 @@ function Header({ title }) {
   return (
     <div className={ styles.header }>
       <Logo />
-      <h1>{title}</h1>
-      <h1>
+      <h2>
         {`Olá ${user}`}
-      </h1>
+      </h2>
+      <h1>{title}</h1>
     </div>
   );
 }

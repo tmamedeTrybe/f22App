@@ -8,6 +8,9 @@ const weddingRoutes  = Router();
 const weddingController = new WeddingController(new WeddingService(Wedding));
 
 // weddingRoutes.get('/casamentos', weddingController.getWeddings);
+weddingRoutes.post('/casamentos/novo', weddingController.createWedding);
 weddingRoutes.post('/casamentos', weddingController.getWeddingBy);
+weddingRoutes.patch('/casamentos/detalhe/:id/editar', weddingController.updateWedding);
+
 
 export default weddingRoutes;

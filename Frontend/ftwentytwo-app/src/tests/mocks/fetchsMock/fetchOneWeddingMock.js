@@ -4,10 +4,10 @@ const fetchOneWedding = (url) => {
   switch (url) {
   case 'http://localhost:3001/casamentos':
     return {
-      json: async () => (oneWeddingMock),
+      json: () => (oneWeddingMock),
     };
   default:
-    return { json: async () => ([]) };
+    return { json: () => ([]) };
   }
 };
 

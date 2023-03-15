@@ -8,7 +8,6 @@ function SearchForm({ searchOptions, url }) {
   const [valueSearch, setValueSearch] = useState('');
   const [jobsFounded, setjobsFounded] = useState('');
   const [erro, setErro] = useState('');
-  console.log(searchBy, valueSearch);
 
   const { changeJobs } = useContext(MyContext);
 
@@ -31,11 +30,16 @@ function SearchForm({ searchOptions, url }) {
       }),
     });
     const userData = await response.json();
+    console.log(userData, 'resposta do fetch');
 
     if (userData.erro) {
       setErro(userData.erro);
+      setjobsFounded('');
+      setValueSearch('');
     } else {
+      setErro('');
       setjobsFounded(userData);
+      setValueSearch('');
     }
   };
 

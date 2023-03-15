@@ -12,7 +12,7 @@ class UserService {
 
 
     public login = async ({ email, password }: UserLogin) => {
-        const loginValid = validateLogin({email, password});
+        const loginValid = validateLogin({ email, password });
         if (loginValid.erro) return { code: loginValid.code, erro: loginValid.erro }
 
         const userExist: User | null = await this.UserModel.findOne({ where: { email } });

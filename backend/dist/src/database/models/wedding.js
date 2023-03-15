@@ -17,9 +17,13 @@ Wedding.init({
     localCerimonia: { type: sequelize_1.STRING, field: 'local_cerimonia' },
     localRecepcao: { type: sequelize_1.STRING, field: 'local_recepcao' },
     primeiroBackupBruto: { type: sequelize_1.INTEGER, field: 'primeiro_backup_bruto' },
+    primeiroBackupBrutoTamanho: { type: sequelize_1.INTEGER, field: 'primeiro_backup_bruto_tamanho' },
     segundoBackupBruto: { type: sequelize_1.INTEGER, field: 'segundo_backup_bruto' },
+    segundoBackupBrutoTamanho: { type: sequelize_1.INTEGER, field: 'segundo_backup_bruto_tamanho' },
     primeiroBackup: { type: sequelize_1.INTEGER, field: 'primeiro_backup' },
+    primeiroBackupTamanho: { type: sequelize_1.INTEGER, field: 'primeiro_backup_tamanho' },
     segundoBackup: { type: sequelize_1.INTEGER, field: 'segundo_backup' },
+    segundoBackupTamanho: { type: sequelize_1.INTEGER, field: 'segundo_backup_tamanho' },
 }, {
     sequelize: _1.default,
     modelName: 'weddings',
