@@ -2,6 +2,7 @@
 import { Route, Routes } from 'react-router-dom';
 import MyProvider from './context/myProvider';
 import Home from './pages/Home';
+import Initial from './pages/Initial';
 import Login from './pages/Login';
 import NewWedding from './pages/NewWedding';
 import Register from './pages/Register';
@@ -14,7 +15,7 @@ function App() {
     <MyProvider>
       <div className="App">
         <Routes>
-          <Route path="/" element={ <p> Página inicial</p> } />
+          <Route path="/" element={ <Initial /> } />
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
           <Route path="/home" element={ <Home /> } />

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Logo from './Logo';
 import styles from '../modules/Header.module.css';
@@ -9,7 +10,8 @@ function Header({ title }) {
 
   return (
     <div className={ styles.header }>
-      <Logo />
+      <Logo size="150px" />
+      <Link to="/home">Home</Link>
       <h2>
         {`Olá ${user}`}
       </h2>

@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import logo from '../assets/images/logof22_verdeBranco.png';
 
-function Logo() {
+function Logo({ size }) {
   return (
     <section>
-      <img width="150px" src={ logo } alt="logo f22" />
+      <img width={ size } src={ logo } alt="logo f22" />
     </section>
   );
 }

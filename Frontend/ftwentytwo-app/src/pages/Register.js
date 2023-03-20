@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Logo from '../components/Logo';
+import HeaderLogo from '../components/HeaderLogo';
+import MyContext from '../context/myContext';
 import styles from '../modules/Register.module.css';
 
 const MIN_PASSWORD_LEN = 6;
@@ -12,6 +13,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [erro, setErro] = useState('');
   const navigate = useNavigate();
+  const { setUser } = useContext(MyContext);
 
   const disabledButton = !name || !role || !email || password.length < MIN_PASSWORD_LEN;
 
@@ -30,14 +32,14 @@ function Register() {
     if (userData.erro) {
       setErro(userData.erro);
     } else {
-      localStorage.setItem('user', JSON.stringify(userData.user));
+      setUser(userData.user.name);
       navigate('/home');
     }
   };
 
   return (
     <div className={ styles.container }>
-      <Logo />
+      <HeaderLogo />
       <section className={ styles.main }>
         <h1>Novo usuário</h1>
         <form className={ styles.form } onSubmit={ submitForm }>

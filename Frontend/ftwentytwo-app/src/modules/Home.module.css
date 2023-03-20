@@ -3,10 +3,9 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  height: 100vh;
   margin: auto;
   padding: 2rem;
-  border: 1px red;
 }
 
 .main {
@@ -15,9 +14,10 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;    
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 90%;
     padding: 30px;
     margin: 20px;
     text-decoration: none;
@@ -33,8 +33,10 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
   font-size: 15px;
   justify-content: center;
-  margin: 10px;
-  width: 25%;
+  margin: 2%;
+  width: 40%;
+  height: 30%;
+  
 }
 
 .card img {
@@ -47,5 +49,14 @@
   margin: center;
 }
 
+.card h1 {
+  margin: auto;
+  font-size: 100%;
+}
+
+.card img{
+  width: 100%;
+  margin-top: 15px;
+}
 
 

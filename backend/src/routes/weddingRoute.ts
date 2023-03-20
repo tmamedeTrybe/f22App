@@ -11,6 +11,7 @@ const weddingController = new WeddingController(new WeddingService(Wedding));
 weddingRoutes.post('/casamentos/novo', weddingController.createWedding);
 weddingRoutes.post('/casamentos', weddingController.getWeddingBy);
 weddingRoutes.patch('/casamentos/detalhe/:id/editar', weddingController.updateWedding);
+weddingRoutes.delete('/casamentos/detalhe/:id/editar',weddingController.deleteWedding);
 
 
 export default weddingRoutes;

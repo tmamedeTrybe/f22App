@@ -75,6 +75,11 @@ class WeddingService {
         return { code: 201, message: "Casamento alterado" }
     }
 
+    async deleteWedding (id:number) {
+        await this.weddingModel.destroy({ where : { id } });
+        return { code: 201, message: "Casamento deletado" }
+    }
+
 }
 
 export default WeddingService;

@@ -10,23 +10,6 @@ function WeddingEdit() {
   const { jobsFounded } = useContext(MyContext);
   const { id } = useParams();
 
-  // const wedding = jobsFounded.filter((job) => job.id === Number(id))[0];
-
-  // const [data, setData] = useState(wedding.data);
-  // const [cidade, setCidade] = useState(wedding.cidade);
-  // const [noiva, setNoiva] = useState(wedding.noiva);
-  // const [noivo, setNoivo] = useState(wedding.noivo);
-  // const [imagem, setImagem] = useState(wedding.imagem);
-  // const [localCerimonia, setLocalCerimonia] = useState(wedding.localCerimonia);
-  // const [localRecepcao, setLocalRecepcao] = useState(wedding.localRecepcao);
-  // const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState(wedding.primeiroBackupBruto);
-  // const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState(wedding.primeiroBackupBrutoTamanho);
-  // const [segundoBackupBruto, setSegundoBackupBruto] = useState(wedding.segundoBackupBruto);
-  // const [segundoBackupBrutoTamanho, setSegundoBackupBrutoTamanho] = useState(wedding.segundoBackupBrutoTamanho);
-  // const [primeiroBackup, setPrimeiroBackup] = useState(wedding.primeiroBackup);
-  // const [primeiroBackupTamanho, setPrimeiroBackupTamanho] = useState(wedding.primeiroBackupTamanho);
-  // const [segundoBackup, setSegundoBackup] = useState(wedding.segundoBackup);
-  // const [segundoBackupTamanho, setSegundoBackupTamanho] = useState(wedding.segundoBackupTamanho);
   const [data, setData] = useState('');
   const [cidade, setCidade] = useState('');
   const [noiva, setNoiva] = useState('');
@@ -83,7 +66,6 @@ function WeddingEdit() {
       segundoBackup,
       segundoBackupTamanho,
     };
-    console.log(weddingEdited, 'o que ta enviando pro body');
     event.preventDefault();
     const response = await fetch(`http://localhost:3001/casamentos/detalhe/${id}/editar`, {
       method: 'PATCH',
@@ -103,10 +85,13 @@ function WeddingEdit() {
   };
 
   return (
-    <div>
+    <div className={ styles.container }>
       <HeaderLogo title="Editar casamento" />
       <section className={ styles.main }>
         <form onSubmit={ submitForm } className={ styles.form }>
+          <h3>
+            { `${noiva} & ${noivo}` }
+          </h3>
           <label htmlFor="data">
             <input
               placeholder="Data"

@@ -1,0 +1,13 @@
+.body {
+    width: 375px;
+    height: 667px;
+    margin: auto;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    margin: auto;
+}

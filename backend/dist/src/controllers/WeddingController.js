@@ -27,6 +27,22 @@ class WeddingController {
                 return res.status(wedding.code).json({ erro: wedding.erro });
             return res.status(wedding.code).json(wedding.wedding);
         });
+        this.createWedding = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const created = yield this.weddingService.createWedding(req.body);
+            if (created.erro)
+                return res.status(created.code).json({ erro: created.erro });
+            return res.status(created.code).json({ message: 'Criado com sucesso!', wedding: created.wedding });
+        });
+        this.updateWedding = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const update = yield this.weddingService.updateWedding(Number(id), req.body);
+            return res.status(update.code).json({ message: update.message });
+        });
+        this.deleteWedding = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const deleted = yield this.weddingService.deleteWedding(Number(id));
+            res.status(deleted.code).json({ message: deleted.message });
+        });
     }
 }
 exports.default = WeddingController;

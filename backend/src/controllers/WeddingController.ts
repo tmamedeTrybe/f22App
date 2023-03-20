@@ -30,6 +30,12 @@ class WeddingController {
         const update = await this.weddingService.updateWedding(Number(id), req.body);
         return res.status(update.code).json({ message: update.message });
     }
+
+    deleteWedding = async (req: Request, res: Response) => {
+        const { id } = req.params;
+        const deleted = await this.weddingService.deleteWedding(Number(id));
+        res.status(deleted.code).json({ message: deleted.message });
+    }
     
 }
 

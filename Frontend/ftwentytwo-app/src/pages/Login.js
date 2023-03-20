@@ -40,7 +40,7 @@ function Login() {
 
   return (
     <div className={ styles.container }>
-      <Logo />
+      <Logo size="150px" />
       <section className={ styles.main }>
         <h1>Login</h1>
         <form className={ styles.form } onSubmit={ handleSubmit }>
