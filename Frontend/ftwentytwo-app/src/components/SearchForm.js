@@ -30,7 +30,6 @@ function SearchForm({ searchOptions, url }) {
       }),
     });
     const userData = await response.json();
-    console.log(userData, 'resposta do fetch');
 
     if (userData.erro) {
       setErro(userData.erro);
