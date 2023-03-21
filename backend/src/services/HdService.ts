@@ -13,14 +13,14 @@ class HdService {
 	public getHdBy = async (search: searchHd ) => {
 		const { searchBy, valueSearch } = search;
 
-		if (searchBy == 'available more than') {
+		if (searchBy == 'Available more than') {
 			// Falta Lógica para fazer a pesquisa de hds com disponibilidade acima de..
 			const result: Hd[] | null = await this.HdModel.findAll({ where: { 'available': Number(valueSearch)} } );
-			if (!result.length) return { code: 400, erro: 'Evento não encontrado' }
+			if (!result.length) return { code: 400, erro: 'Hd não encontrado' }
         	return { code: 200, hds: result }
 		} else {
 			const result: Hd[] | null = await this.HdModel.findAll({ where: { [searchBy]: valueSearch } });
-			if (!result.length) return { code: 400, erro: 'Evento não encontrado' }
+			if (!result.length) return { code: 400, erro: 'Hd não encontrado' }
         	return { code: 200, hds: result }
 		}
 	}

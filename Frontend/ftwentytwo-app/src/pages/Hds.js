@@ -5,6 +5,7 @@ import HdsTable from '../components/HdsTable';
 import HeaderLogo from '../components/HeaderLogo';
 import SearchFormHd from '../components/SearchFormHds';
 import HdContext from '../context/HdContext';
+import styles from '../modules/Hds.module.css';
 
 function Hds() {
   const searchOptions = ['Name', 'Label', 'Capacity', 'Available more than'];
@@ -14,6 +15,9 @@ function Hds() {
   useEffect(() => {
     setHdsList(hdsFounded);
   }, [hdsFounded]);
+
+  console.log(hdsFounded, 'estado context');
+  console.log(hdsList, 'estado da pagina');
 
   const getAll = async () => {
     const response = await fetch('http://localhost:3001/hds', {
@@ -28,19 +32,20 @@ function Hds() {
   };
 
   return (
-    <div>
+    <div className={ styles.container }>
       <HeaderLogo title="HDs" />
       <hr />
-      <main>
+      <main className={ styles.main }>
         <button
           type="submit"
           onClick={ getAll }
+          className={ styles.buttonAll }
         >
           Buscar todos
         </button>
         <SearchFormHd searchOptions={ searchOptions } url="http://localhost:3001/hds" />
         {
-          hdsList.length > 0 && <section>
+          hdsList.length > 0 && <section className={ styles.hds }>
             <HdsTable HdsList={ hdsList } />
           </section>
         }
