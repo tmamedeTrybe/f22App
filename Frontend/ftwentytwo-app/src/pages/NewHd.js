@@ -1,0 +1,97 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import HeaderLogo from '../components/HeaderLogo';
+
+function NewHd() {
+  const [name, setName] = useState('');
+  const [label, setLabel] = useState('');
+  const [capacity, setCapacity] = useState('');
+  const [used, setUsed] = useState('');
+  const [erro, setErro] = useState('');
+  const [message, setMessage] = useState('');
+
+  const submitForm = async (event) => {
+    const newHdCreated = {
+      name,
+      label,
+      capacity: Number(capacity),
+      used: Number(used),
+    };
+    event.preventDefault();
+
+    const response = await fetch('http://localhost:3001/hds/new', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newHdCreated),
+    });
+
+    const hdData = await response.json();
+
+    if (hdData.erro) {
+      setErro(hdData.erro);
+    } else {
+      setMessage(hdData.message);
+      setErro('');
+    }
+  };
+
+  return (
+    <div>
+      <HeaderLogo title="Novo HD" />
+      <main>
+        <form onSubmit={ submitForm }>
+          <label htmlFor="name">
+            <input
+              placeholder="Name"
+              type="text"
+              value={ name }
+              onChange={ (event) => setName(event.target.value) }
+              id="name"
+            />
+          </label>
+          <label htmlFor="label">
+            <input
+              placeholder="Label"
+              type="text"
+              value={ label }
+              onChange={ (event) => setLabel(event.target.value) }
+              id="label"
+            />
+          </label>
+          <label htmlFor="capacity">
+            <input
+              placeholder="Capacity"
+              type="number"
+              value={ capacity }
+              onChange={ (event) => setCapacity(event.target.value) }
+              id="capacity"
+            />
+          </label>
+          <label htmlFor="used">
+            <input
+              placeholder="Used"
+              type="number"
+              value={ used }
+              onChange={ (event) => setUsed(event.target.value) }
+              id="used"
+            />
+          </label>
+          <button
+            type="submit"
+          >
+            Cadastrar
+          </button>
+        </form>
+      </main>
+      {
+        erro && <p>{ erro }</p>
+      }
+      {
+        message && <p>{ message }</p>
+      }
+      <Link to="/hds"> Retornar para HDs</Link>
+    </div>
+  );
+}
+
+export default NewHd;

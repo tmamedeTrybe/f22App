@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable no-tabs */
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import HdsTable from '../components/HdsTable';
 import HeaderLogo from '../components/HeaderLogo';
 import SearchFormHd from '../components/SearchFormHds';
@@ -50,6 +51,7 @@ function Hds() {
           </section>
         }
       </main>
+      <Link to="/hds/new"> Cadastre novo HD</Link>
     </div>
   );
 }

@@ -4,7 +4,7 @@ interface hd {
 	label: string;
 	capacity: number;
 	used: number;
-	available: number;
+	available?: number;
 }
 
 export default hd;

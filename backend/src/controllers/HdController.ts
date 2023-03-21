@@ -21,7 +21,7 @@ class HdController {
 		const createdHd = await this.hdService.createHd(req.body);
 		if (createdHd.erro) return res.status(createdHd.code).json({ erro: createdHd.erro });
 
-		return res.status(createdHd.code).json(createdHd.hd);
+		return res.status(createdHd.code).json({ message: 'Criado com sucesso!', hd: createdHd.hd });
 	}
 };
 

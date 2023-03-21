@@ -39,7 +39,7 @@ class HdService {
 			label: newHd.label,
 			capacity: newHd.capacity,
 			used: newHd.used,
-			available: newHd.available
+			available: newHd.capacity - newHd.used
 		}
 
 		const hdcreated = await this.HdModel.create(created);

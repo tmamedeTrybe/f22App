@@ -5,6 +5,7 @@ import Hds from './pages/Hds';
 import Home from './pages/Home';
 import Initial from './pages/Initial';
 import Login from './pages/Login';
+import NewHd from './pages/NewHd';
 import NewWedding from './pages/NewWedding';
 import Register from './pages/Register';
 import WeddingDetail from './pages/WeddingDetail';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/casamentos/novo" element={ <NewWedding /> } />
           <Route path="/casamentos" element={ <Weddings /> } />
           <Route path="/hds" element={ <Hds /> } />
+          <Route path="/hds/new" element={ <NewHd /> } />
         </Routes>
       </div>
     </MyProvider>

@@ -16,10 +16,10 @@ const validateNewHd = (newHd: hd) =>
 			used: Joi.number().required().messages({
 				'number.required': 'Informe GB usados do HD'
 			}),
-			available: Joi.number().max(newHd.capacity).required().messages({
-				'number.max': 'Disponível não deve ser maior que a capacidade',
-				'number.required': 'Informe a capacidade em GB do HD'
-			}),
+			// available: Joi.number().max(newHd.capacity).required().messages({
+			// 	'number.max': 'Disponível não deve ser maior que a capacidade',
+			// 	'number.required': 'Informe a capacidade em GB do HD'
+			// }),
 		}).validate(newHd);
 
 
