@@ -1,12 +1,19 @@
+/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable no-tabs */
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import HdsTable from '../components/HdsTable';
 import HeaderLogo from '../components/HeaderLogo';
-import SearchForm from '../components/SearchForm';
+import SearchFormHd from '../components/SearchFormHds';
+import HdContext from '../context/HdContext';
 
 function Hds() {
   const searchOptions = ['Name', 'Label', 'Capacity', 'Available more than'];
-  const [hdslist, setHdsList] = useState('');
-  console.log(hdslist);
+  const [hdsList, setHdsList] = useState('');
+  const { hdsFounded } = useContext(HdContext);
+
+  useEffect(() => {
+    setHdsList(hdsFounded);
+  }, [hdsFounded]);
 
   const getAll = async () => {
     const response = await fetch('http://localhost:3001/hds', {
@@ -31,9 +38,11 @@ function Hds() {
         >
           Buscar todos
         </button>
-        <SearchForm searchOptions={ searchOptions } />
+        <SearchFormHd searchOptions={ searchOptions } url="http://localhost:3001/hds" />
         {
-          hdslist.length > 0 && <section> Tabela </section>
+          hdsList.length > 0 && <section>
+            <HdsTable HdsList={ hdsList } />
+          </section>
         }
       </main>
     </div>

@@ -1,6 +1,6 @@
 interface searchWeddingbyDate {
     searchBy: string;
-    valueSearch: Date;
+    valueSearch: string;
 }
 
 export default searchWeddingbyDate;

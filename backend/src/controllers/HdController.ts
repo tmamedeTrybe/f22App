@@ -9,6 +9,13 @@ class HdController {
 		const hds = await this.hdService.getAllHds();
 		return res.status(hds.code).json( hds.hds )
 	}
+
+	getHdBy = async (req: Request, res: Response) => {
+		const hds = await this.hdService.getHdBy(req.body);
+		if (hds.erro) return res.status(hds.code).json({ erro: hds.erro });
+
+		return res.status(hds.code).json({ hds: hds.hds})
+	}
 };
 
 export default HdController;
