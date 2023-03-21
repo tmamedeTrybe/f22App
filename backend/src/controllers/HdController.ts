@@ -16,6 +16,13 @@ class HdController {
 
 		return res.status(hds.code).json(hds.hds);
 	}
+
+	createHd = async (req: Request, res: Response) => {
+		const createdHd = await this.hdService.createHd(req.body);
+		if (createdHd.erro) return res.status(createdHd.code).json({ erro: createdHd.erro });
+
+		return res.status(createdHd.code).json(createdHd.hd);
+	}
 };
 
 export default HdController;

@@ -9,5 +9,6 @@ const hdController = new HdController(new HdService(Hd));
 
 hdRoutes.get('/hds', hdController.getAllHds);
 hdRoutes.post('/hds', hdController.getHdBy);
+hdRoutes.post('/hds/new', hdController.createHd);
 
 export default hdRoutes;
