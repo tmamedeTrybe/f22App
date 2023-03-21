@@ -11,14 +11,11 @@ import styles from '../modules/Hds.module.css';
 function Hds() {
   const searchOptions = ['Name', 'Label', 'Capacity', 'Available more than'];
   const [hdsList, setHdsList] = useState('');
-  const { hdsFounded } = useContext(HdContext);
+  const { hdsFounded, changeHds } = useContext(HdContext);
 
   useEffect(() => {
     setHdsList(hdsFounded);
   }, [hdsFounded]);
-
-  console.log(hdsFounded, 'estado context');
-  console.log(hdsList, 'estado da pagina');
 
   const getAll = async () => {
     const response = await fetch('http://localhost:3001/hds', {
@@ -29,7 +26,8 @@ function Hds() {
     });
 
     const hdsData = await response.json();
-    setHdsList(hdsData);
+    // setHdsList(hdsData);
+    changeHds(hdsData);
   };
 
   return (

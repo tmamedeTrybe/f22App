@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { Route, Routes } from 'react-router-dom';
 import MyProvider from './context/myProvider';
+import HdDetails from './pages/HdDetails';
 import Hds from './pages/Hds';
 import Home from './pages/Home';
 import Initial from './pages/Initial';
@@ -27,6 +28,7 @@ function App() {
           <Route path="/casamentos" element={ <Weddings /> } />
           <Route path="/hds" element={ <Hds /> } />
           <Route path="/hds/new" element={ <NewHd /> } />
+          <Route path="/hds/details/:id" element={ <HdDetails /> } />
         </Routes>
       </div>
     </MyProvider>

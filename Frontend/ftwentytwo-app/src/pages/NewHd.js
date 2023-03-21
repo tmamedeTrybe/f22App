@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import HeaderLogo from '../components/HeaderLogo';
+import styles from '../modules/NewHd.module.css';
 
 function NewHd() {
   const [name, setName] = useState('');
@@ -36,10 +37,10 @@ function NewHd() {
   };
 
   return (
-    <div>
+    <div className={ styles.container }>
       <HeaderLogo title="Novo HD" />
-      <main>
-        <form onSubmit={ submitForm }>
+      <main className={ styles.main }>
+        <form onSubmit={ submitForm } className={ styles.form }>
           <label htmlFor="name">
             <input
               placeholder="Name"
