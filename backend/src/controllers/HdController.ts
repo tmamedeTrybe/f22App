@@ -19,9 +19,26 @@ class HdController {
 
 	createHd = async (req: Request, res: Response) => {
 		const createdHd = await this.hdService.createHd(req.body);
+		
+		
 		if (createdHd.erro) return res.status(createdHd.code).json({ erro: createdHd.erro });
 
 		return res.status(createdHd.code).json({ message: 'Criado com sucesso!', hd: createdHd.hd });
+	}
+
+	updateHd = async (req: Request, res: Response) => {
+		const { id } = req.params;
+		console.log(id, 'id do params');
+		
+		console.log(req.body, 'Body chegando');
+		const update = await this.hdService.updateHd(Number(id), req.body);
+		return res.status(update.code).json({ message: update.message })
+	}
+
+	deleteHd = async (req: Request, res: Response) => {
+		const { id } = req.params;
+		const deleted = await this.hdService.deleteHd(Number(id));
+		return res.status(deleted.code).json({ message: deleted.message })
 	}
 };
 

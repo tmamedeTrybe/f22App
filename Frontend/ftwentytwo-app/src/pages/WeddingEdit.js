@@ -29,7 +29,7 @@ function WeddingEdit() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const wedding = jobsFounded.filter((job) => job.id === Number(id))[0];
+    const wedding = jobsFounded.find((job) => job.id === Number(id));
     setData(wedding.data);
     setCidade(wedding.cidade);
     setNoiva(wedding.noiva);
@@ -230,7 +230,7 @@ function WeddingEdit() {
           <button
             type="submit"
           >
-            Cadastrar
+            Atualizar
           </button>
         </form>
       </section>

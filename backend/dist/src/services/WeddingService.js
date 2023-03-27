@@ -12,17 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const hd_1 = __importDefault(require("../database/models/hd"));
 const validateNewWedding_1 = __importDefault(require("../validations/validateNewWedding"));
 class WeddingService {
     constructor(weddingModel) {
         this.weddingModel = weddingModel;
         this.getWeddings = () => __awaiter(this, void 0, void 0, function* () {
-            const weddings = yield this.weddingModel.findAll();
+            const weddings = yield this.weddingModel.findAll({ include: [
+                    { model: hd_1.default, as: 'rawBackupOne', attributes: ['id', 'name'] },
+                ],
+            });
             return { code: 200, weddings };
         });
         this.getWeddingBy = (search) => __awaiter(this, void 0, void 0, function* () {
             const { searchBy, valueSearch } = search;
-            const result = yield this.weddingModel.findAll({ where: { [searchBy]: valueSearch } });
+            const result = yield this.weddingModel.findAll({ where: { [searchBy]: valueSearch },
+            });
             if (!result.length)
                 return { code: 400, erro: 'Evento não encontrado' };
             return { code: 200, wedding: result };

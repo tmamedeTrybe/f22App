@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 // 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
@@ -12,7 +13,17 @@ module.exports = {
       cidade: { type: Sequelize.STRING, allowNull: false },
       localCerimonia: { type: Sequelize.STRING, field: 'local_cerimonia' },
       localRecepcao: { type: Sequelize.STRING, field: 'local_recepcao' },
-      primeiroBackupBruto: { type: Sequelize.INTEGER, field: 'primeiro_backup_bruto' },
+      primeiroBackupBruto: { 
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: 'primeiro_backup_bruto',
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        references: {
+          model: 'hds',
+          key: 'id',
+        },
+      },
       // eslint-disable-next-line max-len
       primeiroBackupBrutoTamanho: { type: Sequelize.INTEGER, field: 'primeiro_backup_bruto_tamanho' },
       segundoBackupBruto: { type: Sequelize.INTEGER, field: 'segundo_backup_bruto' },

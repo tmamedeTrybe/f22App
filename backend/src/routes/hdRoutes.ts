@@ -10,5 +10,7 @@ const hdController = new HdController(new HdService(Hd));
 hdRoutes.get('/hds', hdController.getAllHds);
 hdRoutes.post('/hds', hdController.getHdBy);
 hdRoutes.post('/hds/new', hdController.createHd);
+hdRoutes.patch('/hds/details/:id/update', hdController.updateHd);
+hdRoutes.delete('/hds/details/:id', hdController.deleteHd);
 
 export default hdRoutes;

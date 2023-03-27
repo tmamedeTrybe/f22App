@@ -12,4 +12,5 @@ app.use(express_1.default.json());
 app.get('/health', (_req, res) => res.status(200).send('ok'));
 app.use(routes_1.userRoutes);
 app.use(routes_1.weddingRoutes);
+app.use(routes_1.hdRoutes);
 exports.default = app;

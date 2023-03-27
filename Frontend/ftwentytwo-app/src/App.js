@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import MyProvider from './context/myProvider';
 import HdDetails from './pages/HdDetails';
 import Hds from './pages/Hds';
+import HdUpdate from './pages/HdUpdate';
 import Home from './pages/Home';
 import Initial from './pages/Initial';
 import Login from './pages/Login';
@@ -29,6 +30,7 @@ function App() {
           <Route path="/hds" element={ <Hds /> } />
           <Route path="/hds/new" element={ <NewHd /> } />
           <Route path="/hds/details/:id" element={ <HdDetails /> } />
+          <Route path="/hds/details/:id/update" element={ <HdUpdate /> } />
         </Routes>
       </div>
     </MyProvider>

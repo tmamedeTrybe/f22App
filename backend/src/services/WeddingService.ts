@@ -1,3 +1,4 @@
+import Hd from "../database/models/hd";
 import Wedding from "../database/models/wedding";
 import newWedding from "../interfaces/newWedding";
 import searchWeddingbyDate from "../interfaces/searchWedding";
@@ -8,14 +9,26 @@ class WeddingService {
     constructor(private weddingModel: typeof Wedding) {}
 
     public getWeddings = async () => {
-        const weddings = await this.weddingModel.findAll();
+        const weddings = await this.weddingModel.findAll({ include:
+            [
+                { model: Hd, as: 'rawBackupOne', attributes: ['id','name'] },
+            ],
+        });
         return {code: 200, weddings}
     }
 
     public getWeddingBy = async (search: searchWeddingbyDate) => {
         const { searchBy, valueSearch } = search;
         
-        const result: Wedding[] | null = await this.weddingModel.findAll({ where: { [searchBy]: valueSearch } });
+        const result: Wedding[] | null = await this.weddingModel.findAll(
+            { 
+                where: { [searchBy]: valueSearch },
+                include:
+            [
+                { model: Hd, as: 'rawBackupOne', attributes: ['id','name'] },
+            ],
+            },
+        );
 
         if (!result.length) return { code: 400, erro: 'Evento não encontrado' }
 

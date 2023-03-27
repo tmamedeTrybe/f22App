@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable no-tabs */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import HdsTable from '../components/HdsTable';
 import HeaderLogo from '../components/HeaderLogo';
@@ -10,12 +10,9 @@ import styles from '../modules/Hds.module.css';
 
 function Hds() {
   const searchOptions = ['Name', 'Label', 'Capacity', 'Available more than'];
-  const [hdsList, setHdsList] = useState('');
   const { hdsFounded, changeHds } = useContext(HdContext);
-
-  useEffect(() => {
-    setHdsList(hdsFounded);
-  }, [hdsFounded]);
+  //   setHdsList(hdsFounded);
+  // }, [hdsFounded]);
 
   const getAll = async () => {
     const response = await fetch('http://localhost:3001/hds', {
@@ -26,7 +23,6 @@ function Hds() {
     });
 
     const hdsData = await response.json();
-    // setHdsList(hdsData);
     changeHds(hdsData);
   };
 
@@ -44,8 +40,8 @@ function Hds() {
         </button>
         <SearchFormHd searchOptions={ searchOptions } url="http://localhost:3001/hds" />
         {
-          hdsList.length > 0 && <section className={ styles.hds }>
-            <HdsTable HdsList={ hdsList } />
+          hdsFounded.length > 0 && <section className={ styles.hds }>
+            <HdsTable HdsList={ hdsFounded } />
           </section>
         }
       </main>
