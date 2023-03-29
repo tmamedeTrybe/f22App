@@ -26,7 +26,11 @@ class WeddingService {
         });
         this.getWeddingBy = (search) => __awaiter(this, void 0, void 0, function* () {
             const { searchBy, valueSearch } = search;
-            const result = yield this.weddingModel.findAll({ where: { [searchBy]: valueSearch },
+            const result = yield this.weddingModel.findAll({
+                where: { [searchBy]: valueSearch },
+                include: [
+                    { model: hd_1.default, as: 'rawBackupOne', attributes: ['id', 'name'] },
+                ],
             });
             if (!result.length)
                 return { code: 400, erro: 'Evento não encontrado' };

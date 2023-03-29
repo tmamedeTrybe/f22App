@@ -32,7 +32,11 @@ Wedding.init({
     underscored: true,
 });
 Wedding.belongsTo(hd_1.default, { foreignKey: 'primeiroBackupBruto', as: 'rawBackupOne' });
-hd_1.default.hasMany(Wedding, { foreignKey: 'primeiroBackupBruto', as: 'rawWeddings' });
-// Wedding.belongsTo(Hd, { foreignKey: 'primeiroBackupBruto', as: 'backup' });
-// Hd.hasMany(Wedding, { foreignKey: 'primeiro_backup_bruto', as: 'weddings' });
+hd_1.default.hasMany(Wedding, { foreignKey: 'primeiroBackupBruto', as: 'rawWeddingsOne' });
+Wedding.belongsTo(hd_1.default, { foreignKey: 'segundoBackupBruto', as: 'rawBackupTwo' });
+hd_1.default.hasMany(Wedding, { foreignKey: 'segundoBackupBruto', as: 'rawWeddingsTwo' });
+Wedding.belongsTo(hd_1.default, { foreignKey: 'primeiroBackup', as: 'editBackupOne' });
+hd_1.default.hasMany(Wedding, { foreignKey: 'primeiroBackup', as: 'editWeddingsOne' });
+Wedding.belongsTo(hd_1.default, { foreignKey: 'segundoBackup', as: 'editBackupTwo' });
+hd_1.default.hasMany(Wedding, { foreignKey: 'segundoBackup', as: 'editWeddingsTwo' });
 exports.default = Wedding;

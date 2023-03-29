@@ -8,8 +8,8 @@ const _1 = __importDefault(require("."));
 class Hd extends sequelize_1.Model {
 }
 Hd.init({
-    id: { type: sequelize_1.INTEGER, allowNull: false, autoIncrement: true },
-    name: { type: sequelize_1.STRING, allowNull: false, primaryKey: true },
+    id: { type: sequelize_1.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true },
+    name: { type: sequelize_1.STRING, allowNull: false },
     label: { type: sequelize_1.STRING, allowNull: false },
     capacity: { type: sequelize_1.INTEGER, allowNull: false },
     used: { type: sequelize_1.INTEGER, allowNull: false },

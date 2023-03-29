@@ -2,9 +2,10 @@ import { INTEGER, Model, STRING } from "sequelize";
 import hd from "../../interfaces/hd";
 import db from '.';
 import Wedding from "./wedding";
+import hdWithWedding from "../../interfaces/hdWithWedding";
 
-class Hd extends Model implements hd {
-	id?:number;
+class Hd extends Model implements hd, hdWithWedding {
+	id!:number;
 	name!: string;
 	label!: string;
 	capacity!: number;
@@ -13,8 +14,8 @@ class Hd extends Model implements hd {
 }
 
 Hd.init({
-	id: { type: INTEGER, allowNull: false, autoIncrement:true },
-	name: { type:STRING, allowNull: false, primaryKey: true },
+	id: { type: INTEGER, allowNull: false, autoIncrement:true, primaryKey: true },
+	name: { type:STRING, allowNull: false },
 	label: { type:STRING, allowNull: false },
 	capacity: { type:INTEGER, allowNull: false },
 	used: { type:INTEGER, allowNull: false },

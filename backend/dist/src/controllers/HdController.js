@@ -28,6 +28,7 @@ class HdController {
             return res.status(hds.code).json(hds.hds);
         });
         this.createHd = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            console.log(req.body);
             const createdHd = yield this.hdService.createHd(req.body);
             if (createdHd.erro)
                 return res.status(createdHd.code).json({ erro: createdHd.erro });

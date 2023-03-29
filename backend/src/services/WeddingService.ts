@@ -4,9 +4,10 @@ import newWedding from "../interfaces/newWedding";
 import searchWeddingbyDate from "../interfaces/searchWedding";
 import weddingUpdate from "../interfaces/weddingUpdate";
 import validateNewWedding from "../validations/validateNewWedding";
+import HdService from "./HdService";
 
 class WeddingService {
-    constructor(private weddingModel: typeof Wedding) {}
+    constructor(private weddingModel: typeof Wedding, private hdService: HdService) {}
 
     public getWeddings = async () => {
         const weddings = await this.weddingModel.findAll({ include:
@@ -61,6 +62,11 @@ class WeddingService {
         }
         
         const created = await this.weddingModel.create(weddingCreated);
+        await this.hdService.updateUsedGb(Number(created.primeiroBackupBruto));
+        await this.hdService.updateUsedGb(Number(created.segundoBackupBruto));
+        await this.hdService.updateUsedGb(Number(created.primeiroBackup));
+        await this.hdService.updateUsedGb(Number(created.segundoBackup));
+
         return { code: 201, wedding: created }
     }
 
@@ -84,7 +90,13 @@ class WeddingService {
             segundoBackupTamanho: newInfo.segundoBackupTamanho
           },
           { where: { id } },
-        )
+        );
+
+        await this.hdService.updateUsedGb(Number(newInfo.primeiroBackupBruto));
+        await this.hdService.updateUsedGb(Number(newInfo.segundoBackupBruto));
+        await this.hdService.updateUsedGb(Number(newInfo.primeiroBackup));
+        await this.hdService.updateUsedGb(Number(newInfo.segundoBackup));
+
         return { code: 201, message: "Casamento alterado" }
     }
 

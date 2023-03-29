@@ -19,28 +19,48 @@ class HdService {
         this.HdModel = HdModel;
         this.getAllHds = () => __awaiter(this, void 0, void 0, function* () {
             const hds = yield this.HdModel.findAll({ include: [
-                    { model: wedding_1.default, as: 'backupPrimeiro', attributes: ['noiva', 'noivo', 'primeiroBackupTamanho'] },
+                    { model: wedding_1.default, as: 'rawWeddingsOne', attributes: ['id', 'noiva', 'noivo', 'data', 'primeiroBackupBrutoTamanho'] },
+                    { model: wedding_1.default, as: 'rawWeddingsTwo', attributes: ['id', 'noiva', 'noivo', 'data', 'segundoBackupBrutoTamanho'] },
+                    { model: wedding_1.default, as: 'editWeddingsOne', attributes: ['id', 'noiva', 'noivo', 'data', 'primeiroBackupTamanho'] },
+                    { model: wedding_1.default, as: 'editWeddingsTwo', attributes: ['id', 'noiva', 'noivo', 'data', 'segundoBackupTamanho'] },
                 ],
             });
-            return { code: 200, hds: hds };
+            return { code: 200, hds: hds.sort((a, b) => a.id - b.id) };
         });
         this.getHdBy = (search) => __awaiter(this, void 0, void 0, function* () {
             const { searchBy, valueSearch } = search;
             if (searchBy == 'Available more than') {
                 // Falta Lógica para fazer a pesquisa de hds com disponibilidade acima de..
-                const result = yield this.HdModel.findAll({ where: { 'available': Number(valueSearch) }, include: [{ model: wedding_1.default, as: 'rawWeddings', attributes: ['noiva', 'noivo', 'primeiroBackupTamanho'] }] });
+                const result = yield this.HdModel.findAll({
+                    where: { 'available': Number(valueSearch) },
+                    include: [
+                        { model: wedding_1.default, as: 'rawWeddingsOne', attributes: ['id', 'noiva', 'noivo', 'data', 'primeiroBackupBrutoTamanho'] },
+                        { model: wedding_1.default, as: 'rawWeddingsTwo', attributes: ['id', 'noiva', 'noivo', 'data', 'segundoBackupBrutoTamanho'] },
+                        { model: wedding_1.default, as: 'editWeddingsOne', attributes: ['id', 'noiva', 'noivo', 'data', 'primeiroBackupTamanho'] },
+                        { model: wedding_1.default, as: 'editWeddingsTwo', attributes: ['id', 'noiva', 'noivo', 'data', 'segundoBackupTamanho'] },
+                    ]
+                });
                 if (!result.length)
                     return { code: 400, erro: 'Hd não encontrado' };
-                return { code: 200, hds: result };
+                return { code: 200, hds: result.sort((a, b) => a.id - b.id) };
             }
             else {
-                const result = yield this.HdModel.findAll({ where: { [searchBy]: valueSearch }, include: [{ model: wedding_1.default, as: 'rawWeddings', attributes: ['noiva', 'noivo', 'primeiroBackupTamanho'] }] });
+                const result = yield this.HdModel.findAll({
+                    where: { [searchBy]: valueSearch },
+                    include: [
+                        { model: wedding_1.default, as: 'rawWeddingsOne', attributes: ['id', 'noiva', 'noivo', 'data', 'primeiroBackupBrutoTamanho'] },
+                        { model: wedding_1.default, as: 'rawWeddingsTwo', attributes: ['id', 'noiva', 'noivo', 'data', 'segundoBackupBrutoTamanho'] },
+                        { model: wedding_1.default, as: 'editWeddingsOne', attributes: ['id', 'noiva', 'noivo', 'data', 'primeiroBackupTamanho'] },
+                        { model: wedding_1.default, as: 'editWeddingsTwo', attributes: ['id', 'noiva', 'noivo', 'data', 'segundoBackupTamanho'] },
+                    ]
+                });
                 if (!result.length)
                     return { code: 400, erro: 'Hd não encontrado' };
-                return { code: 200, hds: result };
+                return { code: 200, hds: result.sort((a, b) => a.id - b.id) };
             }
         });
         this.createHd = (newHd) => __awaiter(this, void 0, void 0, function* () {
+            console.log(newHd);
             const { error } = (0, validateNewHd_1.default)(newHd);
             if (error)
                 return { code: 400, erro: error.message };
@@ -51,7 +71,7 @@ class HdService {
                 name: newHd.name,
                 label: newHd.label,
                 capacity: newHd.capacity,
-                used: newHd.used,
+                used: 0,
                 available: newHd.capacity - newHd.used
             };
             const hdcreated = yield this.HdModel.create(created);

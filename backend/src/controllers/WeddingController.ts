@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
+import Hd from '../database/models/hd';
 import Wedding from "../database/models/wedding";
 import newWedding from '../interfaces/newWedding';
+import HdService from '../services/HdService';
 import WeddingService from "../services/WeddingService";
 
 class WeddingController {
-    constructor(private weddingService = new WeddingService(Wedding)) {}
+    constructor(private weddingService = new WeddingService(Wedding, new HdService(Hd))) {}
 
     getWeddings = async (req: Request, res: Response) => {
         const weddings = await this.weddingService.getWeddings();

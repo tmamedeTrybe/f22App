@@ -18,6 +18,8 @@ class HdController {
 	}
 
 	createHd = async (req: Request, res: Response) => {
+		console.log(req.body);
+		
 		const createdHd = await this.hdService.createHd(req.body);
 		
 		
@@ -34,6 +36,13 @@ class HdController {
 		const update = await this.hdService.updateHd(Number(id), req.body);
 		return res.status(update.code).json({ message: update.message })
 	}
+
+	// updateUsed = async (req: Request, res: Response) => {
+	// 	const { id } = req.params;
+	// 	const update = await this.hdService.updateUsedGb(Number(id));
+	// 	if (!update) return res.status(400).json('Deu errado')
+	// 	return res.status(update.code).json(update.hd)
+	// }	
 
 	deleteHd = async (req: Request, res: Response) => {
 		const { id } = req.params;
