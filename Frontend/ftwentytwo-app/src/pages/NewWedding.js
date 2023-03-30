@@ -214,7 +214,7 @@ function NewWedding() {
       {
         message && <p>{ message }</p>
       }
-      <Link to="/casamentos"> Retornar para Casamentos</Link>
+      <Link to="/casamentos"> Weddings</Link>
     </div>
   );
 }

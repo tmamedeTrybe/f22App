@@ -39,7 +39,7 @@ function Register() {
 
   return (
     <div className={ styles.container }>
-      <HeaderLogo />
+      <HeaderLogo title="Novo usuário" />
       <section className={ styles.main }>
         <h1>Novo usuário</h1>
         <form className={ styles.form } onSubmit={ submitForm }>

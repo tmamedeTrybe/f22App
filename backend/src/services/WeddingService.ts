@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import Hd from "../database/models/hd";
 import Wedding from "../database/models/wedding";
 import newWedding from "../interfaces/newWedding";
@@ -23,7 +24,7 @@ class WeddingService {
         
         const result: Wedding[] | null = await this.weddingModel.findAll(
             { 
-                where: { [searchBy]: valueSearch },
+                where: { [searchBy]: { [Op.substring]: valueSearch} },
                 include:
             [
                 { model: Hd, as: 'rawBackupOne', attributes: ['id','name'] },
@@ -37,8 +38,8 @@ class WeddingService {
     }
 
     async createWedding(newWeddingCreated:newWedding) {
-        const { error } = validateNewWedding(newWeddingCreated);
-        if (error) return { code: 400, erro: error.message };
+        // const { error } = validateNewWedding(newWeddingCreated);
+        // if (error) return { code: 400, erro: error.message };
 
         const weddingExist: Wedding | null = await this.weddingModel.findOne({ where: { data: newWeddingCreated.data, localCerimonia: newWeddingCreated.localCerimonia } });
         if (weddingExist) return { code: 400, erro: 'Evento já cadastrado' };

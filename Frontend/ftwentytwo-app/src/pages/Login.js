@@ -28,7 +28,6 @@ function Login() {
       }),
     });
     const userData = await response.json();
-    console.log(userData.user);
 
     if (userData.erro) {
       setErro(userData.erro);

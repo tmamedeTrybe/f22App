@@ -14,4 +14,5 @@ hdRoutes.post('/hds', hdController.getHdBy);
 hdRoutes.post('/hds/new', hdController.createHd);
 hdRoutes.patch('/hds/details/:id/update', hdController.updateHd);
 hdRoutes.delete('/hds/details/:id', hdController.deleteHd);
+// hdRoutes.get('/hds/details/:id/weddings', hdController.updateUsed)
 exports.default = hdRoutes;

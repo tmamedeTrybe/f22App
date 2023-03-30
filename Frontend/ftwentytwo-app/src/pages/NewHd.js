@@ -7,7 +7,6 @@ function NewHd() {
   const [name, setName] = useState('');
   const [label, setLabel] = useState('');
   const [capacity, setCapacity] = useState('');
-  const [used, setUsed] = useState('');
   const [erro, setErro] = useState('');
   const [message, setMessage] = useState('');
 
@@ -16,7 +15,6 @@ function NewHd() {
       name,
       label,
       capacity: Number(capacity),
-      used: Number(used),
     };
     event.preventDefault();
 
@@ -66,15 +64,6 @@ function NewHd() {
               value={ capacity }
               onChange={ (event) => setCapacity(event.target.value) }
               id="capacity"
-            />
-          </label>
-          <label htmlFor="used">
-            <input
-              placeholder="Used"
-              type="number"
-              value={ used }
-              onChange={ (event) => setUsed(event.target.value) }
-              id="used"
             />
           </label>
           <button

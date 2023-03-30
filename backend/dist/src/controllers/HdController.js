@@ -41,6 +41,12 @@ class HdController {
             const update = yield this.hdService.updateHd(Number(id), req.body);
             return res.status(update.code).json({ message: update.message });
         });
+        // updateUsed = async (req: Request, res: Response) => {
+        // 	const { id } = req.params;
+        // 	const update = await this.hdService.updateUsedGb(Number(id));
+        // 	if (!update) return res.status(400).json('Deu errado')
+        // 	return res.status(update.code).json(update.hd)
+        // }	
         this.deleteHd = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const deleted = yield this.hdService.deleteHd(Number(id));

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable max-len */
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import MyContext from '../context/myContext';
 import HeaderLogo from '../components/HeaderLogo';
 import image from '../assets/images/casamentos/Ana_Mateus.jpg';
@@ -46,10 +46,10 @@ function WeddingDetail() {
               <p>{ `Cidade = ${wedding.cidade}` }</p>
               <p>{ `Cerimônia = ${wedding.localCerimonia}` }</p>
               <p>{ `Recepção = ${wedding.localRecepcao}` }</p>
-              <p>{ `Primeiro backup Bruto = ${wedding.primeiroBackupBruto} - ${wedding.primeiroBackupBrutoTamanho}GB` }</p>
-              <p>{ `Primeiro backup Bruto = ${wedding.segundoBackupBruto} - ${wedding.segundoBackupBrutoTamanho}GB` }</p>
-              <p>{ `Primeiro backup = HD${wedding.primeiroBackup} - ${wedding.primeiroBackupTamanho}GB` }</p>
-              <p>{ `Segundo backup = HD${wedding.segundoBackup} - ${wedding.segundoBackupTamanho}GB` }</p>
+              <p>{ `Primeiro Backup Bruto = ${wedding.primeiroBackupBruto} - ${wedding.primeiroBackupBrutoTamanho}GB` }</p>
+              <p>{ `Segundo Backup Bruto = ${wedding.segundoBackupBruto} - ${wedding.segundoBackupBrutoTamanho}GB` }</p>
+              <p>{ `Primeiro Backup Editado = HD${wedding.primeiroBackup} - ${wedding.primeiroBackupTamanho}GB` }</p>
+              <p>{ `Segundo Backup Editado = HD${wedding.segundoBackup} - ${wedding.segundoBackupTamanho}GB` }</p>
             </section>
             <section>
               <button
@@ -65,6 +65,7 @@ function WeddingDetail() {
             </section>
           </main>
       }
+      <Link to="/casamentos"> Weddings</Link>
 
     </div>
   );

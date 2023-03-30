@@ -23,7 +23,7 @@ function WeddingCard({ wedding }) {
 }
 
 WeddingCard.propTypes = {
-  wedding: PropTypes.objectOf({
+  wedding: PropTypes.shape({
     id: PropTypes.number.isRequired,
     data: PropTypes.string.isRequired,
     noiva: PropTypes.string.isRequired,

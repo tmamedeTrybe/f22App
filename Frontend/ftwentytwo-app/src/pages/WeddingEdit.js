@@ -93,7 +93,9 @@ function WeddingEdit() {
             { `${noiva} & ${noivo}` }
           </h3>
           <label htmlFor="data">
+            Date
             <input
+              onFocus={ () => setData('') }
               placeholder="Data"
               onChange={ (event) => setData(event.target.value) }
               type="text"
@@ -102,7 +104,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="cidade">
+            City
             <input
+              onFocus={ () => setCidade('') }
               placeholder="Cidade"
               onChange={ (event) => setCidade(event.target.value) }
               type="text"
@@ -111,7 +115,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="noiva">
+            Bride
             <input
+              onFocus={ () => setNoiva('') }
               placeholder="Noiva"
               onChange={ (event) => setNoiva(event.target.value) }
               type="text"
@@ -120,7 +126,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="noivo">
+            Groom
             <input
+              onFocus={ () => setNoivo('') }
               placeholder="Noivo"
               onChange={ (event) => setNoivo(event.target.value) }
               type="text"
@@ -129,7 +137,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="imagem">
+            Image
             <input
+              onFocus={ () => setImagem('') }
               placeholder="Imagem"
               onChange={ (event) => setImagem(event.target.value) }
               type="upload"
@@ -138,7 +148,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="localCerimonia">
+            Cerimony
             <input
+              onFocus={ () => setLocalCerimonia('') }
               placeholder="Local da Cerimônia"
               onChange={ (event) => setLocalCerimonia(event.target.value) }
               type="text"
@@ -147,7 +159,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="localRecepcao">
+            Party
             <input
+              onFocus={ () => setLocalRecepcao('') }
               placeholder="Local da Recepção"
               onChange={ (event) => setLocalRecepcao(event.target.value) }
               type="text"
@@ -156,7 +170,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="primeiroBackupBruto">
+            First Raw Backup
             <input
+              onFocus={ () => setPrimeiroBackupBruto('') }
               placeholder="Primeiro Backup Bruto"
               onChange={ (event) => setPrimeiroBackupBruto(event.target.value) }
               type="number"
@@ -165,7 +181,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="primeiroBackupBrutoTamanho">
+            First Raw Backup Size
             <input
+              onFocus={ () => setPrimeiroBackupBrutoTamanho('') }
               placeholder="Tamanho"
               onChange={ (event) => setPrimeiroBackupBrutoTamanho(event.target.value) }
               type="number"
@@ -174,7 +192,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="segundoBackupBruto">
+            Second Raw Backup
             <input
+              onFocus={ () => setSegundoBackupBruto('') }
               placeholder="Segundo Backup Bruto"
               onChange={ (event) => setSegundoBackupBruto(event.target.value) }
               type="number"
@@ -183,7 +203,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="segundoBackupBrutoTamanho">
+            Second Raw Backup Size
             <input
+              onFocus={ () => setSegundoBackupBrutoTamanho('') }
               placeholder="Tamanho"
               onChange={ (event) => setSegundoBackupBrutoTamanho(event.target.value) }
               type="number"
@@ -192,7 +214,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="primeiroBackup">
+            First Edit Backup
             <input
+              onFocus={ () => setPrimeiroBackup('') }
               placeholder="Primeiro Backup"
               onChange={ (event) => setPrimeiroBackup(event.target.value) }
               type="number"
@@ -201,7 +225,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="primeiroBackupTamanho">
+            First Edit Backup Size
             <input
+              onFocus={ () => setPrimeiroBackupTamanho('') }
               placeholder="Tamanho"
               onChange={ (event) => setPrimeiroBackupTamanho(event.target.value) }
               type="number"
@@ -210,7 +236,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="segundoBackup">
+            Second Edit Backup
             <input
+              onFocus={ () => setSegundoBackup('') }
               placeholder="Segundo Backup"
               onChange={ (event) => setSegundoBackup(event.target.value) }
               type="number"
@@ -219,7 +247,9 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="segundoBackupTamanho">
+            Second Edit Backup Size
             <input
+              onFocus={ () => setSegundoBackupTamanho('') }
               placeholder="Tamanho"
               onChange={ (event) => setSegundoBackupTamanho(event.target.value) }
               type="number"
@@ -230,7 +260,7 @@ function WeddingEdit() {
           <button
             type="submit"
           >
-            Atualizar
+            Update
           </button>
         </form>
       </section>
@@ -240,7 +270,7 @@ function WeddingEdit() {
       {
         message && <p>{ message }</p>
       }
-      <Link to="/casamentos"> Retornar para Casamentos</Link>
+      <Link to="/casamentos"> Weddings</Link>
     </div>
   );
 }

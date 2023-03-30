@@ -12,10 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const hd_1 = __importDefault(require("../database/models/hd"));
 const wedding_1 = __importDefault(require("../database/models/wedding"));
+const HdService_1 = __importDefault(require("../services/HdService"));
 const WeddingService_1 = __importDefault(require("../services/WeddingService"));
 class WeddingController {
-    constructor(weddingService = new WeddingService_1.default(wedding_1.default)) {
+    constructor(weddingService = new WeddingService_1.default(wedding_1.default, new HdService_1.default(hd_1.default))) {
         this.weddingService = weddingService;
         this.getWeddings = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const weddings = yield this.weddingService.getWeddings();

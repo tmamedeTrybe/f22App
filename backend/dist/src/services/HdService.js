@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const sequelize_1 = require("sequelize");
 const wedding_1 = __importDefault(require("../database/models/wedding"));
 const validateNewHd_1 = __importDefault(require("../validations/validateNewHd"));
 class HdService {
@@ -32,7 +33,7 @@ class HdService {
             if (searchBy == 'Available more than') {
                 // Falta Lógica para fazer a pesquisa de hds com disponibilidade acima de..
                 const result = yield this.HdModel.findAll({
-                    where: { 'available': Number(valueSearch) },
+                    where: { 'available': { [sequelize_1.Op.gte]: Number(valueSearch) } },
                     include: [
                         { model: wedding_1.default, as: 'rawWeddingsOne', attributes: ['id', 'noiva', 'noivo', 'data', 'primeiroBackupBrutoTamanho'] },
                         { model: wedding_1.default, as: 'rawWeddingsTwo', attributes: ['id', 'noiva', 'noivo', 'data', 'segundoBackupBrutoTamanho'] },
@@ -46,7 +47,7 @@ class HdService {
             }
             else {
                 const result = yield this.HdModel.findAll({
-                    where: { [searchBy]: valueSearch },
+                    where: { [searchBy]: { [sequelize_1.Op.substring]: valueSearch } },
                     include: [
                         { model: wedding_1.default, as: 'rawWeddingsOne', attributes: ['id', 'noiva', 'noivo', 'data', 'primeiroBackupBrutoTamanho'] },
                         { model: wedding_1.default, as: 'rawWeddingsTwo', attributes: ['id', 'noiva', 'noivo', 'data', 'segundoBackupBrutoTamanho'] },
@@ -72,18 +73,12 @@ class HdService {
                 label: newHd.label,
                 capacity: newHd.capacity,
                 used: 0,
-                available: newHd.capacity - newHd.used
+                available: newHd.capacity
             };
             const hdcreated = yield this.HdModel.create(created);
             return { code: 201, hd: hdcreated };
         });
-        this.deleteHd = (id) => __awaiter(this, void 0, void 0, function* () {
-            yield this.HdModel.destroy({ where: { id } });
-            return { code: 201, message: 'HD deletado' };
-        });
-    }
-    updateHd(id, newInfo) {
-        return __awaiter(this, void 0, void 0, function* () {
+        this.updateHd = (id, newInfo) => __awaiter(this, void 0, void 0, function* () {
             yield this.HdModel.update({
                 name: newInfo.name,
                 label: newInfo.label,
@@ -93,6 +88,59 @@ class HdService {
                 where: { id }
             });
             return { code: 201, message: "HD alterado" };
+        });
+        this.updateUsedGb = (id) => __awaiter(this, void 0, void 0, function* () {
+            let totalSizeFirstRaw;
+            let totalSizeSecondRaw;
+            let totalSizeFirstEdit;
+            let totalSizeSecondEdit;
+            const hd = yield this.HdModel.findOne({
+                where: { id },
+                include: [
+                    { model: wedding_1.default, as: 'rawWeddingsOne', attributes: ['primeiroBackupBrutoTamanho'] },
+                    { model: wedding_1.default, as: 'rawWeddingsTwo', attributes: ['segundoBackupBrutoTamanho'] },
+                    { model: wedding_1.default, as: 'editWeddingsOne', attributes: ['primeiroBackupTamanho'] },
+                    { model: wedding_1.default, as: 'editWeddingsTwo', attributes: ['segundoBackupTamanho'] },
+                ]
+            });
+            if (hd) {
+                if (hd.rawWeddingsOne && hd.rawWeddingsOne.length > 0) {
+                    const values = hd.rawWeddingsOne.reduce((acc, cur) => cur.primeiroBackupBrutoTamanho + acc, 0);
+                    totalSizeFirstRaw = values;
+                }
+                else
+                    totalSizeFirstRaw = 0;
+                if (hd.rawWeddingsTwo && hd.rawWeddingsTwo.length > 0) {
+                    const values = hd.rawWeddingsTwo.reduce((acc, cur) => cur.segundoBackupBrutoTamanho + acc, 0);
+                    totalSizeSecondRaw = values;
+                }
+                else
+                    totalSizeSecondRaw = 0;
+                if (hd.editWeddingsOne && hd.editWeddingsOne.length > 0) {
+                    const values = hd.editWeddingsOne.reduce((acc, cur) => cur.primeiroBackupTamanho + acc, 0);
+                    totalSizeFirstEdit = values;
+                }
+                else
+                    totalSizeFirstEdit = 0;
+                if (hd.editWeddingsTwo && hd.editWeddingsTwo.length > 0) {
+                    const values = hd.editWeddingsTwo.reduce((acc, cur) => cur.segundoBackupTamanho + acc, 0);
+                    totalSizeSecondEdit = values;
+                }
+                else
+                    totalSizeSecondEdit = 0;
+                const result = totalSizeFirstRaw + totalSizeSecondRaw + totalSizeFirstEdit + totalSizeSecondEdit;
+                console.log(result);
+                yield this.HdModel.update({
+                    used: result,
+                    available: hd.capacity - result
+                }, {
+                    where: { id }
+                });
+            }
+        });
+        this.deleteHd = (id) => __awaiter(this, void 0, void 0, function* () {
+            yield this.HdModel.destroy({ where: { id } });
+            return { code: 201, message: 'HD deletado' };
         });
     }
 }

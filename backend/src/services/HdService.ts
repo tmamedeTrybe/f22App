@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { DefaultDeserializer } from "v8";
 import Hd from "../database/models/hd";
 import Wedding from "../database/models/wedding";
@@ -29,7 +30,7 @@ class HdService {
 		if (searchBy == 'Available more than') {
 			// Falta Lógica para fazer a pesquisa de hds com disponibilidade acima de..
 			const result: Hd[] | null = await this.HdModel.findAll({ 
-				where: { 'available': Number(valueSearch)},
+				where: { 'available': { [Op.gte]: Number(valueSearch)}},
 				include: [ 
 					{ model: Wedding, as: 'rawWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupBrutoTamanho'] },
 					{ model: Wedding, as: 'rawWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupBrutoTamanho'] },
@@ -41,7 +42,7 @@ class HdService {
         	return { code: 200, hds: result.sort((a: Hd,b: Hd) => a.id - b.id) }
 		} else {
 			const result: Hd[] | null = await this.HdModel.findAll({
-				where: { [searchBy]: valueSearch },
+				where: { [searchBy]: { [Op.substring]: valueSearch} },
 				include: [ 
 					{ model: Wedding, as: 'rawWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupBrutoTamanho'] },
 					{ model: Wedding, as: 'rawWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupBrutoTamanho'] },

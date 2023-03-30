@@ -12,11 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const sequelize_1 = require("sequelize");
 const hd_1 = __importDefault(require("../database/models/hd"));
-const validateNewWedding_1 = __importDefault(require("../validations/validateNewWedding"));
 class WeddingService {
-    constructor(weddingModel) {
+    constructor(weddingModel, hdService) {
         this.weddingModel = weddingModel;
+        this.hdService = hdService;
         this.getWeddings = () => __awaiter(this, void 0, void 0, function* () {
             const weddings = yield this.weddingModel.findAll({ include: [
                     { model: hd_1.default, as: 'rawBackupOne', attributes: ['id', 'name'] },
@@ -27,7 +28,7 @@ class WeddingService {
         this.getWeddingBy = (search) => __awaiter(this, void 0, void 0, function* () {
             const { searchBy, valueSearch } = search;
             const result = yield this.weddingModel.findAll({
-                where: { [searchBy]: valueSearch },
+                where: { [searchBy]: { [sequelize_1.Op.substring]: valueSearch } },
                 include: [
                     { model: hd_1.default, as: 'rawBackupOne', attributes: ['id', 'name'] },
                 ],
@@ -39,9 +40,8 @@ class WeddingService {
     }
     createWedding(newWeddingCreated) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { error } = (0, validateNewWedding_1.default)(newWeddingCreated);
-            if (error)
-                return { code: 400, erro: error.message };
+            // const { error } = validateNewWedding(newWeddingCreated);
+            // if (error) return { code: 400, erro: error.message };
             const weddingExist = yield this.weddingModel.findOne({ where: { data: newWeddingCreated.data, localCerimonia: newWeddingCreated.localCerimonia } });
             if (weddingExist)
                 return { code: 400, erro: 'Evento já cadastrado' };
@@ -63,6 +63,10 @@ class WeddingService {
                 segundoBackupTamanho: newWeddingCreated.segundoBackupTamanho
             };
             const created = yield this.weddingModel.create(weddingCreated);
+            yield this.hdService.updateUsedGb(Number(created.primeiroBackupBruto));
+            yield this.hdService.updateUsedGb(Number(created.segundoBackupBruto));
+            yield this.hdService.updateUsedGb(Number(created.primeiroBackup));
+            yield this.hdService.updateUsedGb(Number(created.segundoBackup));
             return { code: 201, wedding: created };
         });
     }
@@ -85,6 +89,10 @@ class WeddingService {
                 segundoBackup: newInfo.segundoBackup,
                 segundoBackupTamanho: newInfo.segundoBackupTamanho
             }, { where: { id } });
+            yield this.hdService.updateUsedGb(Number(newInfo.primeiroBackupBruto));
+            yield this.hdService.updateUsedGb(Number(newInfo.segundoBackupBruto));
+            yield this.hdService.updateUsedGb(Number(newInfo.primeiroBackup));
+            yield this.hdService.updateUsedGb(Number(newInfo.segundoBackup));
             return { code: 201, message: "Casamento alterado" };
         });
     }

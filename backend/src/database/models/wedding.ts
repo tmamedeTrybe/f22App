@@ -8,8 +8,8 @@ class Wedding extends Model implements wedding {
     data!: string;
     noiva!: string;
     noivo!: string;
-    imagem!: string;
     cidade!: string;
+    imagem?: string;
     localCerimonia?: string;
     localRecepcao?: string;
     primeiroBackupBruto?: number;
@@ -23,11 +23,11 @@ Wedding.init({
     data: { type: STRING, allowNull: false },
     noiva: { type: STRING, allowNull: false },
     noivo: { type: STRING, allowNull: false },
-    imagem: { type: STRING, allowNull: false },
     cidade: { type: STRING, allowNull: false },
+    imagem: { type: STRING },
     localCerimonia:{ type: STRING, field: 'local_cerimonia' },
     localRecepcao: { type: STRING, field: 'local_recepcao' },
-    primeiroBackupBruto: { type: INTEGER, allowNull: false, field: 'primeiro_backup_bruto' },
+    primeiroBackupBruto: { type: INTEGER, field: 'primeiro_backup_bruto' },
     primeiroBackupBrutoTamanho: { type: INTEGER, field: 'primeiro_backup_bruto_tamanho' },
     segundoBackupBruto: { type: INTEGER, field: 'segundo_backup_bruto' },
     segundoBackupBrutoTamanho: { type: INTEGER, field: 'segundo_backup_bruto_tamanho' },

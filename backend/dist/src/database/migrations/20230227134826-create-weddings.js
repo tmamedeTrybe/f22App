@@ -19,29 +19,71 @@ module.exports = {
                 data: { type: Sequelize.STRING, allowNull: false },
                 noiva: { type: Sequelize.STRING, allowNull: false },
                 noivo: { type: Sequelize.STRING, allowNull: false },
-                imagem: { type: Sequelize.STRING, allowNull: false },
                 cidade: { type: Sequelize.STRING, allowNull: false },
+                imagem: { type: Sequelize.STRING, allowNull: true },
                 localCerimonia: { type: Sequelize.STRING, field: 'local_cerimonia' },
                 localRecepcao: { type: Sequelize.STRING, field: 'local_recepcao' },
                 primeiroBackupBruto: {
                     type: Sequelize.INTEGER,
-                    allowNull: false,
                     field: 'primeiro_backup_bruto',
-                    onUpdate: 'CASCADE',
-                    onDelete: 'CASCADE',
+                    allowNull: true,
+                    // onUpdate: 'CASCADE',
+                    // onDelete: 'CASCADE',
                     references: {
                         model: 'hds',
                         key: 'id',
                     },
                 },
-                // eslint-disable-next-line max-len
-                primeiroBackupBrutoTamanho: { type: Sequelize.INTEGER, field: 'primeiro_backup_bruto_tamanho' },
-                segundoBackupBruto: { type: Sequelize.INTEGER, field: 'segundo_backup_bruto' },
-                segundoBackupBrutoTamanho: { type: Sequelize.INTEGER, field: 'segundo_backup_bruto_tamanho' },
-                primeiroBackup: { type: Sequelize.INTEGER, field: 'primeiro_backup' },
-                primeiroBackupTamanho: { type: Sequelize.INTEGER, field: 'primeiro_backup_tamanho' },
-                segundoBackup: { type: Sequelize.INTEGER, field: 'segundo_backup' },
-                segundoBackupTamanho: { type: Sequelize.INTEGER, field: 'segundo_backup_tamanho' },
+                primeiroBackupBrutoTamanho: {
+                    type: Sequelize.INTEGER,
+                    field: 'primeiro_backup_bruto_tamanho',
+                    defaultValue: 0,
+                },
+                segundoBackupBruto: {
+                    type: Sequelize.INTEGER,
+                    field: 'segundo_backup_bruto',
+                    // onUpdate: 'CASCADE',
+                    // onDelete: 'CASCADE',
+                    references: {
+                        model: 'hds',
+                        key: 'id',
+                    },
+                },
+                segundoBackupBrutoTamanho: {
+                    type: Sequelize.INTEGER,
+                    field: 'segundo_backup_bruto_tamanho',
+                    defaultValue: 0,
+                },
+                primeiroBackup: {
+                    type: Sequelize.INTEGER,
+                    field: 'primeiro_backup',
+                    // onUpdate: 'CASCADE',
+                    // onDelete: 'CASCADE',
+                    references: {
+                        model: 'hds',
+                        key: 'id',
+                    },
+                },
+                primeiroBackupTamanho: {
+                    type: Sequelize.INTEGER,
+                    field: 'primeiro_backup_tamanho',
+                    defaultValue: 0,
+                },
+                segundoBackup: {
+                    type: Sequelize.INTEGER,
+                    field: 'segundo_backup',
+                    // onUpdate: 'CASCADE',
+                    // onDelete: 'CASCADE',
+                    references: {
+                        model: 'hds',
+                        key: 'id',
+                    },
+                },
+                segundoBackupTamanho: {
+                    type: Sequelize.INTEGER,
+                    field: 'segundo_backup_tamanho',
+                    // defaultValue: 0,
+                },
             });
         });
     },
