@@ -30,6 +30,7 @@ class WeddingController {
     updateWedding = async (req: Request, res: Response) => {
         const { id } = req.params;
         const update = await this.weddingService.updateWedding(Number(id), req.body);
+        if (update.erro) return res.status(update.code).json({ erro: update.erro })
         return res.status(update.code).json({ message: update.message });
     }
 

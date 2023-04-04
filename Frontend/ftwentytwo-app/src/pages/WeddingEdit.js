@@ -17,7 +17,7 @@ function WeddingEdit() {
   const [imagem, setImagem] = useState('');
   const [localCerimonia, setLocalCerimonia] = useState('');
   const [localRecepcao, setLocalRecepcao] = useState('');
-  const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState('' && null);
+  const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState();
   const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState();
   const [segundoBackupBruto, setSegundoBackupBruto] = useState();
   const [segundoBackupBrutoTamanho, setSegundoBackupBrutoTamanho] = useState();

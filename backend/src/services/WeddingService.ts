@@ -5,6 +5,7 @@ import newWedding from "../interfaces/newWedding";
 import searchWeddingbyDate from "../interfaces/searchWedding";
 import weddingUpdate from "../interfaces/weddingUpdate";
 import validateNewWedding from "../validations/validateNewWedding";
+import validateUpdateWedding from "../validations/validateUpdateWedding";
 import HdService from "./HdService";
 
 class WeddingService {
@@ -38,8 +39,7 @@ class WeddingService {
     }
 
     async createWedding(newWeddingCreated:newWedding) {
-        console.log(newWeddingCreated,'casamento criado');
-        
+
         const { error } = validateNewWedding(newWeddingCreated);
         if (error) return { code: 400, erro: error.message };
 
@@ -74,6 +74,10 @@ class WeddingService {
     }
 
     async updateWedding(id:number, newInfo: weddingUpdate) {
+
+        const { error } = validateUpdateWedding(newInfo);
+        if (error) return { code: 400, erro: error.message };
+
         const wedding = await this.weddingModel.findOne({ where: { id } });
 
         await this.weddingModel.update(
