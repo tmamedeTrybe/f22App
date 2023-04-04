@@ -38,8 +38,10 @@ class WeddingService {
     }
 
     async createWedding(newWeddingCreated:newWedding) {
-        // const { error } = validateNewWedding(newWeddingCreated);
-        // if (error) return { code: 400, erro: error.message };
+        console.log(newWeddingCreated,'casamento criado');
+        
+        const { error } = validateNewWedding(newWeddingCreated);
+        if (error) return { code: 400, erro: error.message };
 
         const weddingExist: Wedding | null = await this.weddingModel.findOne({ where: { data: newWeddingCreated.data, localCerimonia: newWeddingCreated.localCerimonia } });
         if (weddingExist) return { code: 400, erro: 'Evento já cadastrado' };
