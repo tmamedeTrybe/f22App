@@ -46,10 +46,10 @@ function WeddingDetail() {
               <p>{ `Cidade = ${wedding.cidade}` }</p>
               <p>{ `Cerimônia = ${wedding.localCerimonia}` }</p>
               <p>{ `Recepção = ${wedding.localRecepcao}` }</p>
-              <p>{ `Primeiro Backup Bruto = ${wedding.primeiroBackupBruto} - ${wedding.primeiroBackupBrutoTamanho}GB` }</p>
-              <p>{ `Segundo Backup Bruto = ${wedding.segundoBackupBruto} - ${wedding.segundoBackupBrutoTamanho}GB` }</p>
-              <p>{ `Primeiro Backup Editado = HD${wedding.primeiroBackup} - ${wedding.primeiroBackupTamanho}GB` }</p>
-              <p>{ `Segundo Backup Editado = HD${wedding.segundoBackup} - ${wedding.segundoBackupTamanho}GB` }</p>
+              <p>{ wedding.primeiroBackupBruto == null ? 'Sem Primeiro Backup Bruto' : `Primeiro Backup Bruto = HD${wedding.primeiroBackupBruto} - ${wedding.primeiroBackupBrutoTamanho}GB`}</p>
+              <p>{ wedding.segundoBackupBruto == null ? 'Sem Segundo Backup Bruto' : `Segundo Backup Bruto = HD${wedding.segundoBackupBruto} - ${wedding.segundoBackupBrutoTamanho}GB`}</p>
+              <p>{ wedding.primeiroBackup == null ? 'Sem Primeiro Backup Editado' : `Primeiro Backup Editado = HD${wedding.primeiroBackup} - ${wedding.primeiroBackupTamanho}GB`}</p>
+              <p>{ wedding.segundoBackup == null ? 'Sem Segundo Backup Editado' : `Segundo Backup Editado = HD${wedding.segundoBackup} - ${wedding.segundoBackupTamanho}GB`}</p>
             </section>
             <section>
               <button

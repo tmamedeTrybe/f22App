@@ -26,9 +26,9 @@ module.exports = {
                 primeiroBackupBruto: {
                     type: Sequelize.INTEGER,
                     field: 'primeiro_backup_bruto',
-                    allowNull: true,
-                    // onUpdate: 'CASCADE',
-                    // onDelete: 'CASCADE',
+                    onUpdate: 'CASCADE',
+                    onDelete: 'CASCADE',
+                    defaultValue: null,
                     references: {
                         model: 'hds',
                         key: 'id',
@@ -42,8 +42,9 @@ module.exports = {
                 segundoBackupBruto: {
                     type: Sequelize.INTEGER,
                     field: 'segundo_backup_bruto',
-                    // onUpdate: 'CASCADE',
-                    // onDelete: 'CASCADE',
+                    defaultValue: null,
+                    onUpdate: 'CASCADE',
+                    onDelete: 'CASCADE',
                     references: {
                         model: 'hds',
                         key: 'id',
@@ -57,8 +58,9 @@ module.exports = {
                 primeiroBackup: {
                     type: Sequelize.INTEGER,
                     field: 'primeiro_backup',
-                    // onUpdate: 'CASCADE',
-                    // onDelete: 'CASCADE',
+                    onUpdate: 'CASCADE',
+                    onDelete: 'CASCADE',
+                    defaultValue: null,
                     references: {
                         model: 'hds',
                         key: 'id',
@@ -72,8 +74,9 @@ module.exports = {
                 segundoBackup: {
                     type: Sequelize.INTEGER,
                     field: 'segundo_backup',
-                    // onUpdate: 'CASCADE',
-                    // onDelete: 'CASCADE',
+                    defaultValue: null,
+                    onUpdate: 'CASCADE',
+                    onDelete: 'CASCADE',
                     references: {
                         model: 'hds',
                         key: 'id',
@@ -82,7 +85,7 @@ module.exports = {
                 segundoBackupTamanho: {
                     type: Sequelize.INTEGER,
                     field: 'segundo_backup_tamanho',
-                    // defaultValue: 0,
+                    defaultValue: 0,
                 },
             });
         });

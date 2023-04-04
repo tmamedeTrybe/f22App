@@ -17,14 +17,14 @@ function WeddingEdit() {
   const [imagem, setImagem] = useState('');
   const [localCerimonia, setLocalCerimonia] = useState('');
   const [localRecepcao, setLocalRecepcao] = useState('');
-  const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState('');
-  const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState('');
-  const [segundoBackupBruto, setSegundoBackupBruto] = useState('');
-  const [segundoBackupBrutoTamanho, setSegundoBackupBrutoTamanho] = useState('');
-  const [primeiroBackup, setPrimeiroBackup] = useState('');
-  const [primeiroBackupTamanho, setPrimeiroBackupTamanho] = useState('');
-  const [segundoBackup, setSegundoBackup] = useState('');
-  const [segundoBackupTamanho, setSegundoBackupTamanho] = useState('');
+  const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState('' && null);
+  const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState();
+  const [segundoBackupBruto, setSegundoBackupBruto] = useState();
+  const [segundoBackupBrutoTamanho, setSegundoBackupBrutoTamanho] = useState();
+  const [primeiroBackup, setPrimeiroBackup] = useState();
+  const [primeiroBackupTamanho, setPrimeiroBackupTamanho] = useState();
+  const [segundoBackup, setSegundoBackup] = useState();
+  const [segundoBackupTamanho, setSegundoBackupTamanho] = useState();
   const [erro, setErro] = useState('');
   const [message, setMessage] = useState('');
 
@@ -66,6 +66,7 @@ function WeddingEdit() {
       segundoBackup,
       segundoBackupTamanho,
     };
+    console.log(weddingEdited, 'PRIMEIRO BKP VAZIO');
     event.preventDefault();
     const response = await fetch(`http://localhost:3001/casamentos/detalhe/${id}/editar`, {
       method: 'PATCH',
@@ -82,6 +83,16 @@ function WeddingEdit() {
       setMessage(weddingData.message);
       setErro('');
     }
+  };
+
+  const deletePrimeiroBackupBruto = () => {
+    setPrimeiroBackupBruto(null);
+    setPrimeiroBackupBrutoTamanho(0);
+  };
+
+  const deleteSegundoBackupBruto = () => {
+    setSegundoBackupBruto(null);
+    setSegundoBackupBrutoTamanho(0);
   };
 
   return (
@@ -179,7 +190,14 @@ function WeddingEdit() {
               id="primeiroBackupBruto"
               value={ primeiroBackupBruto }
             />
+            <button
+              type="button"
+              onClick={ deletePrimeiroBackupBruto }
+            >
+              Deletar backup bruto
+            </button>
           </label>
+
           <label htmlFor="primeiroBackupBrutoTamanho">
             First Raw Backup Size
             <input
@@ -201,6 +219,12 @@ function WeddingEdit() {
               id="segundoBackupBruto"
               value={ segundoBackupBruto }
             />
+            <button
+              type="button"
+              onClick={ deleteSegundoBackupBruto }
+            >
+              Deletar backup bruto
+            </button>
           </label>
           <label htmlFor="segundoBackupBrutoTamanho">
             Second Raw Backup Size

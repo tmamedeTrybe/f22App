@@ -21,14 +21,14 @@ class HdService {
 				{ model: Wedding, as: 'editWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupTamanho'] },
             ],
         });
-		return { code: 200, hds: hds.sort((a: Hd,b: Hd) => a.id - b.id) }
+		hds.forEach(async (hd:Hd) => await this.updateUsedGb(hd.id));
+		return { code: 200, hds: hds.sort((a: hdWithWedding, b: hdWithWedding) => a.id - b.id) }
   	}
 
 	public getHdBy = async (search: searchHd ) => {
 		const { searchBy, valueSearch } = search;
 
 		if (searchBy == 'Available more than') {
-			// Falta Lógica para fazer a pesquisa de hds com disponibilidade acima de..
 			const result: Hd[] | null = await this.HdModel.findAll({ 
 				where: { 'available': { [Op.gte]: Number(valueSearch)}},
 				include: [ 
@@ -39,7 +39,10 @@ class HdService {
 				] 
 			});
 			if (!result.length) return { code: 400, erro: 'Hd não encontrado' }
-        	return { code: 200, hds: result.sort((a: Hd,b: Hd) => a.id - b.id) }
+			result.forEach(async (hd:Hd) => await this.updateUsedGb(hd.id));
+        	return { code: 200, hds: result.sort((a:hd, b:Hd) => a.id - b.id) }
+			
+
 		} else {
 			const result: Hd[] | null = await this.HdModel.findAll({
 				where: { [searchBy]: { [Op.substring]: valueSearch} },
@@ -51,6 +54,7 @@ class HdService {
 				]
 			});
 			if (!result.length) return { code: 400, erro: 'Hd não encontrado' }
+			result.forEach(async (hd:Hd) => await this.updateUsedGb(hd.id));
         	return { code: 200, hds: result.sort((a: Hd,b: Hd) => a.id - b.id) }
 		}
 	}
@@ -108,6 +112,8 @@ class HdService {
 			);
 		if (hd) {
 			if(hd.rawWeddingsOne && hd.rawWeddingsOne.length > 0) {
+				console.log(hd.rawWeddingsOne, 'quantos bkp brutos');
+				
 				const values = hd.rawWeddingsOne.reduce((acc, cur) => cur.primeiroBackupBrutoTamanho + acc, 0) ;
 				totalSizeFirstRaw = values;
 			} else totalSizeFirstRaw = 0;
@@ -128,10 +134,10 @@ class HdService {
 			} else totalSizeSecondEdit = 0;
 
 			const result = totalSizeFirstRaw + totalSizeSecondRaw + totalSizeFirstEdit + totalSizeSecondEdit;
-			console.log(result);
+			console.log(result, 'resultado da soma');
 			
 
-			await this.HdModel.update(
+			const hdUpdated = await this.HdModel.update(
 			{
 				used: result,
 				available: hd.capacity - result
@@ -140,6 +146,7 @@ class HdService {
 				where: { id }
 			}
 		)
+		return hdUpdated;
 		}
 	}
 

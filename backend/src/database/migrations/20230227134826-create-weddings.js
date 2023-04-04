@@ -16,9 +16,9 @@ module.exports = {
       primeiroBackupBruto: { 
         type: Sequelize.INTEGER,
         field: 'primeiro_backup_bruto',
-        allowNull: true,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+        defaultValue: null,
         references: {
           model: 'hds',
           key: 'id',
@@ -32,6 +32,7 @@ module.exports = {
       segundoBackupBruto: { 
         type: Sequelize.INTEGER,
         field: 'segundo_backup_bruto',
+        defaultValue: null,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
@@ -49,6 +50,7 @@ module.exports = {
         field: 'primeiro_backup',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+        defaultValue: null,
         references: {
           model: 'hds',
           key: 'id',
@@ -62,6 +64,7 @@ module.exports = {
        segundoBackup: { 
         type: Sequelize.INTEGER,
         field: 'segundo_backup',
+        defaultValue: null,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {

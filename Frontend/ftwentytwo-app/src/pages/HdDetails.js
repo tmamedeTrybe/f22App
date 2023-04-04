@@ -30,7 +30,6 @@ function HdDetails() {
     const data = await hdDeleted.json();
     setDeleteMessage(data.message);
   };
-  console.log(hd);
 
   return (
     <div className={ styles.container }>

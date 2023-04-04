@@ -12,10 +12,14 @@ class Wedding extends Model implements wedding {
     imagem?: string;
     localCerimonia?: string;
     localRecepcao?: string;
-    primeiroBackupBruto?: number;
+    primeiroBackupBruto?: number | null;
+    primeiroBackupBrutoTamanho?: number;
     segundoBackupBruto?: number;
+    segundoBackupBrutoTamanho?: number;
     primeiroBackup?: number;
+    primeiroBackupTamanho?: number;
     segundoBackup?: number;
+    segundoBackupTamanho?: number;
 }
 
 Wedding.init({
@@ -27,14 +31,14 @@ Wedding.init({
     imagem: { type: STRING },
     localCerimonia:{ type: STRING, field: 'local_cerimonia' },
     localRecepcao: { type: STRING, field: 'local_recepcao' },
-    primeiroBackupBruto: { type: INTEGER, field: 'primeiro_backup_bruto' },
-    primeiroBackupBrutoTamanho: { type: INTEGER, field: 'primeiro_backup_bruto_tamanho' },
-    segundoBackupBruto: { type: INTEGER, field: 'segundo_backup_bruto' },
-    segundoBackupBrutoTamanho: { type: INTEGER, field: 'segundo_backup_bruto_tamanho' },
-    primeiroBackup: { type: INTEGER, field: 'primeiro_backup' },
-    primeiroBackupTamanho: { type: INTEGER, field: 'primeiro_backup_tamanho' },
-    segundoBackup: { type: INTEGER, field: 'segundo_backup' },
-    segundoBackupTamanho: { type: INTEGER, field: 'segundo_backup_tamanho' },
+    primeiroBackupBruto: { type: INTEGER, field: 'primeiro_backup_bruto', defaultValue: null },
+    primeiroBackupBrutoTamanho: { type: INTEGER, field: 'primeiro_backup_bruto_tamanho', defaultValue: 0, allowNull: false },
+    segundoBackupBruto: { type: INTEGER, field: 'segundo_backup_bruto', defaultValue: null },
+    segundoBackupBrutoTamanho: { type: INTEGER, field: 'segundo_backup_bruto_tamanho', defaultValue: 0, allowNull: false },
+    primeiroBackup: { type: INTEGER, field: 'primeiro_backup', defaultValue: null },
+    primeiroBackupTamanho: { type: INTEGER, field: 'primeiro_backup_tamanho', defaultValue: 0, allowNull: false },
+    segundoBackup: { type: INTEGER, field: 'segundo_backup', defaultValue: null },
+    segundoBackupTamanho: { type: INTEGER, field: 'segundo_backup_tamanho', defaultValue: 0, allowNull: false },
 },
 {
     sequelize: db,

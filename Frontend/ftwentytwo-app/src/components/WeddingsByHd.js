@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable max-len */
 import React, { useState } from 'react';
@@ -89,11 +90,17 @@ function WeddingsByHd({ hd }) {
 }
 
 WeddingsByHd.propTypes = {
-  hd: PropTypes.shape({
-    rawWeddingsOne: PropTypes.arrayOf,
-    rawWeddingsTwo: PropTypes.arrayOf,
-    editWeddingsOne: PropTypes.arrayOf,
-    editWeddingsTwo: PropTypes.arrayOf,
+  hd: PropTypes.objectOf({
+    available: PropTypes.number,
+    capacity: PropTypes.number,
+    editWeddingsOne: PropTypes.arrayOf(PropTypes.string),
+    editWeddingsTwo: PropTypes.arrayOf(PropTypes.string),
+    id: PropTypes.number,
+    label: PropTypes.string,
+    name: PropTypes.string,
+    rawWeddingsOne: PropTypes.arrayOf(PropTypes.string),
+    rawWeddingsTwo: PropTypes.arrayOf(PropTypes.string),
+    used: PropTypes.number,
   }).isRequired,
 };
 

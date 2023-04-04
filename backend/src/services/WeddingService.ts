@@ -72,6 +72,8 @@ class WeddingService {
     }
 
     async updateWedding(id:number, newInfo: weddingUpdate) {
+        const wedding = await this.weddingModel.findOne({ where: { id } });
+
         await this.weddingModel.update(
           {
             data: newInfo.data,
@@ -92,6 +94,11 @@ class WeddingService {
           },
           { where: { id } },
         );
+        
+        await this.hdService.updateUsedGb(Number(wedding?.primeiroBackupBruto));
+        await this.hdService.updateUsedGb(Number(wedding?.segundoBackupBruto));
+        await this.hdService.updateUsedGb(Number(wedding?.primeiroBackup));
+        await this.hdService.updateUsedGb(Number(wedding?.segundoBackup));
 
         await this.hdService.updateUsedGb(Number(newInfo.primeiroBackupBruto));
         await this.hdService.updateUsedGb(Number(newInfo.segundoBackupBruto));

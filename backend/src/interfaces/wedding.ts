@@ -5,10 +5,14 @@ interface wedding {
     noivo: string;
     localCerimonia?: string;
     localRecepcao?: string;
-    primeiroBackupBruto?: number;
+    primeiroBackupBruto?: number | null;
+    primeiroBackupBrutoTamanho?: number;
     segundoBackupBruto?: number;
+    segundoBackupBrutoTamanho?: number;
     primeiroBackup?: number;
+    primeiroBackupTamanho?: number;
     segundoBackup?: number;
+    segundoBackupTamanho?: number;
 }
 
 export default wedding;
