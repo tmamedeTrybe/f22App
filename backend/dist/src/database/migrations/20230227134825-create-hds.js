@@ -15,7 +15,7 @@ module.exports = {
         return __awaiter(this, void 0, void 0, function* () {
             yield queryInterface.createTable('hds', {
                 id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-                name: { type: Sequelize.STRING, allowNull: false },
+                name: { type: Sequelize.STRING },
                 label: { type: Sequelize.STRING, allowNull: false },
                 capacity: { type: Sequelize.INTEGER, allowNull: false },
                 used: { type: Sequelize.INTEGER, allowNull: false },

@@ -38,6 +38,8 @@ class WeddingController {
         this.updateWedding = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const update = yield this.weddingService.updateWedding(Number(id), req.body);
+            if (update.erro)
+                return res.status(update.code).json({ erro: update.erro });
             return res.status(update.code).json({ message: update.message });
         });
         this.deleteWedding = (req, res) => __awaiter(this, void 0, void 0, function* () {

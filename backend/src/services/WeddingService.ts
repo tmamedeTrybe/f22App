@@ -36,7 +36,7 @@ class WeddingService {
         if (!result.length) return { code: 400, erro: 'Evento não encontrado' }
 
         return { code: 200, wedding: result }
-    }
+    } 
 
     async createWedding(newWeddingCreated:newWedding) {
 
@@ -45,6 +45,16 @@ class WeddingService {
 
         const weddingExist: Wedding | null = await this.weddingModel.findOne({ where: { data: newWeddingCreated.data, localCerimonia: newWeddingCreated.localCerimonia } });
         if (weddingExist) return { code: 400, erro: 'Evento já cadastrado' };
+
+        const hdRawOneExist = await this.hdService.validateHd(Number(newWeddingCreated.primeiroBackupBruto));
+        if (hdRawOneExist?.erro) return { code: hdRawOneExist.code, erro: hdRawOneExist.erro}
+        const hdRawTwoExist = await this.hdService.validateHd(Number(newWeddingCreated.segundoBackupBruto));
+        if (hdRawTwoExist?.erro) return { code: hdRawTwoExist.code, erro: hdRawTwoExist.erro}
+        const hdEditOneExist = await this.hdService.validateHd(Number(newWeddingCreated.primeiroBackup));
+        if (hdEditOneExist?.erro) return { code: hdEditOneExist.code, erro: hdEditOneExist.erro}
+        const hdEditTwoExist = await this.hdService.validateHd(Number(newWeddingCreated.segundoBackup));
+        if (hdEditTwoExist?.erro) return { code: hdEditTwoExist.code, erro: hdEditTwoExist.erro}
+
 
         const weddingCreated = {
             data: newWeddingCreated.data,
@@ -79,6 +89,15 @@ class WeddingService {
         if (error) return { code: 400, erro: error.message };
 
         const wedding = await this.weddingModel.findOne({ where: { id } });
+
+        const hdRawOneExist = await this.hdService.validateHd(Number(newInfo.primeiroBackupBruto));
+        if (hdRawOneExist?.erro) return { code: hdRawOneExist.code, erro: hdRawOneExist.erro}
+        const hdRawTwoExist = await this.hdService.validateHd(Number(newInfo.segundoBackupBruto));
+        if (hdRawTwoExist?.erro) return { code: hdRawTwoExist.code, erro: hdRawTwoExist.erro}
+        const hdEditOneExist = await this.hdService.validateHd(Number(newInfo.primeiroBackup));
+        if (hdEditOneExist?.erro) return { code: hdEditOneExist.code, erro: hdEditOneExist.erro}
+        const hdEditTwoExist = await this.hdService.validateHd(Number(newInfo.segundoBackup));
+        if (hdEditTwoExist?.erro) return { code: hdEditTwoExist.code, erro: hdEditTwoExist.erro}
 
         await this.weddingModel.update(
           {
@@ -115,7 +134,16 @@ class WeddingService {
     }
 
     async deleteWedding (id:number) {
+        const wedding = await this.weddingModel.findOne({ where: { id } });
+
         await this.weddingModel.destroy({ where : { id } });
+
+        await this.hdService.updateUsedGb(Number(wedding?.primeiroBackupBruto));
+        await this.hdService.updateUsedGb(Number(wedding?.segundoBackupBruto));
+        await this.hdService.updateUsedGb(Number(wedding?.primeiroBackup));
+        await this.hdService.updateUsedGb(Number(wedding?.segundoBackup));
+
+
         return { code: 201, message: "Casamento deletado" }
     }
 

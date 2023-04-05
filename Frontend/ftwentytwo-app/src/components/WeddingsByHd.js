@@ -90,16 +90,16 @@ function WeddingsByHd({ hd }) {
 }
 
 WeddingsByHd.propTypes = {
-  hd: PropTypes.objectOf({
+  hd: PropTypes.shape({
     available: PropTypes.number,
     capacity: PropTypes.number,
-    editWeddingsOne: PropTypes.arrayOf(PropTypes.string),
-    editWeddingsTwo: PropTypes.arrayOf(PropTypes.string),
+    editWeddingsOne: PropTypes.arrayOf(PropTypes.objectOf(string)),
+    editWeddingsTwo: PropTypes.arrayOf(PropTypes.objectOf(string)),
     id: PropTypes.number,
     label: PropTypes.string,
     name: PropTypes.string,
-    rawWeddingsOne: PropTypes.arrayOf(PropTypes.string),
-    rawWeddingsTwo: PropTypes.arrayOf(PropTypes.string),
+    rawWeddingsOne: PropTypes.arrayOf(PropTypes.objectOf(string)),
+    rawWeddingsTwo: PropTypes.arrayOf(PropTypes.objectOf(string)),
     used: PropTypes.number,
   }).isRequired,
 };

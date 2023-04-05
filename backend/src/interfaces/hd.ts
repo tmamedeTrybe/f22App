@@ -1,6 +1,6 @@
 interface hd {
 	id:number;
-	name: string;
+	name?: string;
 	label: string;
 	capacity: number;
 	used: number;

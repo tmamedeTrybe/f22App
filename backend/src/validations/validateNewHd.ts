@@ -3,9 +3,9 @@ const Joi = require('joi');
 
 const validateNewHd = (newHd: newHd) => 
     Joi.object({
-			name: Joi.string().required().messages({
-				'string.required': 'Informe o nome do hd',
-			}),
+			// name: Joi.string().required().messages({
+			// 	'string.required': 'Informe o nome do hd',
+			// }),
 			label: Joi.string().required().messages({
 				'string.required': 'Informe a marca ou tipo do HD'
 			}),

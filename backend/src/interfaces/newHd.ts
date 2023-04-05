@@ -1,5 +1,4 @@
 interface newHd {
-    name: string;
     label: string;
     capacity: number;
 }

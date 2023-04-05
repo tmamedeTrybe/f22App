@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const hd_1 = __importDefault(require("../database/models/hd"));
+const validateNewWedding_1 = __importDefault(require("../validations/validateNewWedding"));
+const validateUpdateWedding_1 = __importDefault(require("../validations/validateUpdateWedding"));
 class WeddingService {
     constructor(weddingModel, hdService) {
         this.weddingModel = weddingModel;
@@ -40,11 +42,24 @@ class WeddingService {
     }
     createWedding(newWeddingCreated) {
         return __awaiter(this, void 0, void 0, function* () {
-            // const { error } = validateNewWedding(newWeddingCreated);
-            // if (error) return { code: 400, erro: error.message };
+            const { error } = (0, validateNewWedding_1.default)(newWeddingCreated);
+            if (error)
+                return { code: 400, erro: error.message };
             const weddingExist = yield this.weddingModel.findOne({ where: { data: newWeddingCreated.data, localCerimonia: newWeddingCreated.localCerimonia } });
             if (weddingExist)
                 return { code: 400, erro: 'Evento já cadastrado' };
+            const hdRawOneExist = yield this.hdService.validateHd(Number(newWeddingCreated.primeiroBackupBruto));
+            if (hdRawOneExist === null || hdRawOneExist === void 0 ? void 0 : hdRawOneExist.erro)
+                return { code: hdRawOneExist.code, erro: hdRawOneExist.erro };
+            const hdRawTwoExist = yield this.hdService.validateHd(Number(newWeddingCreated.segundoBackupBruto));
+            if (hdRawTwoExist === null || hdRawTwoExist === void 0 ? void 0 : hdRawTwoExist.erro)
+                return { code: hdRawTwoExist.code, erro: hdRawTwoExist.erro };
+            const hdEditOneExist = yield this.hdService.validateHd(Number(newWeddingCreated.primeiroBackup));
+            if (hdEditOneExist === null || hdEditOneExist === void 0 ? void 0 : hdEditOneExist.erro)
+                return { code: hdEditOneExist.code, erro: hdEditOneExist.erro };
+            const hdEditTwoExist = yield this.hdService.validateHd(Number(newWeddingCreated.segundoBackup));
+            if (hdEditTwoExist === null || hdEditTwoExist === void 0 ? void 0 : hdEditTwoExist.erro)
+                return { code: hdEditTwoExist.code, erro: hdEditTwoExist.erro };
             const weddingCreated = {
                 data: newWeddingCreated.data,
                 cidade: newWeddingCreated.cidade,
@@ -72,6 +87,22 @@ class WeddingService {
     }
     updateWedding(id, newInfo) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { error } = (0, validateUpdateWedding_1.default)(newInfo);
+            if (error)
+                return { code: 400, erro: error.message };
+            const wedding = yield this.weddingModel.findOne({ where: { id } });
+            const hdRawOneExist = yield this.hdService.validateHd(Number(newInfo.primeiroBackupBruto));
+            if (hdRawOneExist === null || hdRawOneExist === void 0 ? void 0 : hdRawOneExist.erro)
+                return { code: hdRawOneExist.code, erro: hdRawOneExist.erro };
+            const hdRawTwoExist = yield this.hdService.validateHd(Number(newInfo.segundoBackupBruto));
+            if (hdRawTwoExist === null || hdRawTwoExist === void 0 ? void 0 : hdRawTwoExist.erro)
+                return { code: hdRawTwoExist.code, erro: hdRawTwoExist.erro };
+            const hdEditOneExist = yield this.hdService.validateHd(Number(newInfo.primeiroBackup));
+            if (hdEditOneExist === null || hdEditOneExist === void 0 ? void 0 : hdEditOneExist.erro)
+                return { code: hdEditOneExist.code, erro: hdEditOneExist.erro };
+            const hdEditTwoExist = yield this.hdService.validateHd(Number(newInfo.segundoBackup));
+            if (hdEditTwoExist === null || hdEditTwoExist === void 0 ? void 0 : hdEditTwoExist.erro)
+                return { code: hdEditTwoExist.code, erro: hdEditTwoExist.erro };
             yield this.weddingModel.update({
                 data: newInfo.data,
                 cidade: newInfo.cidade,
@@ -89,6 +120,10 @@ class WeddingService {
                 segundoBackup: newInfo.segundoBackup,
                 segundoBackupTamanho: newInfo.segundoBackupTamanho
             }, { where: { id } });
+            yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.primeiroBackupBruto));
+            yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.segundoBackupBruto));
+            yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.primeiroBackup));
+            yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.segundoBackup));
             yield this.hdService.updateUsedGb(Number(newInfo.primeiroBackupBruto));
             yield this.hdService.updateUsedGb(Number(newInfo.segundoBackupBruto));
             yield this.hdService.updateUsedGb(Number(newInfo.primeiroBackup));
@@ -98,7 +133,12 @@ class WeddingService {
     }
     deleteWedding(id) {
         return __awaiter(this, void 0, void 0, function* () {
+            const wedding = yield this.weddingModel.findOne({ where: { id } });
             yield this.weddingModel.destroy({ where: { id } });
+            yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.primeiroBackupBruto));
+            yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.segundoBackupBruto));
+            yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.primeiroBackup));
+            yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.segundoBackup));
             return { code: 201, message: "Casamento deletado" };
         });
     }

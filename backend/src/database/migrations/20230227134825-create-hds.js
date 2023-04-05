@@ -5,7 +5,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('hds', {
       id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-      name: { type: Sequelize.STRING, allowNull: false },
+      name: { type: Sequelize.STRING },
       label: { type: Sequelize.STRING, allowNull: false },
       capacity: { type: Sequelize.INTEGER, allowNull: false },
       used: { type: Sequelize.INTEGER, allowNull: false },

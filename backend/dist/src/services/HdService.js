@@ -26,12 +26,12 @@ class HdService {
                     { model: wedding_1.default, as: 'editWeddingsTwo', attributes: ['id', 'noiva', 'noivo', 'data', 'segundoBackupTamanho'] },
                 ],
             });
+            hds.forEach((hd) => __awaiter(this, void 0, void 0, function* () { return yield this.updateUsedGb(hd.id); }));
             return { code: 200, hds: hds.sort((a, b) => a.id - b.id) };
         });
         this.getHdBy = (search) => __awaiter(this, void 0, void 0, function* () {
             const { searchBy, valueSearch } = search;
             if (searchBy == 'Available more than') {
-                // Falta Lógica para fazer a pesquisa de hds com disponibilidade acima de..
                 const result = yield this.HdModel.findAll({
                     where: { 'available': { [sequelize_1.Op.gte]: Number(valueSearch) } },
                     include: [
@@ -43,6 +43,7 @@ class HdService {
                 });
                 if (!result.length)
                     return { code: 400, erro: 'Hd não encontrado' };
+                result.forEach((hd) => __awaiter(this, void 0, void 0, function* () { return yield this.updateUsedGb(hd.id); }));
                 return { code: 200, hds: result.sort((a, b) => a.id - b.id) };
             }
             else {
@@ -57,25 +58,34 @@ class HdService {
                 });
                 if (!result.length)
                     return { code: 400, erro: 'Hd não encontrado' };
+                result.forEach((hd) => __awaiter(this, void 0, void 0, function* () { return yield this.updateUsedGb(hd.id); }));
                 return { code: 200, hds: result.sort((a, b) => a.id - b.id) };
             }
         });
+        this.validateHd = (id) => __awaiter(this, void 0, void 0, function* () {
+            if (id) {
+                const hdexist = yield this.HdModel.findAll({ where: { id } });
+                if (hdexist.length == 0)
+                    return { code: 400, erro: `Hd${id} não existe` };
+                return { code: 200 };
+            }
+            return;
+        });
         this.createHd = (newHd) => __awaiter(this, void 0, void 0, function* () {
-            console.log(newHd);
             const { error } = (0, validateNewHd_1.default)(newHd);
             if (error)
                 return { code: 400, erro: error.message };
-            const hdExist = yield this.HdModel.findOne({ where: { name: newHd.name } });
-            if (hdExist)
-                return { code: 400, erro: 'HD já cadastrado' };
+            // const hdExist: Hd | null = await this.HdModel.findOne({ where: { name: newHd.name } });
+            // if (hdExist) return { code: 400, erro: 'HD já cadastrado' }
             const created = {
-                name: newHd.name,
+                name: null,
                 label: newHd.label,
                 capacity: newHd.capacity,
                 used: 0,
                 available: newHd.capacity
             };
             const hdcreated = yield this.HdModel.create(created);
+            this.HdModel.update({ name: hdcreated.id }, { where: { id: hdcreated.id } });
             return { code: 201, hd: hdcreated };
         });
         this.updateHd = (id, newInfo) => __awaiter(this, void 0, void 0, function* () {
@@ -105,6 +115,7 @@ class HdService {
             });
             if (hd) {
                 if (hd.rawWeddingsOne && hd.rawWeddingsOne.length > 0) {
+                    console.log(hd.rawWeddingsOne, 'quantos bkp brutos');
                     const values = hd.rawWeddingsOne.reduce((acc, cur) => cur.primeiroBackupBrutoTamanho + acc, 0);
                     totalSizeFirstRaw = values;
                 }
@@ -129,13 +140,14 @@ class HdService {
                 else
                     totalSizeSecondEdit = 0;
                 const result = totalSizeFirstRaw + totalSizeSecondRaw + totalSizeFirstEdit + totalSizeSecondEdit;
-                console.log(result);
-                yield this.HdModel.update({
+                console.log(result, 'resultado da soma');
+                const hdUpdated = yield this.HdModel.update({
                     used: result,
                     available: hd.capacity - result
                 }, {
                     where: { id }
                 });
+                return hdUpdated;
             }
         });
         this.deleteHd = (id) => __awaiter(this, void 0, void 0, function* () {

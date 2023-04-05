@@ -4,7 +4,7 @@ import HeaderLogo from '../components/HeaderLogo';
 import styles from '../modules/NewHd.module.css';
 
 function NewHd() {
-  const [name, setName] = useState('');
+  // const [name, setName] = useState('');
   const [label, setLabel] = useState('');
   const [capacity, setCapacity] = useState('');
   const [erro, setErro] = useState('');
@@ -12,7 +12,7 @@ function NewHd() {
 
   const submitForm = async (event) => {
     const newHdCreated = {
-      name,
+      // name,
       label,
       capacity: Number(capacity),
     };
@@ -39,7 +39,7 @@ function NewHd() {
       <HeaderLogo title="Novo HD" />
       <main className={ styles.main }>
         <form onSubmit={ submitForm } className={ styles.form }>
-          <label htmlFor="name">
+          {/* <label htmlFor="name">
             <input
               placeholder="Name"
               type="text"
@@ -47,7 +47,7 @@ function NewHd() {
               onChange={ (event) => setName(event.target.value) }
               id="name"
             />
-          </label>
+          </label> */}
           <label htmlFor="label">
             <input
               placeholder="Label"

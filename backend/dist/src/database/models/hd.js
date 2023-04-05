@@ -9,7 +9,7 @@ class Hd extends sequelize_1.Model {
 }
 Hd.init({
     id: { type: sequelize_1.INTEGER, allowNull: false, autoIncrement: true, primaryKey: true },
-    name: { type: sequelize_1.STRING, allowNull: false },
+    name: { type: sequelize_1.STRING },
     label: { type: sequelize_1.STRING, allowNull: false },
     capacity: { type: sequelize_1.INTEGER, allowNull: false },
     used: { type: sequelize_1.INTEGER, allowNull: false },

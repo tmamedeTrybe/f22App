@@ -58,17 +58,26 @@ class HdService {
         	return { code: 200, hds: result.sort((a: Hd,b: Hd) => a.id - b.id) }
 		}
 	}
-
+	
+	public validateHd = async (id:number) => {
+		if (id) {
+			const hdexist: Hd[] | null = await this.HdModel.findAll({ where:{ id } });
+		
+			if (hdexist.length == 0) return { code: 400, erro: `Hd${id} não existe` }
+			return { code: 200 }
+		}
+		return;
+	}
+	
 	public createHd = async (newHd: newHd) => {
-		console.log(newHd);
 		const { error } = validateNewHd(newHd);
 		if (error) return { code: 400, erro: error.message };
 
-		const hdExist: Hd | null = await this.HdModel.findOne({ where: { name: newHd.name } });
-		if (hdExist) return { code: 400, erro: 'HD já cadastrado' }
+		// const hdExist: Hd | null = await this.HdModel.findOne({ where: { name: newHd.name } });
+		// if (hdExist) return { code: 400, erro: 'HD já cadastrado' }
 
 		const created = {
-			name: newHd.name,
+			name: null,
 			label: newHd.label,
 			capacity: newHd.capacity,
 			used: 0,
@@ -76,6 +85,7 @@ class HdService {
 		}
 
 		const hdcreated = await this.HdModel.create(created);
+		this.HdModel.update({ name: hdcreated.id }, { where: { id: hdcreated.id } })
 		return { code: 201, hd: hdcreated }
 	}
 
