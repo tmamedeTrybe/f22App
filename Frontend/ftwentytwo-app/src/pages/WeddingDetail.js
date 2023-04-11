@@ -1,10 +1,11 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable max-len */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import MyContext from '../context/myContext';
 import HeaderLogo from '../components/HeaderLogo';
-import image from '../assets/images/casamentos/Ana_Mateus.jpg';
 import styles from '../modules/WeddingDetail.module.css';
 
 function WeddingDetail() {
@@ -13,12 +14,18 @@ function WeddingDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
+  const [image, setImage] = useState('');
 
   useEffect(() => {
-    const weddingFilter = jobsFounded.filter((job) => job.id === Number(id));
-    setWedding(weddingFilter[0]);
+    const weddingFilter = jobsFounded.find((job) => job.id === Number(id));
+    setWedding(weddingFilter);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useMemo(async () => {
+    const img = await require(`../assets/images/casamentos/${wedding.noiva}_${wedding.noivo}.jpg`);
+    setImage(img);
+  }, [wedding]);
 
   const deleteWedding = async () => {
     const response = await fetch(`http://localhost:3001/casamentos/detalhe/${id}/editar`, {
@@ -30,6 +37,9 @@ function WeddingDetail() {
     const data = await response.json();
     setMessage(data.message);
   };
+
+  // eslint-disable-next-line import/no-dynamic-require
+  // const img = require(`../assets/images/casamentos/${wedding.noiva}_${wedding.noivo}.jpg`);
 
   return (
     <div className={ styles.container }>

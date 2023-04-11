@@ -93,13 +93,13 @@ WeddingsByHd.propTypes = {
   hd: PropTypes.shape({
     available: PropTypes.number,
     capacity: PropTypes.number,
-    editWeddingsOne: PropTypes.arrayOf(PropTypes.objectOf(string)),
-    editWeddingsTwo: PropTypes.arrayOf(PropTypes.objectOf(string)),
+    editWeddingsOne: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+    editWeddingsTwo: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     id: PropTypes.number,
     label: PropTypes.string,
     name: PropTypes.string,
-    rawWeddingsOne: PropTypes.arrayOf(PropTypes.objectOf(string)),
-    rawWeddingsTwo: PropTypes.arrayOf(PropTypes.objectOf(string)),
+    rawWeddingsOne: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+    rawWeddingsTwo: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     used: PropTypes.number,
   }).isRequired,
 };

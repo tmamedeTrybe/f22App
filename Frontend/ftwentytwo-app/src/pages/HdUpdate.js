@@ -6,8 +6,6 @@ import HeaderLogo from '../components/HeaderLogo';
 function HdUpdate() {
   const { hdsFounded } = useContext(HdContext);
   const { id } = useParams();
-  console.log(hdsFounded, 'vem do contexto');
-  console.log(id, 'vem do params');
 
   const [name, setName] = useState('');
   const [label, setLabel] = useState('');
@@ -19,7 +17,6 @@ function HdUpdate() {
 
   useEffect(() => {
     const hd = hdsFounded.find((hdItem) => hdItem.id === Number(id));
-    console.log(hd, 'useEffect faz o filtro');
     setName(hd.name);
     setLabel(hd.label);
     setCapacity(hd.capacity);

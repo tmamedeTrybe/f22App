@@ -1,9 +1,12 @@
+/* eslint-disable global-require */
+/* eslint-disable max-len */
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from '../modules/WeddingCard.module.css';
-import img from '../assets/images/casamentos/Salua_Tiago.jpg';
 
 function WeddingCard({ wedding }) {
+  // eslint-disable-next-line import/no-dynamic-require
+  const img = require(`../assets/images/casamentos/${wedding.noiva}_${wedding.noivo}.jpg`);
   return (
     <Link className={ styles.link } to={ `/casamentos/detalhe/${wedding.id}` }>
       <div className={ styles.card }>
