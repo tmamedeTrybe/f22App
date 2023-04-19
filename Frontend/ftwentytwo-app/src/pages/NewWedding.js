@@ -8,7 +8,7 @@ function NewWedding() {
   const [cidade, setCidade] = useState('');
   const [noiva, setNoiva] = useState('');
   const [noivo, setNoivo] = useState('');
-  const [imagem, setImagem] = useState('');
+  // const [imagem, setImagem] = useState('');
   const [localCerimonia, setLocalCerimonia] = useState('');
   const [localRecepcao, setLocalRecepcao] = useState('');
   const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState();
@@ -25,11 +25,13 @@ function NewWedding() {
   const disabledButton = !data || !noiva || !noivo;
 
   const submitForm = async (event) => {
+    event.preventDefault();
+
     const newWedding = { data,
       cidade,
       noiva,
       noivo,
-      imagem,
+      imagem: 'wedding-icon.jpg',
       localCerimonia,
       localRecepcao,
       primeiroBackupBruto,
@@ -41,7 +43,7 @@ function NewWedding() {
       segundoBackup,
       segundoBackupTamanho,
     };
-    event.preventDefault();
+
     const response = await fetch('http://localhost:3001/casamentos/novo', {
       method: 'POST',
       headers: {
@@ -50,7 +52,6 @@ function NewWedding() {
       body: JSON.stringify(newWedding),
     });
     const weddingData = await response.json();
-    console.log(weddingData, 'erro chega no front');
 
     if (weddingData.erro) {
       setErro(weddingData.erro);
@@ -64,7 +65,10 @@ function NewWedding() {
     <div className={ styles.container }>
       <HeaderLogo title="Novo casamento" />
       <section className={ styles.main }>
-        <form onSubmit={ submitForm } className={ styles.form }>
+        <form
+          onSubmit={ submitForm }
+          className={ styles.form }
+        >
           <label htmlFor="data">
             <input
               placeholder="Data"
@@ -99,15 +103,6 @@ function NewWedding() {
               type="text"
               id="noivo"
               value={ noivo }
-            />
-          </label>
-          <label htmlFor="imagem">
-            <input
-              placeholder="Imagem"
-              onChange={ (event) => setImagem(event.target.value) }
-              type="upload"
-              id="imagem"
-              value={ imagem }
             />
           </label>
           <label htmlFor="localCerimonia">

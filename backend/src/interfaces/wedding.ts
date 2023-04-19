@@ -3,6 +3,7 @@ interface wedding {
     data: string;
     noiva: string;
     noivo: string;
+    imagem?: string;
     localCerimonia?: string;
     localRecepcao?: string;
     primeiroBackupBruto?: number | null;

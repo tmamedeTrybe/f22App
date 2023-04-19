@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import Hd from '../database/models/hd';
 import Wedding from "../database/models/wedding";
 import newWedding from '../interfaces/newWedding';
+import uploads from '../middlewares/uploads';
 import HdService from '../services/HdService';
 import WeddingService from "../services/WeddingService";
 
@@ -22,7 +23,8 @@ class WeddingController {
 
     createWedding = async (req: Request, res: Response) => {
         const created = await this.weddingService.createWedding(req.body as newWedding);
-
+        console.log(req.body);
+        
         if (created.erro) return res.status(created.code).json({ erro: created.erro });
         return res.status(created.code).json({ message: 'Criado com sucesso!', wedding: created.wedding });
     }
@@ -40,6 +42,13 @@ class WeddingController {
         res.status(deleted.code).json({ message: deleted.message });
     }
     
+    addImage = async (req: Request, res: Response) => {
+        const { id } = req.params;
+        const namePhoto = `${id}.jpg`;
+
+        const addImage = await this.weddingService.addImage(Number(id), namePhoto);
+        // return res.status(addImage.code).json({ message: addImage.message });
+    }
 }
 
 export default WeddingController;

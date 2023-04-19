@@ -1,4 +1,4 @@
-import { INTEGER, Model, STRING } from "sequelize";
+import { INTEGER, JSON, Model, STRING } from "sequelize";
 import wedding from "../../interfaces/wedding";
 import db from '.';
 import Hd from "./hd";

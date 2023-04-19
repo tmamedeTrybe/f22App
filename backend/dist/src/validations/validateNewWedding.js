@@ -18,9 +18,7 @@ const validateNewWedding = (newWedding) => Joi.object({
         'string.min': '"noivo" deve ter ao menos três letras',
         'string.required': 'Informar a "noivo"',
     }),
-    imagem: Joi.string().min(3).messages({
-        'string.min': '"imagem" deve ser um caminho da imagem salva',
-    }),
+    imagem: Joi.object(),
     localCerimonia: Joi.string().min(3).messages({
         'string.min': '"localCerimonia" deve ter ao menos três letras',
     }),

@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const hd_1 = __importDefault(require("../database/models/hd"));
-const validateNewWedding_1 = __importDefault(require("../validations/validateNewWedding"));
 const validateUpdateWedding_1 = __importDefault(require("../validations/validateUpdateWedding"));
 class WeddingService {
     constructor(weddingModel, hdService) {
@@ -42,9 +41,8 @@ class WeddingService {
     }
     createWedding(newWeddingCreated) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { error } = (0, validateNewWedding_1.default)(newWeddingCreated);
-            if (error)
-                return { code: 400, erro: error.message };
+            // const { error } = validateNewWedding(newWeddingCreated);
+            // if (error) return { code: 400, erro: error.message };
             const weddingExist = yield this.weddingModel.findOne({ where: { data: newWeddingCreated.data, localCerimonia: newWeddingCreated.localCerimonia } });
             if (weddingExist)
                 return { code: 400, erro: 'Evento já cadastrado' };
@@ -140,6 +138,16 @@ class WeddingService {
             yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.primeiroBackup));
             yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.segundoBackup));
             return { code: 201, message: "Casamento deletado" };
+        });
+    }
+    addImage(id, namePhoto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const wedding = yield this.weddingModel.findOne({ where: { id } });
+            if (wedding)
+                yield this.weddingModel.update({
+                    imagem: namePhoto,
+                }, { where: { id } });
+            // return { code: 201, message: 'Imagem atualizada' }
         });
     }
 }

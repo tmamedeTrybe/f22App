@@ -40,8 +40,8 @@ class WeddingService {
 
     async createWedding(newWeddingCreated:newWedding) {
 
-        const { error } = validateNewWedding(newWeddingCreated);
-        if (error) return { code: 400, erro: error.message };
+        // const { error } = validateNewWedding(newWeddingCreated);
+        // if (error) return { code: 400, erro: error.message };
 
         const weddingExist: Wedding | null = await this.weddingModel.findOne({ where: { data: newWeddingCreated.data, localCerimonia: newWeddingCreated.localCerimonia } });
         if (weddingExist) return { code: 400, erro: 'Evento já cadastrado' };
@@ -145,6 +145,19 @@ class WeddingService {
 
 
         return { code: 201, message: "Casamento deletado" }
+    }
+
+    async addImage(id: number, namePhoto: string) {
+        const wedding = await this.weddingModel.findOne({ where: { id } });
+        if (wedding)
+        await this.weddingModel.update(
+            {
+              imagem: namePhoto,
+            },
+            { where: { id } },
+          );
+        
+        // return { code: 201, message: 'Imagem atualizada' }
     }
 
 }

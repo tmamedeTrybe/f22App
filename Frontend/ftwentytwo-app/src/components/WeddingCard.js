@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable global-require */
 /* eslint-disable max-len */
 import PropTypes from 'prop-types';
@@ -6,11 +7,12 @@ import styles from '../modules/WeddingCard.module.css';
 
 function WeddingCard({ wedding }) {
   // eslint-disable-next-line import/no-dynamic-require
-  const img = require(`../assets/images/casamentos/${wedding.noiva}_${wedding.noivo}.jpg`);
+  const img = require(`../assets/images/casamentos/${wedding.imagem}`);
+
   return (
     <Link className={ styles.link } to={ `/casamentos/detalhe/${wedding.id}` }>
-      <div className={ styles.card }>
-        <section>
+      <div>
+        <section className={ styles.card }>
           <h2>{`${wedding.noiva} & ${wedding.noivo}`}</h2>
           <p>{wedding.data}</p>
           <img

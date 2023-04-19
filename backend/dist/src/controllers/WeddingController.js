@@ -31,6 +31,7 @@ class WeddingController {
         });
         this.createWedding = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const created = yield this.weddingService.createWedding(req.body);
+            console.log(req.body);
             if (created.erro)
                 return res.status(created.code).json({ erro: created.erro });
             return res.status(created.code).json({ message: 'Criado com sucesso!', wedding: created.wedding });
@@ -46,6 +47,12 @@ class WeddingController {
             const { id } = req.params;
             const deleted = yield this.weddingService.deleteWedding(Number(id));
             res.status(deleted.code).json({ message: deleted.message });
+        });
+        this.addImage = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const namePhoto = `${id}.jpg`;
+            const addImage = yield this.weddingService.addImage(Number(id), namePhoto);
+            // return res.status(addImage.code).json({ message: addImage.message });
         });
     }
 }

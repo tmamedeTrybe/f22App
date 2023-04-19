@@ -3,7 +3,7 @@ interface newWedding {
     noivo: string;
     data: string;
     cidade: string;
-    imagem: string;
+    imagem?: object;
     localCerimonia?: string;
     localRecepcao?: string;
     primeiroBackupBruto?: number;

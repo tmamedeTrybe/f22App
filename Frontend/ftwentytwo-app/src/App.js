@@ -10,8 +10,10 @@ import Login from './pages/Login';
 import NewHd from './pages/NewHd';
 import NewWedding from './pages/NewWedding';
 import Register from './pages/Register';
+// import TesteMulter from './pages/TesteMulter';
 import WeddingDetail from './pages/WeddingDetail';
 import WeddingEdit from './pages/WeddingEdit';
+import WeddingImage from './pages/WeddingImage';
 import Weddings from './pages/Weddings';
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
           <Route path="/casamentos/detalhe/:id" element={ <WeddingDetail /> } />
           <Route path="casamentos/detalhe/:id/editar" element={ <WeddingEdit /> } />
           <Route path="/casamentos/novo" element={ <NewWedding /> } />
+          <Route path="/casamentos/imagem/:id" element={ <WeddingImage /> } />
           <Route path="/casamentos" element={ <Weddings /> } />
           <Route path="/hds" element={ <Hds /> } />
           <Route path="/hds/new" element={ <NewHd /> } />

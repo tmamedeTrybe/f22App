@@ -23,7 +23,7 @@ function WeddingDetail() {
   }, []);
 
   useMemo(async () => {
-    const img = await require(`../assets/images/casamentos/${wedding.noiva}_${wedding.noivo}.jpg`);
+    const img = await require(`../assets/images/casamentos/${wedding.imagem}`);
     setImage(img);
   }, [wedding]);
 
@@ -50,6 +50,11 @@ function WeddingDetail() {
             <section>
               <h1>{`${wedding.noiva} & ${wedding.noivo}`}</h1>
               <img alt="foto do casamento" src={ image } width="200px" />
+              <button
+                onClick={ () => navigate(`/casamentos/imagem/${id}`) }
+              >
+                Incluir foto
+              </button>
             </section>
             <section className={ styles.infos }>
               <p>{ `Data = ${wedding.data}` }</p>

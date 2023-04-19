@@ -66,7 +66,6 @@ function WeddingEdit() {
       segundoBackup,
       segundoBackupTamanho,
     };
-    console.log(weddingEdited, 'PRIMEIRO BKP VAZIO');
     event.preventDefault();
     const response = await fetch(`http://localhost:3001/casamentos/detalhe/${id}/editar`, {
       method: 'PATCH',
