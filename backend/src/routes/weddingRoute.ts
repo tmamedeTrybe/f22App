@@ -18,5 +18,4 @@ weddingRoutes.patch('/casamentos/detalhe/:id/editar', weddingController.updateWe
 weddingRoutes.delete('/casamentos/detalhe/:id/editar',weddingController.deleteWedding);
 weddingRoutes.post('/casamentos/imagem/:id', uploads.single('imagem'), weddingController.addImage);
 
-
 export default weddingRoutes;

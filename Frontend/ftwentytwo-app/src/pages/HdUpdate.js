@@ -41,7 +41,6 @@ function HdUpdate() {
       body: JSON.stringify(hdUpdate),
     });
     const hdData = await response.json();
-    console.log(hdData, 'resposta do fetch');
 
     if (hdData.erro) {
       setErro(hdData.erro);

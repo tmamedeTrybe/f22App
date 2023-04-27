@@ -1,19 +1,23 @@
+.container {
+  width: 50%;
+}
+
 .card {
     border: solid 0.1px 0.1px 0px 0px grey;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.20);
     border-radius: 20px;
-    width: 60%;
-    height: 30%;
+    width: 100%;
     margin: 20px;
     text-decoration: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: black;
-    padding: 10px;
+    padding: 10px 0px 0px 0px;
   }
 
   .card img {
-    border-radius: 20px;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.20);
+    border-radius: 0px 0px 20px 20px;
+    box-sizing: border-box;
+    transform: translateY(3px);
   }
 
   .card h2 {

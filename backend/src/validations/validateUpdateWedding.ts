@@ -5,8 +5,8 @@ const Joi = require('joi');
 const validateUpdateWedding = (newWedding: weddingUpdate) =>
 
 Joi.object({
-    data: Joi.string().min(10).messages({
-      'string.min': 'O formato da "Data" deve ser "DD/MM/AAAA',
+    data: Joi.date().min(10).messages({
+      'date': 'O formato da "Data" deve ser "YYYYMMDD"',
       'string.required': 'Informar a "data"',
     }),
     cidade: Joi.string().min(3).messages({

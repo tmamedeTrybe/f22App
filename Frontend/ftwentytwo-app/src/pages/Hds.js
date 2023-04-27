@@ -11,8 +11,6 @@ import styles from '../modules/Hds.module.css';
 function Hds() {
   const searchOptions = ['Name', 'Label', 'Capacity', 'Available more than'];
   const { hdsFounded, changeHds } = useContext(HdContext);
-  //   setHdsList(hdsFounded);
-  // }, [hdsFounded]);
 
   const getAll = async () => {
     const response = await fetch('http://localhost:3001/hds', {

@@ -1,31 +1,51 @@
-.container {
-  display: flex;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
+.body {
+  width: 375px;
   margin: auto;
-  padding: 2rem;
+  background-image: linear-gradient(var(--dark), var(--grey), var(--green));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(247, 235, 236);
+  font-family: Tajawal;   
+}
+
+.card a {
+  text-decoration: none;
+  margin: center;
+  background-color: transparent;
+  box-sizing: border-box;
+  width: 100%;
+  color: rgb(247, 235, 236);
 }
 
 .main {
-    border: solid 0.1px rgba(255, 255, 255, 0.244);
-    border-radius: 20px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  color: rgb(252, 255, 252);
+  font-family: Tajawal;
+  margin: 50px 20px;
+}
+
+.cards {
+    align-items: center;
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;    
-    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    width: 80%;
+    padding: 0px 30px;
     justify-content: center;
-    width: 90%;
-    padding: 30px;
-    margin: 20px;
-    text-decoration: none;
-  }
+}
   
 .card {
-  border: solid 0.1px rgba(255, 255, 255, 0.244);
   border-radius: 20px;
+  background-color: var(--grey);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,29 +54,25 @@
   font-size: 15px;
   justify-content: center;
   margin: 2%;
-  width: 40%;
-  height: 30%;
-  
+  width: 100px;
+  height: 100px;
+  padding: 5px 0px;
+  transition: 2s linear;
 }
 
 .card img {
   width: 100%;
-  border-radius: 20px;
-}
-
-.card a {
-  text-decoration: none;
-  margin: center;
+  border-radius: 00px 0px 20px 20px;
 }
 
 .card h1 {
   margin: auto;
-  font-size: 100%;
+  font-size: 15px;
 }
 
 .card img{
-  width: 100%;
-  margin-top: 15px;
+  width: 100px;
+  transform: translateY(12px);
 }
 
 

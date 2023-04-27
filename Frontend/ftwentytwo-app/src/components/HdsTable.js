@@ -9,9 +9,9 @@ function HdsTable({ HdsList }) {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Label</th>
-            <th>Available</th>
+            <th>Nome</th>
+            <th>Marca</th>
+            <th>Espaço Disponível</th>
           </tr>
         </thead>
         <tbody>

@@ -1,4 +1,4 @@
-import { INTEGER, JSON, Model, STRING } from "sequelize";
+import { DATEONLY, INTEGER, JSON, Model, STRING } from "sequelize";
 import wedding from "../../interfaces/wedding";
 import db from '.';
 import Hd from "./hd";
@@ -24,20 +24,20 @@ class Wedding extends Model implements wedding {
 
 Wedding.init({
     id: { type: INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    data: { type: STRING, allowNull: false },
+    data: { type: DATEONLY, allowNull: false },
     noiva: { type: STRING, allowNull: false },
     noivo: { type: STRING, allowNull: false },
     cidade: { type: STRING, allowNull: false },
     imagem: { type: STRING },
     localCerimonia:{ type: STRING, field: 'local_cerimonia' },
     localRecepcao: { type: STRING, field: 'local_recepcao' },
-    primeiroBackupBruto: { type: INTEGER, field: 'primeiro_backup_bruto', defaultValue: null },
+    primeiroBackupBruto: { type: INTEGER, field: 'primeiro_backup_bruto' },
     primeiroBackupBrutoTamanho: { type: INTEGER, field: 'primeiro_backup_bruto_tamanho', defaultValue: 0, allowNull: false },
-    segundoBackupBruto: { type: INTEGER, field: 'segundo_backup_bruto', defaultValue: null },
+    segundoBackupBruto: { type: INTEGER, field: 'segundo_backup_bruto' },
     segundoBackupBrutoTamanho: { type: INTEGER, field: 'segundo_backup_bruto_tamanho', defaultValue: 0, allowNull: false },
-    primeiroBackup: { type: INTEGER, field: 'primeiro_backup', defaultValue: null },
+    primeiroBackup: { type: INTEGER, field: 'primeiro_backup' },
     primeiroBackupTamanho: { type: INTEGER, field: 'primeiro_backup_tamanho', defaultValue: 0, allowNull: false },
-    segundoBackup: { type: INTEGER, field: 'segundo_backup', defaultValue: null },
+    segundoBackup: { type: INTEGER, field: 'segundo_backup' },
     segundoBackupTamanho: { type: INTEGER, field: 'segundo_backup_tamanho', defaultValue: 0, allowNull: false },
 },
 {

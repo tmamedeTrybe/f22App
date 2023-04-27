@@ -14,7 +14,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const hd_1 = __importDefault(require("../database/models/hd"));
+const validateNewWedding_1 = __importDefault(require("../validations/validateNewWedding"));
 const validateUpdateWedding_1 = __importDefault(require("../validations/validateUpdateWedding"));
+// import AWS from 'aws-sdk';
+// import fs from 'fs';
+// async function uploadFile(fileName: string, filePath: string) {
+//     const s3 = new AWS.S3({ apiVersion: '2006-03-01', region: process.env.AWS_REGION });
+//     const fileContent = fs.readFileSync(filePath);
+//     const params: any = {
+//         Bucket: process.env.AWS_S3_BUCKET,
+//         Key: fileName,
+//         Body: fileContent,
+//         // ContentType: mimeType//geralmente se acha sozinho
+//     };
+//     const data = await s3.upload(params).promise();
+//     console.log(data.Location, "zzzzzzzz");
+//     return data.Location;
+// }
 class WeddingService {
     constructor(weddingModel, hdService) {
         this.weddingModel = weddingModel;
@@ -41,21 +57,22 @@ class WeddingService {
     }
     createWedding(newWeddingCreated) {
         return __awaiter(this, void 0, void 0, function* () {
-            // const { error } = validateNewWedding(newWeddingCreated);
-            // if (error) return { code: 400, erro: error.message };
+            const { error } = (0, validateNewWedding_1.default)(newWeddingCreated);
+            if (error)
+                return { code: 400, erro: error.message };
             const weddingExist = yield this.weddingModel.findOne({ where: { data: newWeddingCreated.data, localCerimonia: newWeddingCreated.localCerimonia } });
             if (weddingExist)
                 return { code: 400, erro: 'Evento já cadastrado' };
-            const hdRawOneExist = yield this.hdService.validateHd(Number(newWeddingCreated.primeiroBackupBruto));
+            const hdRawOneExist = yield this.hdService.validateHdNewWedding(Number(newWeddingCreated.primeiroBackupBruto), Number(newWeddingCreated.primeiroBackupBrutoTamanho));
             if (hdRawOneExist === null || hdRawOneExist === void 0 ? void 0 : hdRawOneExist.erro)
                 return { code: hdRawOneExist.code, erro: hdRawOneExist.erro };
-            const hdRawTwoExist = yield this.hdService.validateHd(Number(newWeddingCreated.segundoBackupBruto));
+            const hdRawTwoExist = yield this.hdService.validateHdNewWedding(Number(newWeddingCreated.segundoBackupBruto), Number(newWeddingCreated.segundoBackupBrutoTamanho));
             if (hdRawTwoExist === null || hdRawTwoExist === void 0 ? void 0 : hdRawTwoExist.erro)
                 return { code: hdRawTwoExist.code, erro: hdRawTwoExist.erro };
-            const hdEditOneExist = yield this.hdService.validateHd(Number(newWeddingCreated.primeiroBackup));
+            const hdEditOneExist = yield this.hdService.validateHdNewWedding(Number(newWeddingCreated.primeiroBackup), Number(newWeddingCreated.primeiroBackupTamanho));
             if (hdEditOneExist === null || hdEditOneExist === void 0 ? void 0 : hdEditOneExist.erro)
                 return { code: hdEditOneExist.code, erro: hdEditOneExist.erro };
-            const hdEditTwoExist = yield this.hdService.validateHd(Number(newWeddingCreated.segundoBackup));
+            const hdEditTwoExist = yield this.hdService.validateHdNewWedding(Number(newWeddingCreated.segundoBackup), Number(newWeddingCreated.segundoBackupTamanho));
             if (hdEditTwoExist === null || hdEditTwoExist === void 0 ? void 0 : hdEditTwoExist.erro)
                 return { code: hdEditTwoExist.code, erro: hdEditTwoExist.erro };
             const weddingCreated = {
@@ -89,16 +106,16 @@ class WeddingService {
             if (error)
                 return { code: 400, erro: error.message };
             const wedding = yield this.weddingModel.findOne({ where: { id } });
-            const hdRawOneExist = yield this.hdService.validateHd(Number(newInfo.primeiroBackupBruto));
+            const hdRawOneExist = yield this.hdService.validateHd(Number(newInfo.primeiroBackupBruto), Number(wedding.primeiroBackupBrutoTamanho), Number(newInfo.primeiroBackupBrutoTamanho));
             if (hdRawOneExist === null || hdRawOneExist === void 0 ? void 0 : hdRawOneExist.erro)
                 return { code: hdRawOneExist.code, erro: hdRawOneExist.erro };
-            const hdRawTwoExist = yield this.hdService.validateHd(Number(newInfo.segundoBackupBruto));
+            const hdRawTwoExist = yield this.hdService.validateHd(Number(newInfo.segundoBackupBruto), Number(wedding.segundoBackupBrutoTamanho), Number(newInfo.segundoBackupBrutoTamanho));
             if (hdRawTwoExist === null || hdRawTwoExist === void 0 ? void 0 : hdRawTwoExist.erro)
                 return { code: hdRawTwoExist.code, erro: hdRawTwoExist.erro };
-            const hdEditOneExist = yield this.hdService.validateHd(Number(newInfo.primeiroBackup));
+            const hdEditOneExist = yield this.hdService.validateHd(Number(newInfo.primeiroBackup), Number(wedding.primeiroBackupTamanho), Number(newInfo.primeiroBackupTamanho));
             if (hdEditOneExist === null || hdEditOneExist === void 0 ? void 0 : hdEditOneExist.erro)
                 return { code: hdEditOneExist.code, erro: hdEditOneExist.erro };
-            const hdEditTwoExist = yield this.hdService.validateHd(Number(newInfo.segundoBackup));
+            const hdEditTwoExist = yield this.hdService.validateHd(Number(newInfo.segundoBackup), Number(wedding.segundoBackupTamanho), Number(newInfo.segundoBackupTamanho));
             if (hdEditTwoExist === null || hdEditTwoExist === void 0 ? void 0 : hdEditTwoExist.erro)
                 return { code: hdEditTwoExist.code, erro: hdEditTwoExist.erro };
             yield this.weddingModel.update({

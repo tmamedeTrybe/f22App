@@ -6,15 +6,15 @@ import HeaderLogo from '../components/HeaderLogo';
 function Home() {
   return (
 
-    <div className={ styles.container }>
+    <div className={ styles.body }>
       <HeaderLogo title="Home" />
       <main className={ styles.main }>
-
-        { options.map((option, i) => (
-          <section key={ i } className={ styles.card }>
-            <OptionsCard key={ i } infos={ option } />
-          </section>))}
-
+        <section className={ styles.cards }>
+          { options.map((option, i) => (
+            <section key={ i } className={ styles.card }>
+              <OptionsCard key={ i } infos={ option } />
+            </section>))}
+        </section>
       </main>
     </div>
   );

@@ -1,6 +1,22 @@
+@import url( 'https://fonts.googleapis.com/css2?family=Tajawal:wght@200&display=swap') ;
+
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-top: 150px;
+   
+    font-family: Tajawal;
+}
+
+.header a {
+    color: rgb(247, 235, 236);
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    background-image: linear-gradient(var(--dark), var(--green));
+    margin: 30px;
 }

@@ -8,7 +8,6 @@ function NewWedding() {
   const [cidade, setCidade] = useState('');
   const [noiva, setNoiva] = useState('');
   const [noivo, setNoivo] = useState('');
-  // const [imagem, setImagem] = useState('');
   const [localCerimonia, setLocalCerimonia] = useState('');
   const [localRecepcao, setLocalRecepcao] = useState('');
   const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState();
@@ -71,7 +70,7 @@ function NewWedding() {
         >
           <label htmlFor="data">
             <input
-              placeholder="Data"
+              placeholder="Data - YYYYMMDD"
               onChange={ (event) => setData(event.target.value) }
               type="text"
               id="data"

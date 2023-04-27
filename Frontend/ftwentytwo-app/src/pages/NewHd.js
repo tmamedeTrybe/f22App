@@ -39,15 +39,6 @@ function NewHd() {
       <HeaderLogo title="Novo HD" />
       <main className={ styles.main }>
         <form onSubmit={ submitForm } className={ styles.form }>
-          {/* <label htmlFor="name">
-            <input
-              placeholder="Name"
-              type="text"
-              value={ name }
-              onChange={ (event) => setName(event.target.value) }
-              id="name"
-            />
-          </label> */}
           <label htmlFor="label">
             <input
               placeholder="Label"

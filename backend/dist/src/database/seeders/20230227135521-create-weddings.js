@@ -17,10 +17,10 @@ module.exports = {
         return __awaiter(this, void 0, void 0, function* () {
             yield queryInterface.bulkInsert('weddings', [
                 {
-                    data: '10/07/2013',
+                    data: '2013-07-15',
                     noiva: 'Salua',
                     noivo: 'Tiago',
-                    imagem: 'Salua_Tiago.jpg',
+                    imagem: 'wedding-icon.jpg',
                     cidade: 'Belo Horizonte',
                     local_cerimonia: 'Chateau Belvedere',
                     local_recepcao: 'Chateau Belvedere',
@@ -34,10 +34,10 @@ module.exports = {
                     segundo_backup_tamanho: 3,
                 },
                 {
-                    data: '14/12/2018',
+                    data: '2018-12-14',
                     noiva: 'Ana',
                     noivo: 'Mateus',
-                    imagem: 'Ana_Mateus.jpg',
+                    imagem: 'wedding-icon.jpg',
                     cidade: 'Belo Horizonte',
                     local_cerimonia: 'Espaço Meet',
                     local_recepcao: 'Espaço Meet',
@@ -51,10 +51,10 @@ module.exports = {
                     segundo_backup_tamanho: 10,
                 },
                 {
-                    data: '13/11/2021',
+                    data: '2021-11-13',
                     noiva: 'Luisa',
                     noivo: 'Marcelo',
-                    imagem: 'Luisa_Marcelo.jpg',
+                    imagem: 'wedding-icon.jpg',
                     cidade: 'Belo Horizonte',
                     local_cerimonia: 'Casa Bedrock',
                     local_recepcao: 'Casa Bedrock',

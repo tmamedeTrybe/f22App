@@ -27,7 +27,7 @@ function Weddings() {
           weddingsFounded.length > 0 && <section className={ styles.weddings }> { weddingsFounded.map((job, i) => <WeddingCard wedding={ job } key={ i } />)} </section>
         }
       </main>
-      <section>
+      <section className={ styles.link }>
         <Link to="/casamentos/novo"> Cadastre novo casamento</Link>
       </section>
     </div>

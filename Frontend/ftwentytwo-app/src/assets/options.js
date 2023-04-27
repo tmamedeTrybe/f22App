@@ -2,6 +2,7 @@ import cardCasamentos from './images/cardCasamentos.jpg';
 import cardFamilia from './images/cardFamilia.jpg';
 import cardGastronomia from './images/cardGastronomia.jpg';
 import cardHds from './images/cardHds.jpg';
+import cardCorporativo from './images/cardCorporativo.jpg';
 
 const opcoes = [
   {
@@ -24,11 +25,16 @@ const opcoes = [
   },
   {
     id: 4,
+    nameCard: 'Corporativo',
+    image: cardCorporativo,
+    path: '/corporativo',
+  },
+  {
+    id: 5,
     nameCard: 'Hds',
     image: cardHds,
     path: '/hds',
   },
-
 ];
 
 export default opcoes;

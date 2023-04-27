@@ -48,6 +48,7 @@ function SearchForm({ searchOptions, url }) {
         <label className={ styles.label } aria-labelledby="searchBy">
           Escolha a opção de busca
           <select
+            className={ styles.select }
             name="searchBy"
             type="text"
             value={ searchBy }

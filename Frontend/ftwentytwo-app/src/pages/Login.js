@@ -38,7 +38,7 @@ function Login() {
   };
 
   return (
-    <div className={ styles.container }>
+    <div className={ styles.body }>
       <Logo size="150px" />
       <section className={ styles.main }>
         <h1>Login</h1>

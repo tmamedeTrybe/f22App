@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import HeaderLogo from '../components/HeaderLogo';
 import MyContext from '../context/myContext';
 import styles from '../modules/Register.module.css';
+import Logo from '../components/Logo';
 
 const MIN_PASSWORD_LEN = 6;
 
@@ -38,8 +38,8 @@ function Register() {
   };
 
   return (
-    <div className={ styles.container }>
-      <HeaderLogo title="Novo usuário" />
+    <div className={ styles.body }>
+      <Logo size="150px" />
       <section className={ styles.main }>
         <h1>Novo usuário</h1>
         <form className={ styles.form } onSubmit={ submitForm }>

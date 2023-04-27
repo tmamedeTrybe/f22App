@@ -6,7 +6,14 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('weddings', { 
       id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-      data: { type: Sequelize.STRING, allowNull: false },
+      data: {
+        type: Sequelize.DATEONLY,
+        allowNull: false,
+        get() {
+          return this.getDataValue('data')
+          .toLocaleString('en-GB');
+        },
+      },
       noiva: { type: Sequelize.STRING, allowNull: false },
       noivo: { type: Sequelize.STRING, allowNull: false },
       cidade: { type: Sequelize.STRING, allowNull: false },

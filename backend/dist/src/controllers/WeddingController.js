@@ -38,6 +38,7 @@ class WeddingController {
         });
         this.updateWedding = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
+            console.log(req.body, 'Body que chega no update');
             const update = yield this.weddingService.updateWedding(Number(id), req.body);
             if (update.erro)
                 return res.status(update.code).json({ erro: update.erro });
@@ -52,7 +53,6 @@ class WeddingController {
             const { id } = req.params;
             const namePhoto = `${id}.jpg`;
             const addImage = yield this.weddingService.addImage(Number(id), namePhoto);
-            // return res.status(addImage.code).json({ message: addImage.message });
         });
     }
 }

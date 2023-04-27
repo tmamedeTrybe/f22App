@@ -1,5 +1,4 @@
 import { Op } from "sequelize";
-import { DefaultDeserializer } from "v8";
 import Hd from "../database/models/hd";
 import Wedding from "../database/models/wedding";
 import hd from "../interfaces/hd";
@@ -58,12 +57,36 @@ class HdService {
         	return { code: 200, hds: result.sort((a: Hd,b: Hd) => a.id - b.id) }
 		}
 	}
-	
-	public validateHd = async (id:number) => {
+
+	public validateHdNewWedding = async (id:number, newSize:number) => {
 		if (id) {
-			const hdexist: Hd[] | null = await this.HdModel.findAll({ where:{ id } });
+			const hdexist: Hd | null = await this.HdModel.findOne({ where:{ id } });
 		
-			if (hdexist.length == 0) return { code: 400, erro: `Hd${id} não existe` }
+			if (!hdexist) return { code: 400, erro: `Hd${id} não existe` }
+
+			if (hdexist.dataValues.available < newSize) return { code: 400, erro: `Hd${id} não tem ${newSize}GB disponíveis` }
+			
+			return { code: 200 }
+		}
+		return;
+	}
+	
+	public validateHd = async (id:number, oldSize:number, newSize:number) => {
+		if (id) {
+			const hdexist: Hd | null = await this.HdModel.findOne({ where:{ id } });
+		
+			if (!hdexist) return { code: 400, erro: `Hd${id} não existe` }
+
+			const difference = (hdexist.dataValues.available + oldSize) - newSize;
+
+			console.log(hdexist.dataValues.available, oldSize, newSize, 'NUMEROS');
+			
+
+			console.log(difference, 'DIFERENCA');
+			
+
+			if (difference < 0) return { code: 400, erro: `Hd${id} não tem ${newSize}GB disponíveis` }
+			
 			return { code: 200 }
 		}
 		return;
@@ -72,9 +95,6 @@ class HdService {
 	public createHd = async (newHd: newHd) => {
 		const { error } = validateNewHd(newHd);
 		if (error) return { code: 400, erro: error.message };
-
-		// const hdExist: Hd | null = await this.HdModel.findOne({ where: { name: newHd.name } });
-		// if (hdExist) return { code: 400, erro: 'HD já cadastrado' }
 
 		const created = {
 			name: null,
@@ -122,7 +142,6 @@ class HdService {
 			);
 		if (hd) {
 			if(hd.rawWeddingsOne && hd.rawWeddingsOne.length > 0) {
-				console.log(hd.rawWeddingsOne, 'quantos bkp brutos');
 				
 				const values = hd.rawWeddingsOne.reduce((acc, cur) => cur.primeiroBackupBrutoTamanho + acc, 0) ;
 				totalSizeFirstRaw = values;
@@ -144,8 +163,6 @@ class HdService {
 			} else totalSizeSecondEdit = 0;
 
 			const result = totalSizeFirstRaw + totalSizeSecondRaw + totalSizeFirstEdit + totalSizeSecondEdit;
-			console.log(result, 'resultado da soma');
-			
 
 			const hdUpdated = await this.HdModel.update(
 			{

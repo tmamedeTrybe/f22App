@@ -23,8 +23,13 @@ function WeddingDetail() {
   }, []);
 
   useMemo(async () => {
-    const img = await require(`../assets/images/casamentos/${wedding.imagem}`);
-    setImage(img);
+    if (wedding.imagem === undefined) {
+      const img = await require('../assets/images/casamentos/wedding-icon.jpg');
+      setImage(img);
+    } else {
+      const img = await require(`../assets/images/casamentos/${wedding.imagem}`);
+      setImage(img);
+    }
   }, [wedding]);
 
   const deleteWedding = async () => {

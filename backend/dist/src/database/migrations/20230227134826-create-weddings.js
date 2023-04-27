@@ -16,7 +16,14 @@ module.exports = {
         return __awaiter(this, void 0, void 0, function* () {
             yield queryInterface.createTable('weddings', {
                 id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-                data: { type: Sequelize.STRING, allowNull: false },
+                data: {
+                    type: Sequelize.DATEONLY,
+                    allowNull: false,
+                    get() {
+                        return this.getDataValue('data')
+                            .toLocaleString('en-GB');
+                    },
+                },
                 noiva: { type: Sequelize.STRING, allowNull: false },
                 noivo: { type: Sequelize.STRING, allowNull: false },
                 cidade: { type: Sequelize.STRING, allowNull: false },

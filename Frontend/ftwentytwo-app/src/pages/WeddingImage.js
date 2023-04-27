@@ -5,6 +5,7 @@ import MyContext from '../context/myContext';
 function WeddingImage() {
   const [wedding, setWedding] = useState('');
   const [message, setMessage] = useState('');
+  // const [image, setImage] = useState('');
   const { jobsFounded } = useContext(MyContext);
   const { id } = useParams();
 
@@ -15,20 +16,7 @@ function WeddingImage() {
   }, []);
 
   const sendFile = async () => {
-    // event.preventDefault();
-
-    // const photoName = `${wedding.noiva}_${wedding.noivo}.jpg`;
-
-    // const response = await fetch(`http://localhost:3001/casamentos/imagem/${id}`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(photoName),
-    // });
-    // const data = await response.json();
-    // console.log(data);
-    setMessage('Sucesso!');
+    setMessage('Imagem incluída com sucesso!');
   };
 
   return (
@@ -39,7 +27,6 @@ function WeddingImage() {
           action={ `http://localhost:3001/casamentos/imagem/${id}` }
           method="post"
           encType="multipart/form-data"
-          // onSubmit={ sendFile }
         >
           <input
             type="file"
