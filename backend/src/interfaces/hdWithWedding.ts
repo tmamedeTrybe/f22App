@@ -9,6 +9,6 @@ interface hdWithWedding {
         rawWeddingsTwo?: Array<any>;
         editWeddingsOne?: Array<any>;
         editWeddingsTwo?: Array<any>;
-}
+};
 
 export default hdWithWedding;

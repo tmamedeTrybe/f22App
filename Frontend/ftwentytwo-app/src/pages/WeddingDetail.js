@@ -1,36 +1,23 @@
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable global-require */
-/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable max-len */
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+/* eslint-disable react/jsx-closing-tag-location */
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import MyContext from '../context/myContext';
 import HeaderLogo from '../components/HeaderLogo';
 import styles from '../modules/WeddingDetail.module.css';
+import icon from '../assets/images/casamentos/wedding-icon.jpg';
 
 function WeddingDetail() {
   const [wedding, setWedding] = useState('');
-  const { jobsFounded } = useContext(MyContext);
+  const { filterJob } = useContext(MyContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
-  const [image, setImage] = useState('');
 
   useEffect(() => {
-    const weddingFilter = jobsFounded.find((job) => job.id === Number(id));
-    setWedding(weddingFilter);
+    setWedding(filterJob(id));
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useMemo(async () => {
-    if (wedding.imagem === undefined) {
-      const img = await require('../assets/images/casamentos/wedding-icon.jpg');
-      setImage(img);
-    } else {
-      const img = await require(`../assets/images/casamentos/${wedding.imagem}`);
-      setImage(img);
-    }
-  }, [wedding]);
 
   const deleteWedding = async () => {
     const response = await fetch(`http://localhost:3001/casamentos/detalhe/${id}/editar`, {
@@ -43,9 +30,6 @@ function WeddingDetail() {
     setMessage(data.message);
   };
 
-  // eslint-disable-next-line import/no-dynamic-require
-  // const img = require(`../assets/images/casamentos/${wedding.noiva}_${wedding.noivo}.jpg`);
-
   return (
     <div className={ styles.container }>
       <HeaderLogo title="Informações" />
@@ -54,7 +38,7 @@ function WeddingDetail() {
           : <main className={ styles.main }>
             <section>
               <h1>{`${wedding.noiva} & ${wedding.noivo}`}</h1>
-              <img alt="foto do casamento" src={ image } width="200px" />
+              <img alt="foto do casamento" src={ icon } width="200px" />
               <button
                 onClick={ () => navigate(`/casamentos/imagem/${id}`) }
               >

@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-closing-tag-location */
-/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -11,13 +10,21 @@ function WeddingsByHd({ hd }) {
   const [editWeddingsTwo, setEditWeddingsTwo] = useState('');
 
   const actions = () => {
-    const weddingsRawOne = hd.rawWeddingsOne.map((wedding) => (`${wedding.noiva} & ${wedding.noivo}`));
+    const weddingsRawOne = hd.rawWeddingsOne.map((wedding) => (
+      `${wedding.noiva} & ${wedding.noivo}`
+    ));
     setRawWeddingsOne(weddingsRawOne);
-    const weddingsRawTwo = hd.rawWeddingsTwo.map((wedding) => (`${wedding.noiva} & ${wedding.noivo}`));
+    const weddingsRawTwo = hd.rawWeddingsTwo.map((wedding) => (
+      `${wedding.noiva} & ${wedding.noivo}`
+    ));
     setRawWeddingsTwo(weddingsRawTwo);
-    const weddingsEditOne = hd.editWeddingsOne.map((wedding) => (`${wedding.noiva} & ${wedding.noivo}`));
+    const weddingsEditOne = hd.editWeddingsOne.map((wedding) => (
+      `${wedding.noiva} & ${wedding.noivo}`
+    ));
     setEditWeddingsOne(weddingsEditOne);
-    const weddingsEditTwo = hd.editWeddingsTwo.map((wedding) => (`${wedding.noiva} & ${wedding.noivo}`));
+    const weddingsEditTwo = hd.editWeddingsTwo.map((wedding) => (
+      `${wedding.noiva} & ${wedding.noivo}`
+    ));
     setEditWeddingsTwo(weddingsEditTwo);
   };
 
@@ -38,7 +45,8 @@ function WeddingsByHd({ hd }) {
         Casamentos
       </button>
       {
-        (rawWeddingsOne, rawWeddingsTwo, editWeddingsOne, editWeddingsTwo) && <section>
+        (rawWeddingsOne, rawWeddingsTwo, editWeddingsOne, editWeddingsTwo)
+        && <section>
           <table>
             <thead>
               <tr>
@@ -80,7 +88,6 @@ function WeddingsByHd({ hd }) {
                   </tr>
                 ))}
               </td>
-
             </tbody>
           </table>
         </section>

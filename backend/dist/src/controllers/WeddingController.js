@@ -49,11 +49,6 @@ class WeddingController {
             const deleted = yield this.weddingService.deleteWedding(Number(id));
             res.status(deleted.code).json({ message: deleted.message });
         });
-        this.addImage = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const { id } = req.params;
-            const namePhoto = `${id}.jpg`;
-            const addImage = yield this.weddingService.addImage(Number(id), namePhoto);
-        });
     }
 }
 exports.default = WeddingController;

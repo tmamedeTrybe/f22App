@@ -4,7 +4,6 @@ import HeaderLogo from '../components/HeaderLogo';
 import styles from '../modules/NewHd.module.css';
 
 function NewHd() {
-  // const [name, setName] = useState('');
   const [label, setLabel] = useState('');
   const [capacity, setCapacity] = useState('');
   const [erro, setErro] = useState('');
@@ -12,7 +11,6 @@ function NewHd() {
 
   const submitForm = async (event) => {
     const newHdCreated = {
-      // name,
       label,
       capacity: Number(capacity),
     };

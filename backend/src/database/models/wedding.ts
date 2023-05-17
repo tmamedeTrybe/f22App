@@ -1,7 +1,7 @@
-import { DATEONLY, INTEGER, JSON, Model, STRING } from "sequelize";
-import wedding from "../../interfaces/wedding";
+import { DATEONLY, INTEGER, JSON, Model, STRING } from 'sequelize';
+import wedding from '../../interfaces/wedding';
 import db from '.';
-import Hd from "./hd";
+import Hd from './hd';
 
 class Wedding extends Model implements wedding {
     id?: number;
@@ -20,7 +20,7 @@ class Wedding extends Model implements wedding {
     primeiroBackupTamanho?: number;
     segundoBackup?: number;
     segundoBackupTamanho?: number;
-}
+};
 
 Wedding.init({
     id: { type: INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
@@ -58,7 +58,5 @@ Hd.hasMany(Wedding, { foreignKey: 'primeiroBackup', as: 'editWeddingsOne' });
 
 Wedding.belongsTo(Hd, { foreignKey: 'segundoBackup', as: 'editBackupTwo' });
 Hd.hasMany(Wedding, { foreignKey: 'segundoBackup', as: 'editWeddingsTwo' });
-
-
 
 export default Wedding;

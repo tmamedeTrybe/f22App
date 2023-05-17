@@ -5,7 +5,6 @@ import HeaderLogo from '../components/HeaderLogo';
 
 function Home() {
   return (
-
     <div className={ styles.body }>
       <HeaderLogo title="Home" />
       <main className={ styles.main }>

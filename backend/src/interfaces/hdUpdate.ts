@@ -3,6 +3,6 @@ interface hdUpdate {
     label?: string;
     capacity?: number;
     used?: number;
-}
+};
 
 export default hdUpdate;

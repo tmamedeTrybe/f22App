@@ -1,5 +1,4 @@
-/* eslint-disable max-len */
-/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable react/jsx-closing-tag-location */
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import WeddingCard from '../components/WeddingCard';
@@ -10,7 +9,8 @@ import HeaderLogo from '../components/HeaderLogo';
 
 function Weddings() {
   const [weddingsFounded, setWeddingsFounded] = useState('');
-  const searchOptions = ['Noiva', 'Noivo', 'Data', 'Cidade', 'Local_cerimonia', 'Local_recepcao', 'Primeiro_backup'];
+  const searchOptions = ['Noiva', 'Noivo',
+    'Data', 'Cidade', 'Local_cerimonia', 'Local_recepcao', 'Primeiro_backup'];
   const { jobsFounded } = useContext(MyContext);
 
   useEffect(() => {
@@ -23,8 +23,10 @@ function Weddings() {
       <main className={ styles.main }>
         <SearchForm searchOptions={ searchOptions } url="http://localhost:3001/casamentos" />
         {
-          // eslint-disable-next-line max-len, react/jsx-one-expression-per-line
-          weddingsFounded.length > 0 && <section className={ styles.weddings }> { weddingsFounded.map((job, i) => <WeddingCard wedding={ job } key={ i } />)} </section>
+          weddingsFounded.length > 0
+          && <section className={ styles.weddings }>
+            { weddingsFounded.map((job, i) => <WeddingCard wedding={ job } key={ i } />)}
+          </section>
         }
       </main>
       <section className={ styles.link }>

@@ -1,7 +1,7 @@
 import { INTEGER, Model, STRING } from "sequelize";
-import hd from "../../interfaces/hd";
+import hd from '../../interfaces/hd';
 import db from '.';
-import hdWithWedding from "../../interfaces/hdWithWedding";
+import hdWithWedding from '../../interfaces/hdWithWedding';
 
 class Hd extends Model implements hd, hdWithWedding {
 	id!:number;
@@ -10,7 +10,7 @@ class Hd extends Model implements hd, hdWithWedding {
 	capacity!: number;
 	used!: number;
 	available!: number;
-}
+};
 
 Hd.init({
 	id: { type: INTEGER, allowNull: false, autoIncrement:true, primaryKey: true },
@@ -25,7 +25,5 @@ Hd.init({
 	timestamps: false,
 	tableName: 'hds',
 });
-
-
 
 export default Hd;

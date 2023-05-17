@@ -3,5 +3,8 @@
     "stylelint": "^15.2.0",
     "stylelint-config-standard": "^30.0.1",
     "stylelint-order": "^6.0.2"
+  },
+  "dependencies": {
+    "jimp": "^0.22.7"
   }
 }

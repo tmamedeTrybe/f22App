@@ -1,8 +1,7 @@
-import newUser from "../interfaces/newUser";
+import newUser from '../interfaces/newUser';
 const Joi = require('joi');
 
 const validateNewUser = (newUser: newUser) =>
-  
 Joi.object({
   name: Joi.string().min(3).required().messages({
     'string.min': '"Name" length must be at least 3 characters long',

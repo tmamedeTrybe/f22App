@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 /* eslint-disable react/prop-types */
 import React, { useCallback, useMemo, useState } from 'react';
 import MyContext from './myContext';
@@ -13,13 +12,18 @@ function MyProvider({ children }) {
     setjobsFounded(jobs);
   }, [setjobsFounded]);
 
+  const filterJob = useCallback((id) => {
+    const jobFilter = jobsFounded.find((job) => job.id === Number(id));
+    return jobFilter;
+  }, [jobsFounded]);
+
   const changeHds = useCallback((hds) => {
     setHdsFounded(hds);
   }, [setHdsFounded]);
 
   const value = useMemo(() => ({
-    jobsFounded, user, setUser, changeJobs,
-  }), [jobsFounded, user, changeJobs]);
+    jobsFounded, user, setUser, changeJobs, filterJob,
+  }), [jobsFounded, user, changeJobs, filterJob]);
 
   const valueHd = useMemo(() => ({
     hdsFounded, changeHds,

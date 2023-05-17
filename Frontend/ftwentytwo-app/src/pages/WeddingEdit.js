@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-/* eslint-disable max-len */
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import HeaderLogo from '../components/HeaderLogo';

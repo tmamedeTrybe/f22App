@@ -14,6 +14,6 @@ async function uploadFile(fileName, filePath) {
  
     const data = await s3.upload(params).promise();
     return data.Location;
-}
+};
 
 module.exports = { uploadFile };

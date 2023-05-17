@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-closing-tag-location */
-/* eslint-disable no-tabs */
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import HdsTable from '../components/HdsTable';
@@ -38,7 +37,8 @@ function Hds() {
         </button>
         <SearchFormHd searchOptions={ searchOptions } url="http://localhost:3001/hds" />
         {
-          hdsFounded.length > 0 && <section className={ styles.hds }>
+          hdsFounded.length > 0
+          && <section className={ styles.hds }>
             <HdsTable HdsList={ hdsFounded } />
           </section>
         }

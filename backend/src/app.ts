@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.get('/health', (_req: Request, res: Response) => res.status(200).send('ok'));
+app.get('/', (_req: Request, res: Response) => res.status(200).send('ok'));
 app.use(middlewareErro);
 app.use(userRoutes);
 app.use(weddingRoutes);

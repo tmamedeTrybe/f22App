@@ -10,7 +10,7 @@ const middlewareErro_1 = __importDefault(require("./middlewares/middlewareErro")
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
-app.get('/health', (_req, res) => res.status(200).send('ok'));
+app.get('/', (_req, res) => res.status(200).send('ok'));
 app.use(middlewareErro_1.default);
 app.use(routes_1.userRoutes);
 app.use(routes_1.weddingRoutes);

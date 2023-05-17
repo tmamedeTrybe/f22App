@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import Hd from '../database/models/hd';
-import Wedding from "../database/models/wedding";
+import Wedding from '../database/models/wedding';
 import newWedding from '../interfaces/newWedding';
 import HdService from '../services/HdService';
-import WeddingService from "../services/WeddingService";
+import WeddingService from '../services/WeddingService';
 
 class WeddingController {
     constructor(private weddingService = new WeddingService(Wedding, new HdService(Hd))) {}
@@ -16,22 +16,17 @@ class WeddingController {
     getWeddingBy = async (req: Request, res: Response) => {
         const wedding = await this.weddingService.getWeddingBy(req.body);
         if (wedding.erro) return res.status(wedding.code).json({ erro: wedding.erro });
-
         return res.status(wedding.code).json(wedding.wedding);
     }
 
     createWedding = async (req: Request, res: Response) => {
         const created = await this.weddingService.createWedding(req.body as newWedding);
-        console.log(req.body);
-        
         if (created.erro) return res.status(created.code).json({ erro: created.erro });
         return res.status(created.code).json({ message: 'Criado com sucesso!', wedding: created.wedding });
     }
 
     updateWedding = async (req: Request, res: Response) => {
         const { id } = req.params;
-        console.log(req.body, 'Body que chega no update');
-        
         const update = await this.weddingService.updateWedding(Number(id), req.body);
         if (update.erro) return res.status(update.code).json({ erro: update.erro })
         return res.status(update.code).json({ message: update.message });
@@ -43,12 +38,27 @@ class WeddingController {
         res.status(deleted.code).json({ message: deleted.message });
     }
     
-    addImage = async (req: Request, res: Response) => {
-        const { id } = req.params;
-        const namePhoto = `${id}.jpg`;
+    // addImage = async (req: Request, res: Response) => {
+    //     const { id } = req.params;
+    //     // const namePhoto = `${id}.jpg`;
+    //     const { image } = req.body;
+    //     console.log(image, 'REQ.BODY CHEGANDO');
+        
+    //     const addImage = await this.weddingService.addImage(Number(id), image);
 
-        const addImage = await this.weddingService.addImage(Number(id), namePhoto);
-    }
+    //     if (addImage.erro) return res.status(addImage.code).json({ erro: addImage.erro });
+    //     return res.status(addImage.code).json({ message: addImage.message });
+    // }
+
+    // addImage = async (req: Request, res: Response) => {
+    //     const { id } = req.params;
+    //     const photo = req.body;
+        
+    //     const addImage = await this.weddingService.addImage(photo, Number(id));
+
+    //     if (addImage.erro) return res.status(addImage.code).json({ erro: addImage.erro });
+    //     return res.status(addImage.code).json({ message: addImage.message });
+    // }
 
 }
 

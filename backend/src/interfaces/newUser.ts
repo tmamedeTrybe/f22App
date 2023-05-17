@@ -3,6 +3,6 @@ interface newUser {
     role: string;
     email: string;
     password: string;
-  }
+  };
   
   export default newUser;

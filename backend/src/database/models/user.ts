@@ -7,7 +7,7 @@ class User extends Model {
     role?: string;
     email?: string;
     password?: string;
-}
+};
 
 User.init({
     id: { type: INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },

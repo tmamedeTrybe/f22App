@@ -1,12 +1,12 @@
-import { Op } from "sequelize";
-import Hd from "../database/models/hd";
-import Wedding from "../database/models/wedding";
-import hd from "../interfaces/hd";
-import hdUpdate from "../interfaces/hdUpdate";
-import hdWithWedding from "../interfaces/hdWithWedding";
-import newHd from "../interfaces/newHd";
-import searchHd from "../interfaces/searchHd";
-import validateNewHd from "../validations/validateNewHd";
+import { Op } from 'sequelize';
+import Hd from '../database/models/hd';
+import Wedding from '../database/models/wedding';
+import hd from '../interfaces/hd';
+import hdUpdate from '../interfaces/hdUpdate';
+import hdWithWedding from '../interfaces/hdWithWedding';
+import newHd from '../interfaces/newHd';
+import searchHd from '../interfaces/searchHd';
+import validateNewHd from '../validations/validateNewHd';
 
 class HdService {
 	constructor(private HdModel: typeof Hd) {}
@@ -14,15 +14,15 @@ class HdService {
 	public getAllHds = async () => {
 		const hds = await this.HdModel.findAll({ include:
             [
-                { model: Wedding, as: 'rawWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupBrutoTamanho'] },
-				{ model: Wedding, as: 'rawWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupBrutoTamanho'] },
-				{ model: Wedding, as: 'editWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupTamanho'] },
-				{ model: Wedding, as: 'editWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupTamanho'] },
+              { model: Wedding, as: 'rawWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupBrutoTamanho'] },
+              { model: Wedding, as: 'rawWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupBrutoTamanho'] },
+              { model: Wedding, as: 'editWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupTamanho'] },
+              { model: Wedding, as: 'editWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupTamanho'] },
             ],
         });
 		hds.forEach(async (hd:Hd) => await this.updateUsedGb(hd.id));
 		return { code: 200, hds: hds.sort((a: hdWithWedding, b: hdWithWedding) => a.id - b.id) }
-  	}
+  	};
 
 	public getHdBy = async (search: searchHd ) => {
 		const { searchBy, valueSearch } = search;
@@ -37,60 +37,52 @@ class HdService {
 					{ model: Wedding, as: 'editWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupTamanho'] },
 				] 
 			});
-			if (!result.length) return { code: 400, erro: 'Hd não encontrado' }
+			if (!result.length) return { code: 400, erro: 'Hd não encontrado' };
 			result.forEach(async (hd:Hd) => await this.updateUsedGb(hd.id));
-        	return { code: 200, hds: result.sort((a:hd, b:Hd) => a.id - b.id) }
-			
-
-		} else {
-			const result: Hd[] | null = await this.HdModel.findAll({
-				where: { [searchBy]: { [Op.substring]: valueSearch} },
-				include: [ 
-					{ model: Wedding, as: 'rawWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupBrutoTamanho'] },
-					{ model: Wedding, as: 'rawWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupBrutoTamanho'] },
-					{ model: Wedding, as: 'editWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupTamanho'] },
-					{ model: Wedding, as: 'editWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupTamanho'] },
-				]
+        return { code: 200, hds: result.sort((a:hd, b:Hd) => a.id - b.id) };
+		  } else {
+        const result: Hd[] | null = await this.HdModel.findAll({
+          where: { [searchBy]: { [Op.substring]: valueSearch} },
+          include: [ 
+            { model: Wedding, as: 'rawWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupBrutoTamanho'] },
+            { model: Wedding, as: 'rawWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupBrutoTamanho'] },
+            { model: Wedding, as: 'editWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupTamanho'] },
+            { model: Wedding, as: 'editWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupTamanho'] },
+          ]
 			});
-			if (!result.length) return { code: 400, erro: 'Hd não encontrado' }
+			if (!result.length) return { code: 400, erro: 'Hd não encontrado' };
 			result.forEach(async (hd:Hd) => await this.updateUsedGb(hd.id));
-        	return { code: 200, hds: result.sort((a: Hd,b: Hd) => a.id - b.id) }
+        return { code: 200, hds: result.sort((a: Hd,b: Hd) => a.id - b.id) };
 		}
-	}
+	};
 
 	public validateHdNewWedding = async (id:number, newSize:number) => {
 		if (id) {
 			const hdexist: Hd | null = await this.HdModel.findOne({ where:{ id } });
 		
-			if (!hdexist) return { code: 400, erro: `Hd${id} não existe` }
+			if (!hdexist) return { code: 400, erro: `Hd${id} não existe` };
 
-			if (hdexist.dataValues.available < newSize) return { code: 400, erro: `Hd${id} não tem ${newSize}GB disponíveis` }
+			if (hdexist.dataValues.available < newSize) return { code: 400, erro: `Hd${id} não tem ${newSize}GB disponíveis` };
 			
-			return { code: 200 }
+			return { code: 200 };
 		}
 		return;
-	}
+	};
 	
 	public validateHd = async (id:number, oldSize:number, newSize:number) => {
 		if (id) {
 			const hdexist: Hd | null = await this.HdModel.findOne({ where:{ id } });
 		
-			if (!hdexist) return { code: 400, erro: `Hd${id} não existe` }
+			if (!hdexist) return { code: 400, erro: `Hd${id} não existe` };
 
 			const difference = (hdexist.dataValues.available + oldSize) - newSize;
-
-			console.log(hdexist.dataValues.available, oldSize, newSize, 'NUMEROS');
 			
-
-			console.log(difference, 'DIFERENCA');
+			if (difference < 0) return { code: 400, erro: `Hd${id} não tem ${newSize}GB disponíveis` };
 			
-
-			if (difference < 0) return { code: 400, erro: `Hd${id} não tem ${newSize}GB disponíveis` }
-			
-			return { code: 200 }
+			return { code: 200 };
 		}
 		return;
-	}
+	};
 	
 	public createHd = async (newHd: newHd) => {
 		const { error } = validateNewHd(newHd);
@@ -102,12 +94,12 @@ class HdService {
 			capacity: newHd.capacity,
 			used: 0,
 			available: newHd.capacity
-		}
+		};
 
 		const hdcreated = await this.HdModel.create(created);
-		this.HdModel.update({ name: hdcreated.id }, { where: { id: hdcreated.id } })
-		return { code: 201, hd: hdcreated }
-	}
+		this.HdModel.update({ name: hdcreated.id }, { where: { id: hdcreated.id } });
+		return { code: 201, hd: hdcreated };
+	};
 
 	public updateHd = async (id: number, newInfo: hdUpdate) => {
 		await this.HdModel.update(
@@ -120,8 +112,8 @@ class HdService {
 			{
 				where: { id }
 			}
-		)
-		return { code: 201, message: "HD alterado" }
+		);
+		return { code: 201, message: "HD alterado" };
 	}
 
 	public updateUsedGb = async (id:number) => {
@@ -129,6 +121,7 @@ class HdService {
 		let totalSizeSecondRaw;
 		let totalSizeFirstEdit;
 		let totalSizeSecondEdit;
+
 		const hd:hdWithWedding | null = await this.HdModel.findOne(
 			{ 
 				where: { id },
@@ -138,11 +131,11 @@ class HdService {
 					{ model: Wedding, as: 'editWeddingsOne', attributes: ['primeiroBackupTamanho'] },
 					{ model: Wedding, as: 'editWeddingsTwo', attributes: ['segundoBackupTamanho'] },
 				] 
-		},
-			);
+		  },
+    );
+
 		if (hd) {
 			if(hd.rawWeddingsOne && hd.rawWeddingsOne.length > 0) {
-				
 				const values = hd.rawWeddingsOne.reduce((acc, cur) => cur.primeiroBackupBrutoTamanho + acc, 0) ;
 				totalSizeFirstRaw = values;
 			} else totalSizeFirstRaw = 0;
@@ -175,12 +168,12 @@ class HdService {
 		)
 		return hdUpdated;
 		}
-	}
+	};
 
 	public deleteHd = async (id: number) => {
 		await this.HdModel.destroy({ where: { id } });
 		return { code: 201, message: 'HD deletado' }
-	}
-}
+	};
+};
 
 export default HdService;

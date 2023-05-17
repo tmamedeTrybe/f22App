@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';

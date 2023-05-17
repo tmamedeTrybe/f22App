@@ -3,34 +3,34 @@
 }
 
 .card {
-    border: solid 0.1px 0.1px 0px 0px grey;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.20);
-    border-radius: 20px;
-    width: 100%;
-    margin: 20px;
-    text-decoration: none;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: black;
-    padding: 10px 0px 0px 0px;
-  }
+  border: solid 0.1px 0.1px 0px 0px grey;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.20);
+  border-radius: 20px;
+  width: 100%;
+  margin: 20px;
+  text-decoration: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: black;
+  padding: 10px 0px 0px 0px;
+}
 
-  .card img {
-    border-radius: 0px 0px 20px 20px;
-    box-sizing: border-box;
-    transform: translateY(3px);
-  }
+.card img {
+  border-radius: 0px 0px 20px 20px;
+  box-sizing: border-box;
+  transform: translateY(3px);
+}
 
-  .card h2 {
-    margin-left: 15px;
-    font-size: 15px;
+.card h2 {
+  margin-left: 15px;
+  font-size: 15px;
 
-  }
+}
 
-  .card p {
-    margin-left: 15px;
-    font-size: 12px;
-  }
-  
-  .link {
-    text-decoration: none;
-  }
+.card p {
+  margin-left: 15px;
+  font-size: 12px;
+}
+
+.link {
+  text-decoration: none;
+}

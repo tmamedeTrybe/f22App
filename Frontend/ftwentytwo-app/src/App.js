@@ -10,7 +10,6 @@ import Login from './pages/Login';
 import NewHd from './pages/NewHd';
 import NewWedding from './pages/NewWedding';
 import Register from './pages/Register';
-// import TesteMulter from './pages/TesteMulter';
 import WeddingDetail from './pages/WeddingDetail';
 import WeddingEdit from './pages/WeddingEdit';
 import WeddingImage from './pages/WeddingImage';

@@ -5,14 +5,9 @@ const storage = multer.diskStorage({
     cb(null, "../Frontend/ftwentytwo-app/src/assets/images/casamentos");
   },
   filename: async function(req: any, file: any, cb: (arg0: null, arg1: any) => void) {
-    console.log(req.params.id, 'xxxxxxxxxxxxx');
-
     const namePhoto = `${req.params.id}.jpg`;
-
     cb(null, namePhoto);
-    
   },
-
 });
 
 const uploads = multer({ storage: storage });

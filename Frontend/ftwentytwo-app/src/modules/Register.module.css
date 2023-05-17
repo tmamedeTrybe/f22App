@@ -1,78 +1,78 @@
 .body {
-    width: 375px;
-    margin: auto;
-    background-image: linear-gradient(var(--dark), var(--grey), var(--green));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: rgb(247, 235, 236)
+  width: 375px;
+  margin: auto;
+  background-image: linear-gradient(var(--dark), var(--grey), var(--green));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(247, 235, 236)
 }
 
 .body a {
-    color: rgb(247, 235, 236);
-    text-decoration: none;
-    border-radius: 5px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 15px;
-    background-image: linear-gradient(var(--dark), var(--green));
-    margin: 30px;
-    font-family: Tajawal;
+  color: rgb(247, 235, 236);
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 15px;
+  background-image: linear-gradient(var(--dark), var(--green));
+  margin: 30px;
+  font-family: Tajawal;
 }
 
 .main {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 80%;
-    color: rgb(252, 255, 252);
-    font-family: Tajawal;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  color: rgb(252, 255, 252);
+  font-family: Tajawal;
 }
 
 .main h1 {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .form {
-    align-items: center;
-    background-image: linear-gradient(var(--blue), var(--green), var(--yellow));
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 40px;
-    width: 80%;
-    padding: 30px;
+  align-items: center;
+  background-image: linear-gradient(var(--blue), var(--green), var(--yellow));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  width: 80%;
+  padding: 30px;
 }
 
 .form input {
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 20px;
-    outline: none;
-    padding: 15px 30px;
-    background-color: var(--grey);
-    color: rgb(252, 255, 252);
-    font-family: Tajawal;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 20px;
+  outline: none;
+  padding: 15px 30px;
+  background-color: var(--grey);
+  color: rgb(252, 255, 252);
+  font-family: Tajawal;
 }
 
 .form button:disabled {
-    margin-top: 10px;
-    border: 0.1px solid var(--grey);
-    border-radius: 5px;
-    width: 10rem;
-    height: 2rem;
-    color: var(--grey);
-    background-color: transparent;
+  margin-top: 10px;
+  border: 0.1px solid var(--grey);
+  border-radius: 5px;
+  width: 10rem;
+  height: 2rem;
+  color: var(--grey);
+  background-color: transparent;
 }
 
 .form button {
-    margin-top: 10px;
-    border: 0.1px solid rgb(252, 255, 252);
-    border-radius: 5px;
-    width: 10rem;
-    height: 2rem;
-    color: rgb(252, 255, 252);
-    background-color: var(--grey);
+  margin-top: 10px;
+  border: 0.1px solid rgb(252, 255, 252);
+  border-radius: 5px;
+  width: 10rem;
+  height: 2rem;
+  color: rgb(252, 255, 252);
+  background-color: var(--grey);
 }

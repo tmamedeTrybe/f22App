@@ -157,15 +157,5 @@ class WeddingService {
             return { code: 201, message: "Casamento deletado" };
         });
     }
-    addImage(id, namePhoto) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const wedding = yield this.weddingModel.findOne({ where: { id } });
-            if (wedding)
-                yield this.weddingModel.update({
-                    imagem: namePhoto,
-                }, { where: { id } });
-            // return { code: 201, message: 'Imagem atualizada' }
-        });
-    }
 }
 exports.default = WeddingService;
