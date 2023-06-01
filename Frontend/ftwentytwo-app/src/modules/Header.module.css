@@ -2,20 +2,18 @@
 
 .header {
   align-items: center;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   font-family: Tajawal;
-  justify-content: center;
-  margin-top: 150px;   
+  justify-content: space-between;
 }
 
 .header a {
-    background-image: linear-gradient(var(--dark), var(--green));
-    color: rgb(247, 235, 236);
-    border-radius: 5px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 30px;
-    padding: 15px;
-    text-decoration: none;
+  background-image: linear-gradient(var(--dark), var(--green));
+  color: rgb(247, 235, 236);
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 30px;
+  padding: 15px;
+  text-decoration: none;
 }

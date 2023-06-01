@@ -25,13 +25,19 @@ function Weddings() {
         {
           weddingsFounded.length > 0
           && <section className={ styles.weddings }>
-            { weddingsFounded.map((job, i) => <WeddingCard wedding={ job } key={ i } />)}
+            { weddingsFounded.map((job, i) => (<WeddingCard
+              wedding={ job }
+              key={ i }
+            />))}
           </section>
         }
       </main>
-      <section className={ styles.link }>
-        <Link to="/casamentos/novo"> Cadastre novo casamento</Link>
-      </section>
+      <Link
+        to="/casamentos/novo"
+        className={ styles.newWeddingLink }
+      >
+        Cadastre novo casamento
+      </Link>
     </div>
   );
 }

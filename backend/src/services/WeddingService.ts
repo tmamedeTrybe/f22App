@@ -9,22 +9,6 @@ import validateUpdateWedding from '../validations/validateUpdateWedding';
 import HdService from './HdService';
 
 
-// async function uploadFile(fileName: string, filePath: string) {
-//     const s3 = new AWS.S3({ apiVersion: '2006-03-01', region: process.env.AWS_REGION });
-//     const fileContent = fs.readFileSync(filePath);
- 
-//     const params: any = {
-//         Bucket: process.env.AWS_S3_BUCKET,
-//         Key: fileName,
-//         Body: fileContent,
-//         // ContentType: mimeType//geralmente se acha sozinho
-//     };
- 
-//     const data = await s3.upload(params).promise();
-    
-//     return data.Location;
-// }
-
 class WeddingService {
     constructor(private weddingModel: typeof Wedding, private hdService: HdService) {}
 
@@ -56,8 +40,8 @@ class WeddingService {
     };
 
     async createWedding(newWeddingCreated:newWedding) {
-        const { error } = validateNewWedding(newWeddingCreated);
-        if (error) return { code: 400, erro: error.message };
+        // const { error } = validateNewWedding(newWeddingCreated);
+        // if (error) return { code: 400, erro: error.message };
 
         const weddingExist: Wedding | null = await this.weddingModel.findOne({
           where: {  

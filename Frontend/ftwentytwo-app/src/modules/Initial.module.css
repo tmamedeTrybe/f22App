@@ -1,11 +1,11 @@
-.body {
+.container {
   align-items: center;
   background-image: linear-gradient(var(--dark), var(--grey), var(--green));
   display: flex;
-  height: 667px;
+  height: 100vh;
   justify-content: center;
   margin: auto;
-  width: 375px;
+  width: 414px;
 }
 
 .logo {

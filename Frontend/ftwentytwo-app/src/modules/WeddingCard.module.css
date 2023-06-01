@@ -1,29 +1,28 @@
-.container {
-  width: 50%;
-}
-
 .card {
   border: solid 0.1px 0.1px 0px 0px grey;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.20);
   border-radius: 20px;
-  width: 100%;
-  margin: 20px;
   text-decoration: none;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: black;
   padding: 10px 0px 0px 0px;
+  color: rgb(247, 235, 236);
+  font-family: Tajawal;
+  width: 130px;
+  background-color: rgb(14, 28, 21);
+  height: 210px;
+  margin: 5px;
+  overflow: hidden;
 }
 
 .card img {
   border-radius: 0px 0px 20px 20px;
   box-sizing: border-box;
-  transform: translateY(3px);
+  transform: translateY(8px);
 }
 
 .card h2 {
   margin-left: 15px;
-  font-size: 15px;
-
+  font-size: 12px;
 }
 
 .card p {

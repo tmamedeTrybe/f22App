@@ -1,13 +1,11 @@
-.body {
-  width: 375px;
-  margin: auto;
-  background-image: linear-gradient(var(--dark), var(--grey), var(--green));
+.container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  margin: auto;
+  background-image: linear-gradient(var(--dark), var(--grey), var(--green));
   color: rgb(247, 235, 236);
-  font-family: Tajawal;   
+  width: 414px;
 }
 
 .card a {

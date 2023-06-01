@@ -1,7 +1,7 @@
 import { sign } from 'jsonwebtoken';
 import User from '../database/models/user';
 
-const JWT_PASSWORD = process.env.JWT_PASSWORD;
+const JWT_PASSWORD = process.env.JWT_PASSWORD || 'senhaForte    ';
 
 const tokenGenerate = (user: User) => {
     const payload = {

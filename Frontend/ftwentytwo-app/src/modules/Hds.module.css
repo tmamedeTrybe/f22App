@@ -1,15 +1,16 @@
 .container {
+  margin: auto;
+  /* background-image: linear-gradient(var(--dark), var(--grey), var(--green)); */
   display: flex;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  /* color: rgb(247, 235, 236); */
+  font-family: Tajawal;
   height: 100vh;
-  margin: auto;
-  border: 1px red;
-  }
+  width: 80%;
+}
 
-  .main {
+.main {
   align-items: center;
   display: flex;
   flex-direction: column;

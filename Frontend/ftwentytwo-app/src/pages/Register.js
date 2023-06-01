@@ -38,7 +38,7 @@ function Register() {
   };
 
   return (
-    <div className={ styles.body }>
+    <div className={ styles.container }>
       <Logo size="150px" />
       <section className={ styles.main }>
         <h1>Novo usuário</h1>

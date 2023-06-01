@@ -1,10 +1,12 @@
 .container {
+  margin: auto;
+  background-image: linear-gradient(var(--dark), var(--grey), var(--green));
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
-  height: 100vh;
-  margin: auto;
+  color: rgb(247, 235, 236);
+  font-family: Tajawal;
+  width: 414px;
 }
 
 .main {
@@ -13,6 +15,38 @@
   align-items: center;
   width: 80%;
   margin: auto;
+  justify-content: center;
+  /* border: solid 1px red; */
+}
+
+.headerDetails {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 20px;
+  text-align: center;
+  background-color: var(--dark);
+}
+
+.headerDetails p {
+  transform: translateY(-30px);
+  font-size: 18px;
+}
+
+.headerDetails button {
+  transform: translate(130px, -55px);
+  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+}
+
+.headerDetails img {
+  width: 100%;
+  /* border-radius: 5px; */
+  transform: translateY(-30px);
 }
 
 .infos {
@@ -23,3 +57,73 @@
   margin: auto;
 }
 
+.venues {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.venues table {
+  color: rgb(247, 235, 236);
+  text-decoration: none;
+  /* border-radius: 5px; */
+  /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); */
+  padding: 15px;
+  /* background-color: rgb(58, 58, 58); */
+  margin: 30px;
+  font-family: Tajawal;
+  margin: 10px;
+  width: 100%;
+}
+
+.venues td, th {
+  border: solid 0.1px rgba(247, 235, 236, 0.276);
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
+
+.WeddingsLink {
+  color: rgb(247, 235, 236);
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 15px;
+  background-image: linear-gradient(var(--dark), var(--green));
+  margin: 30px;
+  font-family: Tajawal;
+}
+
+.buttons {
+  margin: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons button {
+  color: rgb(247, 235, 236);
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 15px;
+  background-image: linear-gradient(var(--dark), var(--green));
+  margin-bottom: 30px;
+  font-family: Tajawal;
+  border: none;
+  margin: 5px;
+  width: 100px;
+}
+
+.bkpCardRed {
+  background-color: rgb(184, 85, 85);
+}
+
+.bkpCardGreen {
+  background-color: rgb(92, 148, 92);
+}

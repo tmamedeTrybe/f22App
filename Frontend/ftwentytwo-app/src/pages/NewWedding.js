@@ -10,14 +10,14 @@ function NewWedding() {
   const [noivo, setNoivo] = useState('');
   const [localCerimonia, setLocalCerimonia] = useState('');
   const [localRecepcao, setLocalRecepcao] = useState('');
-  const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState();
-  const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState();
-  const [segundoBackupBruto, setSegundoBackupBruto] = useState();
-  const [segundoBackupBrutoTamanho, setSegundoBackupBrutoTamanho] = useState();
-  const [primeiroBackup, setPrimeiroBackup] = useState();
-  const [primeiroBackupTamanho, setPrimeiroBackupTamanho] = useState();
-  const [segundoBackup, setSegundoBackup] = useState();
-  const [segundoBackupTamanho, setSegundoBackupTamanho] = useState();
+  const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState(null);
+  const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState(0);
+  const [segundoBackupBruto, setSegundoBackupBruto] = useState(null);
+  const [segundoBackupBrutoTamanho, setSegundoBackupBrutoTamanho] = useState(0);
+  const [primeiroBackup, setPrimeiroBackup] = useState(null);
+  const [primeiroBackupTamanho, setPrimeiroBackupTamanho] = useState(0);
+  const [segundoBackup, setSegundoBackup] = useState(null);
+  const [segundoBackupTamanho, setSegundoBackupTamanho] = useState(0);
   const [erro, setErro] = useState('');
   const [message, setMessage] = useState('');
 

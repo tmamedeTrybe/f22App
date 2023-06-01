@@ -10,9 +10,7 @@ import MyProvider from '../../context/myProvider';
 //   };
 // };
 
-export const renderWithContext = (
-  component,
-) => ({
+export const renderWithContext = (component) => ({
   ...render(
     <MyProvider>
       {component}

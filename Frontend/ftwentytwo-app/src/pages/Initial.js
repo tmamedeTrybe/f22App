@@ -5,7 +5,7 @@ import styles from '../modules/Initial.module.css';
 
 function Initial() {
   return (
-    <div className={ styles.body }>
+    <div className={ styles.container }>
       <section className={ styles.logo }>
         <Link to="/login">
           <Logo size="250px" />
