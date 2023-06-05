@@ -55,7 +55,6 @@
   background-color: var(--grey);
   color: rgb(252, 255, 252);
   font-family: Tajawal;
-  border: red solid 1px;
 }
 
 .form button:disabled {

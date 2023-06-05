@@ -38,7 +38,9 @@ function WeddingDetail() {
       <HeaderLogo title="Informações" />
       <Link className={ styles.WeddingsLink } to="/casamentos"> Casamentos </Link>
       {
-        message ? <p>{ message }</p>
+        message ? <section className={ styles.message }>
+          <p>{ message }</p>
+        </section>
           : <main className={ styles.main }>
             <section className={ styles.headerDetails }>
               <h1>{`${wedding.noiva} & ${wedding.noivo}`}</h1>
@@ -69,7 +71,7 @@ function WeddingDetail() {
                   </tbody>
                 </table>
               </section>
-              <section>
+              <section className={ styles.backupCards }>
                 <BackupCard
                   hdNumber={ wedding.primeiroBackupBruto }
                   backupSize={ wedding.primeiroBackupBrutoTamanho }

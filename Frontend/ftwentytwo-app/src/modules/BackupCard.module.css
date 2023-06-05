@@ -1,0 +1,22 @@
+.backupCard {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  background-color: rgb(84, 152, 84);
+  color: rgb(247, 235, 236);
+  border: none;
+  margin: 2px;
+  border-radius: 15px;
+  font-size: 17px;
+  font-family: Tajawal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.backupCard:disabled {
+  background-color: rgb(215, 97, 97);
+  border: none;
+  color: rgba(247, 235, 236, 0.502);
+}

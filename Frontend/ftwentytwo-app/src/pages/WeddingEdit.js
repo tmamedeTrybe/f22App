@@ -97,13 +97,14 @@ function WeddingEdit() {
   return (
     <div className={ styles.container }>
       <HeaderLogo title="Editar casamento" />
-      <section className={ styles.main }>
+      <Link className={ styles.weddings } to="/casamentos"> Casamentos</Link>
+      <main className={ styles.main }>
         <form onSubmit={ submitForm } className={ styles.form }>
           <h3>
             { `${noiva} & ${noivo}` }
           </h3>
           <label htmlFor="data">
-            Date
+            Data
             <input
               onFocus={ () => setData('') }
               placeholder="Data"
@@ -114,7 +115,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="cidade">
-            City
+            Cidade
             <input
               onFocus={ () => setCidade('') }
               placeholder="Cidade"
@@ -125,7 +126,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="noiva">
-            Bride
+            Noiva
             <input
               onFocus={ () => setNoiva('') }
               placeholder="Noiva"
@@ -136,7 +137,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="noivo">
-            Groom
+            Noivo
             <input
               onFocus={ () => setNoivo('') }
               placeholder="Noivo"
@@ -147,7 +148,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="imagem">
-            Image
+            Imagem
             <input
               onFocus={ () => setImagem('') }
               placeholder="Imagem"
@@ -158,7 +159,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="localCerimonia">
-            Cerimony
+            Cerimônia
             <input
               onFocus={ () => setLocalCerimonia('') }
               placeholder="Local da Cerimônia"
@@ -169,7 +170,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="localRecepcao">
-            Party
+            Recepção
             <input
               onFocus={ () => setLocalRecepcao('') }
               placeholder="Local da Recepção"
@@ -180,7 +181,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="primeiroBackupBruto">
-            First Raw Backup
+            Primeiro Backup Bruto
             <input
               onFocus={ () => setPrimeiroBackupBruto('') }
               placeholder="Primeiro Backup Bruto"
@@ -192,13 +193,14 @@ function WeddingEdit() {
             <button
               type="button"
               onClick={ deletePrimeiroBackupBruto }
+              disabled={ primeiroBackupBruto === null }
             >
               Deletar backup bruto
             </button>
           </label>
 
           <label htmlFor="primeiroBackupBrutoTamanho">
-            First Raw Backup Size
+            Tamanho
             <input
               onFocus={ () => setPrimeiroBackupBrutoTamanho('') }
               placeholder="Tamanho"
@@ -209,7 +211,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="segundoBackupBruto">
-            Second Raw Backup
+            Segundo Backup Bruto
             <input
               onFocus={ () => setSegundoBackupBruto('') }
               placeholder="Segundo Backup Bruto"
@@ -226,7 +228,7 @@ function WeddingEdit() {
             </button>
           </label>
           <label htmlFor="segundoBackupBrutoTamanho">
-            Second Raw Backup Size
+            Tamanho
             <input
               onFocus={ () => setSegundoBackupBrutoTamanho('') }
               placeholder="Tamanho"
@@ -237,7 +239,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="primeiroBackup">
-            First Edit Backup
+            Primeiro Backup Editado
             <input
               onFocus={ () => setPrimeiroBackup('') }
               placeholder="Primeiro Backup"
@@ -248,7 +250,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="primeiroBackupTamanho">
-            First Edit Backup Size
+            Tamanho
             <input
               onFocus={ () => setPrimeiroBackupTamanho('') }
               placeholder="Tamanho"
@@ -259,7 +261,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="segundoBackup">
-            Second Edit Backup
+            Segundo Backup Editado
             <input
               onFocus={ () => setSegundoBackup('') }
               placeholder="Segundo Backup"
@@ -270,7 +272,7 @@ function WeddingEdit() {
             />
           </label>
           <label htmlFor="segundoBackupTamanho">
-            Second Edit Backup Size
+            Tamanho
             <input
               onFocus={ () => setSegundoBackupTamanho('') }
               placeholder="Tamanho"
@@ -283,17 +285,18 @@ function WeddingEdit() {
           <button
             type="submit"
           >
-            Update
+            Atualizar
           </button>
         </form>
+      </main>
+      <section className={ styles.message }>
+        {
+          erro && <p>{ erro }</p>
+        }
+        {
+          message && <p>{ message }</p>
+        }
       </section>
-      {
-        erro && <p>{ erro }</p>
-      }
-      {
-        message && <p>{ message }</p>
-      }
-      <Link to="/casamentos"> Weddings</Link>
     </div>
   );
 }

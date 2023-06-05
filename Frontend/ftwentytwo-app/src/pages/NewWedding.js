@@ -63,6 +63,7 @@ function NewWedding() {
   return (
     <div className={ styles.container }>
       <HeaderLogo title="Novo casamento" />
+      <Link className={ styles.weddingsLink } to="/casamentos"> Casamentos </Link>
       <section className={ styles.main }>
         <form
           onSubmit={ submitForm }
@@ -202,13 +203,14 @@ function NewWedding() {
           </button>
         </form>
       </section>
-      {
-        erro && <p>{ erro }</p>
-      }
-      {
-        message && <p>{ message }</p>
-      }
-      <Link to="/casamentos"> Weddings</Link>
+      <section className={ styles.message }>
+        {
+          erro && <p>{ erro }</p>
+        }
+        {
+          message && <p>{ message }</p>
+        }
+      </section>
     </div>
   );
 }

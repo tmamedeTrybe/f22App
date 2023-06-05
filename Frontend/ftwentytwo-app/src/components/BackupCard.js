@@ -2,12 +2,16 @@
 /* eslint-disable indent */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styles from '../modules/BackupCard.module.css';
 
 function BackupCard({ hdNumber = null, backupSize, backup }) {
   const [showInfo, setShowInfo] = useState(false);
 
   const showBackupInfos = () => {
-    setShowInfo(true);
+    if (showInfo === true) {
+      setShowInfo(false);
+    } else setShowInfo(true);
+    console.log(showInfo);
   };
 
   return (
@@ -15,9 +19,10 @@ function BackupCard({ hdNumber = null, backupSize, backup }) {
       <button
         disabled={ hdNumber == null }
         onClick={ showBackupInfos }
+        className={ styles.backupCard }
       >
         {
-          showInfo
+          showInfo === true
             ? <section>
               <p>{`Hd${hdNumber}`}</p>
               <p>{`${backupSize}GB`}</p>

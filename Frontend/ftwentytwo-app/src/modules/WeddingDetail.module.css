@@ -120,10 +120,15 @@
   width: 100px;
 }
 
-.bkpCardRed {
-  background-color: rgb(184, 85, 85);
+.backupCards {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  justify-content: center;
 }
 
-.bkpCardGreen {
-  background-color: rgb(92, 148, 92);
+.message {
+  font-size: 25px;
+  margin-bottom: 20px;
 }
