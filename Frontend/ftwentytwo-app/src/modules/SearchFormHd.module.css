@@ -4,42 +4,69 @@
   align-items: center;
   width: 80%;
   margin: auto;
+  font-family: Tajawal;
   }
 
 .form {
   align-items: center;
-  border: 1px solid black;
+  justify-content: center;
+  background-image: linear-gradient(var(--blue), var(--green), var(--yellow));
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 10px;
-  width: 100%;
-  padding: 5rem;
+  margin-bottom: 40px;
+  width: 80%;
+  padding: 20px;
 }
 
 .form input {
-  margin-top: 5px;
-  padding: 3px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 5px;
+  outline: none;
+  padding: 15px 30px;
+  background-color: var(--grey);
+  color: rgb(252, 255, 252);
+  font-family: Tajawal;
+  text-align: center;
+}
+
+.select {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 5px;
+  outline: none;
+  padding: 15px 30px;
+  background-color: var(--grey);
+  color: rgb(252, 255, 252);
+  font-family: Tajawal;
+  width: 169px;
 }
 
 .form button {
   margin-top: 10px;
-  width: 9.5rem;
+  border: 0.1px solid rgb(252, 255, 252);
+  border-radius: 5px;
+  width: 10rem;
+  height: 2rem;
+  color: rgb(252, 255, 252);
+  background-color: var(--grey);
+  font-family: Tajawal;
 }
 
-.weddings {
-  align-items: center;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 10px;
-  width: 80%;
-  padding: 5rem;
-}
 
 .label {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.message {
+  font-size: 25px;
+  margin-top: -50px;
+  margin-bottom: 20px;
+  width: 80%;
+  text-align: center;
 }

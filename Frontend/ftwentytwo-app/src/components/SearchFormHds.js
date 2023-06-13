@@ -48,6 +48,7 @@ function SearchFormHd({ searchOptions, url }) {
         <label className={ styles.label } aria-labelledby="searchBy">
           Escolha a opção de busca
           <select
+            className={ styles.select }
             name="searchBy"
             type="text"
             value={ searchBy }
@@ -78,9 +79,11 @@ function SearchFormHd({ searchOptions, url }) {
           Buscar
         </button>
       </form>
-      {
-        erro && <h3>{ erro }</h3>
-      }
+      <section className={ styles.message }>
+        {
+          erro && <h3>{ erro }</h3>
+        }
+      </section>
     </div>
   );
 }

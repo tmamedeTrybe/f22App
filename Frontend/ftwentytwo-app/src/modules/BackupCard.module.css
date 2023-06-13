@@ -16,7 +16,7 @@
 }
 
 .backupCard:disabled {
-  background-color: rgb(215, 97, 97);
+  background-color: rgba(215, 97, 97, 0.68);
   border: none;
-  color: rgba(247, 235, 236, 0.502);
+  color: rgba(247, 235, 236, 0.338);
 }

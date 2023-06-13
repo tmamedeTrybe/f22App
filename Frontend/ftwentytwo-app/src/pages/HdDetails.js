@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-max-depth */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
@@ -38,12 +39,23 @@ function HdDetails() {
           : <main className={ styles.main }>
             <section className={ styles.infos }>
               <h2>{`HD ${hd.name} - ${hd.label}`}</h2>
-              <p>{`Capacidade - ${hd.capacity}GB`}</p>
-              <p>{`Usados - ${hd.used}GB`}</p>
-              <p>{`Espaço disponível - ${hd.available}GB`}</p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Capacidade</th>
+                    <th>Usados</th>
+                    <th>Disponível</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <td>{`${hd.capacity}GB`}</td>
+                  <td>{`${hd.used}GB`}</td>
+                  <td>{`${hd.available}GB`}</td>
+                </tbody>
+              </table>
             </section>
             <WeddingsByHd hd={ hd } />
-            <section>
+            <section className={ styles.changesButtons }>
               <button
                 onClick={ () => navigate(`/hds/details/${id}/update`) }
               >
@@ -57,7 +69,7 @@ function HdDetails() {
             </section>
           </main>
       }
-      <Link to="/hds">Back to HDs</Link>
+      <Link className={ styles.hdsLink } to="/hds">Back to HDs</Link>
     </div>
   );
 }

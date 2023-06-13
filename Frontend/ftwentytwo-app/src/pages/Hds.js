@@ -26,7 +26,6 @@ function Hds() {
   return (
     <div className={ styles.container }>
       <HeaderLogo title="HDs" />
-      <hr />
       <main className={ styles.main }>
         <button
           type="submit"
@@ -38,12 +37,12 @@ function Hds() {
         <SearchFormHd searchOptions={ searchOptions } url="http://localhost:3001/hds" />
         {
           hdsFounded.length > 0
-          && <section className={ styles.hds }>
+          && <section className={ styles.hdsTable }>
             <HdsTable HdsList={ hdsFounded } />
           </section>
         }
       </main>
-      <Link to="/hds/new"> Cadastre novo HD</Link>
+      <Link className={ styles.newHdLink } to="/hds/new"> Cadastre novo HD</Link>
     </div>
   );
 }

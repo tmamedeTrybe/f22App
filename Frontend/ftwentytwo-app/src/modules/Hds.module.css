@@ -1,13 +1,12 @@
 .container {
   margin: auto;
-  /* background-image: linear-gradient(var(--dark), var(--grey), var(--green)); */
+  background-image: linear-gradient(var(--dark), var(--grey), var(--green));
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* color: rgb(247, 235, 236); */
+  color: rgb(247, 235, 236);
   font-family: Tajawal;
-  height: 100vh;
-  width: 80%;
+  width: 414px;
 }
 
 .main {
@@ -31,4 +30,58 @@
 
 .buttonAll {
   margin: 10px;
+  border: 0.1px solid rgb(252, 255, 252);
+  border-radius: 5px;
+  width: 10rem;
+  height: 2rem;
+  color: rgb(252, 255, 252);
+  background-color: var(--grey);
+  font-family: Tajawal;
+}
+
+.newHdLink {
+  color: rgb(247, 235, 236);
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 15px;
+  background-image: linear-gradient(var(--dark), var(--green));
+  margin-bottom: 30px;
+  font-family: Tajawal;
+}
+
+.hdsTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 20px;
+  text-align: center;
+  font-family: Tajawal;
+  /* border: solid yellow 1px; */
+  justify-content: center;
+}
+
+.hdsTable table {
+  color: rgb(247, 235, 236);
+  text-decoration: none;
+  padding: 15px;
+  margin: 30px;
+  font-family: Tajawal;
+  margin: 10px;
+  width: 100%;
+  /* border: solid red 1px; */
+}
+
+.hdsTable td, th {
+  border: solid 0.1px rgba(247, 235, 236, 0.276);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  background-image: linear-gradient(var(--dark), var(--green));
+}
+
+
+.hdsTable a {
+  color: rgb(247, 235, 236);
 }

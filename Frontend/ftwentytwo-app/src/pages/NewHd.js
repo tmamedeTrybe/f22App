@@ -62,13 +62,16 @@ function NewHd() {
           </button>
         </form>
       </main>
-      {
-        erro && <p>{ erro }</p>
-      }
-      {
-        message && <p>{ message }</p>
-      }
-      <Link to="/hds"> Retornar para HDs</Link>
+      <section className={ styles.message }>
+        {
+          erro && <p>{ erro }</p>
+        }
+        {
+          message && <p>{ message }</p>
+        }
+      </section>
+
+      <Link className={ styles.HdsLink } to="/hds"> Retornar para HDs</Link>
     </div>
   );
 }

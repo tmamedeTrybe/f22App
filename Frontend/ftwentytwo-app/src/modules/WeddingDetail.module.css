@@ -69,10 +69,7 @@
 .venues table {
   color: rgb(247, 235, 236);
   text-decoration: none;
-  /* border-radius: 5px; */
-  /* box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); */
   padding: 15px;
-  /* background-color: rgb(58, 58, 58); */
   margin: 30px;
   font-family: Tajawal;
   margin: 10px;
@@ -84,8 +81,8 @@
   border-radius: 5px;
   padding: 5px;
   text-align: center;
+  background-image: linear-gradient(var(--dark), var(--green));
 }
-
 
 .WeddingsLink {
   color: rgb(247, 235, 236);

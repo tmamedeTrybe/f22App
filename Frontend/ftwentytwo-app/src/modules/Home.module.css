@@ -6,6 +6,7 @@
   background-image: linear-gradient(var(--dark), var(--grey), var(--green));
   color: rgb(247, 235, 236);
   width: 414px;
+  font-family: Tajawal;
 }
 
 .card a {

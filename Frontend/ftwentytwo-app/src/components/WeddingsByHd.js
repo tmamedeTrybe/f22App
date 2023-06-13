@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styles from '../modules/WeddingsByHd.module.css';
 
 function WeddingsByHd({ hd }) {
   const [rawWeddingsOne, setRawWeddingsOne] = useState('');
@@ -14,14 +15,17 @@ function WeddingsByHd({ hd }) {
       `${wedding.noiva} & ${wedding.noivo}`
     ));
     setRawWeddingsOne(weddingsRawOne);
+
     const weddingsRawTwo = hd.rawWeddingsTwo.map((wedding) => (
       `${wedding.noiva} & ${wedding.noivo}`
     ));
     setRawWeddingsTwo(weddingsRawTwo);
+
     const weddingsEditOne = hd.editWeddingsOne.map((wedding) => (
       `${wedding.noiva} & ${wedding.noivo}`
     ));
     setEditWeddingsOne(weddingsEditOne);
+
     const weddingsEditTwo = hd.editWeddingsTwo.map((wedding) => (
       `${wedding.noiva} & ${wedding.noivo}`
     ));
@@ -36,7 +40,7 @@ function WeddingsByHd({ hd }) {
   };
 
   return (
-    <div>
+    <div className={ styles.container }>
       <button
         type="sumbit"
         onClick={ actions }
@@ -46,51 +50,49 @@ function WeddingsByHd({ hd }) {
       </button>
       {
         (rawWeddingsOne, rawWeddingsTwo, editWeddingsOne, editWeddingsTwo)
-        && <section>
-          <table>
-            <thead>
-              <tr>
-                <th>Raw Wedding One</th>
-                <th>Raw Wedding Two</th>
-                <th>Edit Wedding One</th>
-                <th>Edit Wedding Two</th>
-              </tr>
-            </thead>
-            <tbody>
-              <td>
-                {rawWeddingsOne.map((wedding) => (
-                  <tr key={ wedding.id }>
-                    {wedding}
-                  </tr>
-                ))}
-              </td>
+        && <table>
+          <thead>
+            <tr>
+              <th>Bruto Um</th>
+              <th>Bruto Dois</th>
+              <th>Editado Um</th>
+              <th>Editado Dois</th>
+            </tr>
+          </thead>
+          <tbody>
+            <td>
+              {rawWeddingsOne.map((wedding) => (
+                <tr key={ wedding.id }>
+                  {wedding}
+                </tr>
+              ))}
+            </td>
 
-              <td>
-                {rawWeddingsTwo.map((wedding) => (
-                  <tr key={ wedding.id }>
-                    {wedding}
-                  </tr>
-                ))}
-              </td>
+            <td>
+              {rawWeddingsTwo.map((wedding) => (
+                <tr key={ wedding.id }>
+                  {wedding}
+                </tr>
+              ))}
+            </td>
 
-              <td>
-                {editWeddingsOne.map((wedding) => (
-                  <tr key={ wedding.id }>
-                    {wedding}
-                  </tr>
-                ))}
-              </td>
+            <td>
+              {editWeddingsOne.map((wedding) => (
+                <tr key={ wedding.id }>
+                  {wedding}
+                </tr>
+              ))}
+            </td>
 
-              <td>
-                {editWeddingsTwo.map((wedding) => (
-                  <tr key={ wedding.id }>
-                    {wedding}
-                  </tr>
-                ))}
-              </td>
-            </tbody>
-          </table>
-        </section>
+            <td>
+              {editWeddingsTwo.map((wedding) => (
+                <tr key={ wedding.id }>
+                  {wedding}
+                </tr>
+              ))}
+            </td>
+          </tbody>
+        </table>
       }
     </div>
   );
