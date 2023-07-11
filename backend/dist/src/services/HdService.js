@@ -79,8 +79,6 @@ class HdService {
                 if (!hdexist)
                     return { code: 400, erro: `Hd${id} não existe` };
                 const difference = (hdexist.dataValues.available + oldSize) - newSize;
-                console.log(hdexist.dataValues.available, oldSize, newSize, 'NUMEROS');
-                console.log(difference, 'DIFERENCA');
                 if (difference < 0)
                     return { code: 400, erro: `Hd${id} não tem ${newSize}GB disponíveis` };
                 return { code: 200 };
@@ -168,4 +166,5 @@ class HdService {
         });
     }
 }
+;
 exports.default = HdService;

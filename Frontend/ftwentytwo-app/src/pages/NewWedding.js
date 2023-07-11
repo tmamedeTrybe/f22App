@@ -30,7 +30,7 @@ function NewWedding() {
       cidade,
       noiva,
       noivo,
-      imagem: 'wedding-icon.jpg',
+      imagem: null,
       localCerimonia,
       localRecepcao,
       primeiroBackupBruto,

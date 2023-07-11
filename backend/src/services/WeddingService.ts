@@ -143,13 +143,13 @@ class WeddingService {
           imagem: newInfo.imagem,
           localCerimonia: newInfo.localCerimonia,
           localRecepcao: newInfo.localRecepcao,
-          primeiroBackupBruto: newInfo.primeiroBackupBruto,
+          primeiroBackupBruto: newInfo.primeiroBackupBruto === 0 ? null : newInfo.primeiroBackupBruto,
           primeiroBackupBrutoTamanho: newInfo.primeiroBackupBrutoTamanho,
-          segundoBackupBruto: newInfo.segundoBackupBruto,
+          segundoBackupBruto: newInfo.segundoBackupBruto === 0 ? null : newInfo.segundoBackupBruto ,
           segundoBackupBrutoTamanho: newInfo.segundoBackupBrutoTamanho,
-          primeiroBackup: newInfo.primeiroBackup,
+          primeiroBackup: newInfo.primeiroBackup === 0 ? null : newInfo.primeiroBackup,
           primeiroBackupTamanho: newInfo.primeiroBackupTamanho,
-          segundoBackup: newInfo.segundoBackup,
+          segundoBackup: newInfo.segundoBackup === 0 ? null : newInfo.segundoBackup,
           segundoBackupTamanho: newInfo.segundoBackupTamanho
         },
         { where: { id } },
@@ -182,54 +182,20 @@ class WeddingService {
       return { code: 201, message: "Casamento deletado" };
     };
 
-    // async addImage(id: number, namePhoto: string) {
-    //     const wedding = await this.weddingModel.findOne({ where: { id } });
+    async addImage(id: number, namePhoto: string) {
+        const wedding = await this.weddingModel.findOne({ where: { id } });
         
-    //     if (!wedding) return { code: 400, erro: 'Erro ao incluir imagem!' }
+        if (!wedding) return { code: 400, erro: 'Erro ao incluir imagem!' }
 
-    //     await this.weddingModel.update(
-    //         {
-    //           imagem: namePhoto,
-    //         },
-    //         { where: { id } },
-    //       );
+        await this.weddingModel.update(
+            {
+              imagem: namePhoto,
+            },
+            { where: { id } },
+          );
         
-    //     return { code: 201, message: 'Imagem atualizada' }
-    // }
-
-    // async addImage (photo: any, id: number) {
-    //     let base64 = '';
-
-    // if (photo) {
-    //     Jimp.read(photo)
-    //         .then((img:any) => {
-    //             img
-    //                 .resize(256, 256) // resize
-    //                 .quality(60) // set JPEG quality
-    //                 .write(`${id}.jpg`)
-    //                 .getBase64(Jimp.AUTO, (_err: any, data: string) => { //converte para base64
-    //                     base64 = data;
-    //                 });
-    //         })
-    //         .catch((err: any) => {
-    //             console.error(err);
-    //         });
-        
-    //     const wedding = await this.weddingModel.findOne({ where: { id } });
-        
-    //     if (!wedding) return { code: 400, erro: 'Erro ao incluir imagem!' }
-
-    //     await this.weddingModel.update(
-    //         {
-    //           imagem: base64,
-    //         },
-    //         { where: { id } },
-    //       );
-        
-    //     return { code: 201, message: 'Imagem atualizada' }
-    // }
-    // return { code: 400, erro: 'Erro ao incluir imagem!' }
-    // }
+        return { code: 201, message: 'Imagem atualizada' }
+    }
 
 };
 

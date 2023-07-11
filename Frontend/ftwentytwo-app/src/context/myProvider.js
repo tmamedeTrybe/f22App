@@ -17,6 +17,11 @@ function MyProvider({ children }) {
     return jobFilter;
   }, [jobsFounded]);
 
+  const filterHd = useCallback((id) => {
+    const hdFilter = hdsFounded.find((hd) => hd.id === Number(id));
+    return hdFilter;
+  }, [hdsFounded]);
+
   const changeHds = useCallback((hds) => {
     setHdsFounded(hds);
   }, [setHdsFounded]);
@@ -26,8 +31,8 @@ function MyProvider({ children }) {
   }), [jobsFounded, user, changeJobs, filterJob]);
 
   const valueHd = useMemo(() => ({
-    hdsFounded, changeHds,
-  }), [hdsFounded, changeHds]);
+    hdsFounded, changeHds, filterHd,
+  }), [hdsFounded, changeHds, filterHd]);
 
   return (
     <div>

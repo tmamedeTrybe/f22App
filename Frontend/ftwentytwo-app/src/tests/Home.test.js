@@ -5,6 +5,11 @@ import Weddings from '../pages/Weddings';
 import { renderWithContext } from './helpers/renderWithContext';
 
 describe('Testando a rota Home', () => {
+  test('Se o título "Home" é renderizado na tela', () => {
+    renderWithContext(<Home />);
+    const titleHome = screen.getByRole('heading', { level: 1, name: 'Home' });
+    expect(titleHome).toBeInTheDocument();
+  });
   test('Se existe um card para "Casamentos', () => {
     renderWithContext(<Home />);
     const weddingCard = screen.getByRole('heading', { level: 1, name: 'Casamentos' });
@@ -27,5 +32,15 @@ describe('Testando a rota Home', () => {
     renderWithContext(<Home />);
     const gastroCard = screen.getByRole('heading', { level: 1, name: 'Gastronomia' });
     expect(gastroCard).toBeInTheDocument();
+  });
+  test('Se existe um card para "Corporativo"', () => {
+    renderWithContext(<Home />);
+    const corporativoCard = screen.getByRole('heading', { level: 1, name: 'Corporativo' });
+    expect(corporativoCard).toBeInTheDocument();
+  });
+  test('Se existe um card para "HDs"', () => {
+    renderWithContext(<Home />);
+    const hdsCard = screen.getByRole('heading', { level: 1, name: 'Hds' });
+    expect(hdsCard).toBeInTheDocument();
   });
 });

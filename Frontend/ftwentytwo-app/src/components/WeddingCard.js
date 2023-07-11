@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from '../modules/WeddingCard.module.css';
@@ -11,7 +13,9 @@ function WeddingCard({ wedding }) {
           <h2>{`${wedding.noiva} & ${wedding.noivo}`}</h2>
           <p>{wedding.data}</p>
           <img
-            src={ icon }
+            src={ wedding.imagem === null
+              ? icon
+              : require(`../assets/images/casamentos/${wedding.id}.jpg`) }
             alt="Imagem do casamento"
             width="100%"
           />
@@ -28,7 +32,7 @@ WeddingCard.propTypes = {
     data: PropTypes.string.isRequired,
     noiva: PropTypes.string.isRequired,
     noivo: PropTypes.string.isRequired,
-    imagem: PropTypes.string.isRequired,
+    imagem: PropTypes.string,
   }).isRequired,
 };
 

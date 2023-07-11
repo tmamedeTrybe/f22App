@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(req.params.id, 'xxxxxxxxxxxxx');
             const namePhoto = `${req.params.id}.jpg`;
             cb(null, namePhoto);
         });

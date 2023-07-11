@@ -31,14 +31,12 @@ class WeddingController {
         });
         this.createWedding = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const created = yield this.weddingService.createWedding(req.body);
-            console.log(req.body);
             if (created.erro)
                 return res.status(created.code).json({ erro: created.erro });
             return res.status(created.code).json({ message: 'Criado com sucesso!', wedding: created.wedding });
         });
         this.updateWedding = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            console.log(req.body, 'Body que chega no update');
             const update = yield this.weddingService.updateWedding(Number(id), req.body);
             if (update.erro)
                 return res.status(update.code).json({ erro: update.erro });
@@ -48,6 +46,14 @@ class WeddingController {
             const { id } = req.params;
             const deleted = yield this.weddingService.deleteWedding(Number(id));
             res.status(deleted.code).json({ message: deleted.message });
+        });
+        this.addImage = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const namePhoto = `../assets/images/casamentos/${id}.jpg`;
+            const addImage = yield this.weddingService.addImage(Number(id), namePhoto);
+            if (addImage.erro)
+                return res.status(addImage.code).json({ erro: addImage.erro });
+            return res.status(addImage.code).json({ message: addImage.message });
         });
     }
 }

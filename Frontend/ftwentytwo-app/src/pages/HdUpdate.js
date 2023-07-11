@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import HdContext from '../context/HdContext';
 import HeaderLogo from '../components/HeaderLogo';
+import styles from '../modules/HdUpdate.module.css';
 
 function HdUpdate() {
   const { hdsFounded } = useContext(HdContext);
@@ -16,6 +17,7 @@ function HdUpdate() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
+    console.log(hdsFounded);
     const hd = hdsFounded.find((hdItem) => hdItem.id === Number(id));
     setName(hd.name);
     setLabel(hd.label);
@@ -51,10 +53,11 @@ function HdUpdate() {
   };
 
   return (
-    <div>
+    <div className={ styles.container }>
       <HeaderLogo title="HD update" />
-      <main>
-        <form onSubmit={ submitForm }>
+      <Link className={ styles.hds } to="/hds"> Retornar para HDs</Link>
+      <main className={ styles.main }>
+        <form className={ styles.form } onSubmit={ submitForm }>
           <h3>
             { `HD${name}` }
           </h3>
@@ -110,13 +113,14 @@ function HdUpdate() {
           </button>
         </form>
       </main>
-      {
-        erro && <p>{ erro }</p>
-      }
-      {
-        message && <p>{ message }</p>
-      }
-      <Link to="/hds"> Retornar para HDs</Link>
+      <section className={ styles.message }>
+        {
+          erro && <p>{ erro }</p>
+        }
+        {
+          message && <p>{ message }</p>
+        }
+      </section>
     </div>
   );
 }

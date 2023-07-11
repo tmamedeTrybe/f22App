@@ -16,6 +16,7 @@ function SearchFormHd({ searchOptions, url }) {
   }, [changeHds, hdsFounded]);
 
   const disabledButton = !valueSearch;
+  console.log(disabledButton);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

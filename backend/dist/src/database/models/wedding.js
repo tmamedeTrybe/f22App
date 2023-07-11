@@ -8,6 +8,7 @@ const _1 = __importDefault(require("."));
 const hd_1 = __importDefault(require("./hd"));
 class Wedding extends sequelize_1.Model {
 }
+;
 Wedding.init({
     id: { type: sequelize_1.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
     data: { type: sequelize_1.DATEONLY, allowNull: false },

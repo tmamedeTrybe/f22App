@@ -54,22 +54,20 @@ describe('Testando a página de Casamentos', () => {
     await waitFor(() => expect(link).toBeInTheDocument());
   });
 
-  // test.only('se ao clicar no casamento encontrado é redirecionado para a página de detalhes do mesmo', async () => {
-  //   renderWithContext(<Weddings />);
-  //   const searchInput = screen.getByPlaceholderText('Buscar por');
-  //   const optionsInput = screen.getByLabelText(/Escolha/);
-  //   const button = screen.getByRole('button', { name: 'Buscar' });
-  //   /* fire events that update state */
-  //   fireEvent.change(optionsInput, { target: { value: 'Cidade' } });
-  //   userEvent.type(searchInput, 'Belo Horizonte');
-  //   userEvent.click(button);
-  //   const link = await screen.findByRole('heading', { name: 'Ana & Mateus', level: 2 });
-  //   userEvent.click(link);
-  //   renderWithContext(<WeddingDetail />);
-  //   await waitFor(() => {
-  //     expect(screen.findByRole('heading', { name: 'Informações', level: 1 })).toBeInTheDocument();
-  //   });
-  // });
+  test.only('se ao clicar no casamento encontrado é redirecionado para a página de detalhes do mesmo', async () => {
+    renderWithContext(<Weddings />);
+    const searchInput = screen.getByPlaceholderText('Buscar por');
+    const optionsInput = screen.getByLabelText(/Escolha/);
+    const button = screen.getByRole('button', { name: 'Buscar' });
+    /* fire events that update state */
+    fireEvent.change(optionsInput, { target: { value: 'Cidade' } });
+    userEvent.type(searchInput, 'Belo Horizonte');
+    userEvent.click(button);
+    const link = await screen.findByRole('heading', { name: 'Ana & Mateus', level: 2 });
+    await userEvent.click(link);
+    const { history } = renderWithContext(<WeddingDetail />);
+    console.log(history, 'hhhhhhh');
+  });
 });
 
 // describe('Testando a página de Casamentos', () => {

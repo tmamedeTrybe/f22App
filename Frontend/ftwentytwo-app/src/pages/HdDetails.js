@@ -11,13 +11,12 @@ import styles from '../modules/HdDetails.module.css';
 function HdDetails() {
   const [hd, setHd] = useState('');
   const [deleteMessage, setDeleteMessage] = useState('');
-  const { hdsFounded } = useContext(HdContext);
+  const { filterHd } = useContext(HdContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const hdFilter = hdsFounded.filter((hdItem) => hdItem.id === Number(id));
-    setHd(hdFilter[0]);
+    setHd(filterHd(id));
   }, []);
 
   const deleteHd = async () => {
@@ -34,6 +33,7 @@ function HdDetails() {
   return (
     <div className={ styles.container }>
       <HeaderLogo title="HD Details" />
+      <Link className={ styles.hdsLink } to="/hds">Back to HDs</Link>
       {
         deleteMessage ? <p>{ deleteMessage }</p>
           : <main className={ styles.main }>
@@ -69,7 +69,6 @@ function HdDetails() {
             </section>
           </main>
       }
-      <Link className={ styles.hdsLink } to="/hds">Back to HDs</Link>
     </div>
   );
 }

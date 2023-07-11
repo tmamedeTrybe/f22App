@@ -9,7 +9,7 @@ class Wedding extends Model implements wedding {
     noiva!: string;
     noivo!: string;
     cidade!: string;
-    imagem?: string;
+    imagem?: string | null;
     localCerimonia?: string;
     localRecepcao?: string;
     primeiroBackupBruto?: number | null;

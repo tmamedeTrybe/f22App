@@ -4,14 +4,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../modules/BackupCard.module.css';
 
-function BackupCard({ hdNumber = null, backupSize, backup }) {
+function BackupCard({ hdNumber = null, backupSize = 0, backup }) {
   const [showInfo, setShowInfo] = useState(false);
 
   const showBackupInfos = () => {
     if (showInfo === true) {
       setShowInfo(false);
     } else setShowInfo(true);
-    console.log(showInfo);
   };
 
   return (
@@ -35,7 +34,7 @@ function BackupCard({ hdNumber = null, backupSize, backup }) {
 
 BackupCard.propTypes = {
   hdNumber: PropTypes.number,
-  backupSize: PropTypes.number.isRequired,
+  backupSize: PropTypes.number,
   backup: PropTypes.string.isRequired,
 };
 

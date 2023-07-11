@@ -66,7 +66,7 @@
   width: 10rem;
   height: 2rem;
   color: rgb(252, 255, 252);
-  background-color: var(--grey);
+  background-color: var(--buttonSubmit);
 }
 
 .weddings {

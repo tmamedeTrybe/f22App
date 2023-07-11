@@ -16,14 +16,14 @@ function WeddingEdit() {
   const [imagem, setImagem] = useState('');
   const [localCerimonia, setLocalCerimonia] = useState('');
   const [localRecepcao, setLocalRecepcao] = useState('');
-  const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState('');
-  const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState('');
-  const [segundoBackupBruto, setSegundoBackupBruto] = useState('');
-  const [segundoBackupBrutoTamanho, setSegundoBackupBrutoTamanho] = useState('');
-  const [primeiroBackup, setPrimeiroBackup] = useState('');
-  const [primeiroBackupTamanho, setPrimeiroBackupTamanho] = useState('');
-  const [segundoBackup, setSegundoBackup] = useState('');
-  const [segundoBackupTamanho, setSegundoBackupTamanho] = useState('');
+  const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState(0);
+  const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState(0);
+  const [segundoBackupBruto, setSegundoBackupBruto] = useState(0);
+  const [segundoBackupBrutoTamanho, setSegundoBackupBrutoTamanho] = useState(0);
+  const [primeiroBackup, setPrimeiroBackup] = useState(0);
+  const [primeiroBackupTamanho, setPrimeiroBackupTamanho] = useState(0);
+  const [segundoBackup, setSegundoBackup] = useState(0);
+  const [segundoBackupTamanho, setSegundoBackupTamanho] = useState(0);
   const [erro, setErro] = useState('');
   const [message, setMessage] = useState('');
 
@@ -57,21 +57,19 @@ function WeddingEdit() {
       imagem,
       localCerimonia,
       localRecepcao,
-      primeiroBackupBruto,
-      primeiroBackupBrutoTamanho,
-      segundoBackupBruto,
-      segundoBackupBrutoTamanho,
-      primeiroBackup,
-      primeiroBackupTamanho,
-      segundoBackup,
-      segundoBackupTamanho,
+      primeiroBackupBruto: primeiroBackupBruto || null,
+      primeiroBackupBrutoTamanho: primeiroBackupBrutoTamanho || 0,
+      segundoBackupBruto: segundoBackupBruto || null,
+      segundoBackupBrutoTamanho: segundoBackupBrutoTamanho || 0,
+      primeiroBackup: primeiroBackup || null,
+      primeiroBackupTamanho: primeiroBackupTamanho || 0,
+      segundoBackup: segundoBackup || null,
+      segundoBackupTamanho: segundoBackupTamanho || 0,
     };
     event.preventDefault();
     const response = await fetch(`http://localhost:3001/casamentos/detalhe/${id}/editar`, {
       method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(weddingEdited),
     });
     const weddingData = await response.json();
@@ -85,7 +83,7 @@ function WeddingEdit() {
   };
 
   const deletePrimeiroBackupBruto = () => {
-    setPrimeiroBackupBruto(null);
+    setPrimeiroBackupBruto(0);
     setPrimeiroBackupBrutoTamanho(0);
   };
 
@@ -183,7 +181,6 @@ function WeddingEdit() {
           <label htmlFor="primeiroBackupBruto">
             Primeiro Backup Bruto
             <input
-              onFocus={ () => setPrimeiroBackupBruto('') }
               placeholder="Primeiro Backup Bruto"
               onChange={ (event) => setPrimeiroBackupBruto(event.target.value) }
               type="number"
@@ -202,7 +199,7 @@ function WeddingEdit() {
           <label htmlFor="primeiroBackupBrutoTamanho">
             Tamanho
             <input
-              onFocus={ () => setPrimeiroBackupBrutoTamanho('') }
+              // onFocus={ () => setPrimeiroBackupBrutoTamanho(0) }
               placeholder="Tamanho"
               onChange={ (event) => setPrimeiroBackupBrutoTamanho(event.target.value) }
               type="number"
@@ -213,7 +210,7 @@ function WeddingEdit() {
           <label htmlFor="segundoBackupBruto">
             Segundo Backup Bruto
             <input
-              onFocus={ () => setSegundoBackupBruto('') }
+              // onFocus={ () => setSegundoBackupBruto('') }
               placeholder="Segundo Backup Bruto"
               onChange={ (event) => setSegundoBackupBruto(event.target.value) }
               type="number"
@@ -230,7 +227,7 @@ function WeddingEdit() {
           <label htmlFor="segundoBackupBrutoTamanho">
             Tamanho
             <input
-              onFocus={ () => setSegundoBackupBrutoTamanho('') }
+              // onFocus={ () => setSegundoBackupBrutoTamanho('') }
               placeholder="Tamanho"
               onChange={ (event) => setSegundoBackupBrutoTamanho(event.target.value) }
               type="number"
@@ -241,7 +238,7 @@ function WeddingEdit() {
           <label htmlFor="primeiroBackup">
             Primeiro Backup Editado
             <input
-              onFocus={ () => setPrimeiroBackup('') }
+              // onFocus={ () => setPrimeiroBackup('') }
               placeholder="Primeiro Backup"
               onChange={ (event) => setPrimeiroBackup(event.target.value) }
               type="number"
@@ -252,7 +249,7 @@ function WeddingEdit() {
           <label htmlFor="primeiroBackupTamanho">
             Tamanho
             <input
-              onFocus={ () => setPrimeiroBackupTamanho('') }
+              // onFocus={ () => setPrimeiroBackupTamanho('') }
               placeholder="Tamanho"
               onChange={ (event) => setPrimeiroBackupTamanho(event.target.value) }
               type="number"
@@ -263,7 +260,7 @@ function WeddingEdit() {
           <label htmlFor="segundoBackup">
             Segundo Backup Editado
             <input
-              onFocus={ () => setSegundoBackup('') }
+              // onFocus={ () => setSegundoBackup('') }
               placeholder="Segundo Backup"
               onChange={ (event) => setSegundoBackup(event.target.value) }
               type="number"
@@ -274,7 +271,7 @@ function WeddingEdit() {
           <label htmlFor="segundoBackupTamanho">
             Tamanho
             <input
-              onFocus={ () => setSegundoBackupTamanho('') }
+              // onFocus={ () => setSegundoBackupTamanho('') }
               placeholder="Tamanho"
               onChange={ (event) => setSegundoBackupTamanho(event.target.value) }
               type="number"

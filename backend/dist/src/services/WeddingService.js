@@ -14,23 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const hd_1 = __importDefault(require("../database/models/hd"));
-const validateNewWedding_1 = __importDefault(require("../validations/validateNewWedding"));
 const validateUpdateWedding_1 = __importDefault(require("../validations/validateUpdateWedding"));
-// import AWS from 'aws-sdk';
-// import fs from 'fs';
-// async function uploadFile(fileName: string, filePath: string) {
-//     const s3 = new AWS.S3({ apiVersion: '2006-03-01', region: process.env.AWS_REGION });
-//     const fileContent = fs.readFileSync(filePath);
-//     const params: any = {
-//         Bucket: process.env.AWS_S3_BUCKET,
-//         Key: fileName,
-//         Body: fileContent,
-//         // ContentType: mimeType//geralmente se acha sozinho
-//     };
-//     const data = await s3.upload(params).promise();
-//     console.log(data.Location, "zzzzzzzz");
-//     return data.Location;
-// }
 class WeddingService {
     constructor(weddingModel, hdService) {
         this.weddingModel = weddingModel;
@@ -57,10 +41,14 @@ class WeddingService {
     }
     createWedding(newWeddingCreated) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { error } = (0, validateNewWedding_1.default)(newWeddingCreated);
-            if (error)
-                return { code: 400, erro: error.message };
-            const weddingExist = yield this.weddingModel.findOne({ where: { data: newWeddingCreated.data, localCerimonia: newWeddingCreated.localCerimonia } });
+            // const { error } = validateNewWedding(newWeddingCreated);
+            // if (error) return { code: 400, erro: error.message };
+            const weddingExist = yield this.weddingModel.findOne({
+                where: {
+                    data: newWeddingCreated.data,
+                    localCerimonia: newWeddingCreated.localCerimonia
+                }
+            });
             if (weddingExist)
                 return { code: 400, erro: 'Evento já cadastrado' };
             const hdRawOneExist = yield this.hdService.validateHdNewWedding(Number(newWeddingCreated.primeiroBackupBruto), Number(newWeddingCreated.primeiroBackupBrutoTamanho));
@@ -100,6 +88,7 @@ class WeddingService {
             return { code: 201, wedding: created };
         });
     }
+    ;
     updateWedding(id, newInfo) {
         return __awaiter(this, void 0, void 0, function* () {
             const { error } = (0, validateUpdateWedding_1.default)(newInfo);
@@ -126,13 +115,13 @@ class WeddingService {
                 imagem: newInfo.imagem,
                 localCerimonia: newInfo.localCerimonia,
                 localRecepcao: newInfo.localRecepcao,
-                primeiroBackupBruto: newInfo.primeiroBackupBruto,
+                primeiroBackupBruto: newInfo.primeiroBackupBruto === 0 ? null : newInfo.primeiroBackupBruto,
                 primeiroBackupBrutoTamanho: newInfo.primeiroBackupBrutoTamanho,
-                segundoBackupBruto: newInfo.segundoBackupBruto,
+                segundoBackupBruto: newInfo.segundoBackupBruto === 0 ? null : newInfo.segundoBackupBruto,
                 segundoBackupBrutoTamanho: newInfo.segundoBackupBrutoTamanho,
-                primeiroBackup: newInfo.primeiroBackup,
+                primeiroBackup: newInfo.primeiroBackup === 0 ? null : newInfo.primeiroBackup,
                 primeiroBackupTamanho: newInfo.primeiroBackupTamanho,
-                segundoBackup: newInfo.segundoBackup,
+                segundoBackup: newInfo.segundoBackup === 0 ? null : newInfo.segundoBackup,
                 segundoBackupTamanho: newInfo.segundoBackupTamanho
             }, { where: { id } });
             yield this.hdService.updateUsedGb(Number(wedding === null || wedding === void 0 ? void 0 : wedding.primeiroBackupBruto));
@@ -157,5 +146,18 @@ class WeddingService {
             return { code: 201, message: "Casamento deletado" };
         });
     }
+    ;
+    addImage(id, namePhoto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const wedding = yield this.weddingModel.findOne({ where: { id } });
+            if (!wedding)
+                return { code: 400, erro: 'Erro ao incluir imagem!' };
+            yield this.weddingModel.update({
+                imagem: namePhoto,
+            }, { where: { id } });
+            return { code: 201, message: 'Imagem atualizada' };
+        });
+    }
 }
+;
 exports.default = WeddingService;

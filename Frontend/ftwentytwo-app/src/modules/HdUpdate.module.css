@@ -1,0 +1,89 @@
+.container {
+    margin: auto;
+    background-image: linear-gradient(var(--dark), var(--grey), var(--green));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(247, 235, 236);
+    font-family: Tajawal;
+    width: 414px;
+  }
+  
+  .main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+  }
+  
+  .form {
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(var(--blue), var(--green), var(--yellow));
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    width: 80%;
+    padding: 20px;
+  }
+  
+  .form h3 {
+    font-size: 25px;
+  }
+  
+  .form input {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 30px;
+    outline: none;
+    padding: 15px 30px;
+    background-color: var(--grey);
+    color: rgb(252, 255, 252);
+    font-family: Tajawal;
+    text-align: center;
+  }
+  
+  .form button {
+    margin-top: 10px;
+    border: 0.1px solid rgb(252, 255, 252);
+    border-radius: 5px;
+    width: 10rem;
+    height: 2rem;
+    color: rgb(252, 255, 252);
+    background-color: var(--grey);
+  }
+  
+  .form label {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  
+  .form label button {
+    margin-top: -20px;
+    margin-bottom: 30px;
+  }
+  
+  .hds {
+    color: rgb(247, 235, 236);
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 15px;
+    background-image: linear-gradient(var(--dark), var(--green));
+    margin-bottom: 30px;
+    font-family: Tajawal;
+  }
+  
+  .message {
+    font-size: 25px;
+    margin-top: -50px;
+    margin-bottom: 20px;
+    width: 80%;
+    text-align: center;
+  }

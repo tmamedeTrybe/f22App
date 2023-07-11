@@ -1,6 +1,8 @@
+/* eslint-disable import/no-dynamic-require */
 /* eslint-disable react/jsx-max-depth */
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-closing-tag-location */
+/* eslint-disable global-require */
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaCamera } from 'react-icons/fa';
@@ -47,7 +49,13 @@ function WeddingDetail() {
               <p>
                 { wedding.data }
               </p>
-              <img alt="foto do casamento" src={ icon } width="200px" />
+              <img
+                alt="foto do casamento"
+                src={ wedding.imagem === null || wedding.imagem === undefined
+                  ? icon
+                  : require(`../assets/images/casamentos/${id}.jpg`) }
+                width="200px"
+              />
               <button
                 onClick={ () => navigate(`/casamentos/imagem/${id}`) }
                 width="10px"

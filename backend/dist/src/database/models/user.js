@@ -7,6 +7,7 @@ const sequelize_1 = require("sequelize");
 const _1 = __importDefault(require("."));
 class User extends sequelize_1.Model {
 }
+;
 User.init({
     id: { type: sequelize_1.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
     name: { type: sequelize_1.STRING, allowNull: false },

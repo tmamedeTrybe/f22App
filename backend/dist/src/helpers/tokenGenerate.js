@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.tokenGenerate = void 0;
 const jsonwebtoken_1 = require("jsonwebtoken");
-const JWT_PASSWORD = process.env.JWT_PASSWORD;
+const JWT_PASSWORD = process.env.JWT_PASSWORD || 'senhaForte    ';
 const tokenGenerate = (user) => {
     const payload = {
         id: user.id,

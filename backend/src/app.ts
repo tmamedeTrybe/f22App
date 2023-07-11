@@ -4,6 +4,7 @@ import { hdRoutes, userRoutes, weddingRoutes } from './routes';
 import cors from 'cors';
 import middlewareErro from './middlewares/middlewareErro';
 
+
 const app = express();
 app.use(cors());
 app.use(express.json());

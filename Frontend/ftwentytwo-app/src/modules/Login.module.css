@@ -5,6 +5,7 @@
   --grey: rgb(46, 56, 55);
   --green: rgb(7, 34, 32);
   --ligth: rgb(252, 255, 252);
+  --buttonSubmit: rgb(137, 176, 174);
 }
 
 .container {
@@ -83,6 +84,6 @@
   width: 10rem;
   height: 2rem;
   color: rgb(252, 255, 252);
-  background-color: var(--grey);
+  background-color: var(--buttonSubmit);
   font-family: Tajawal;
 }

@@ -38,27 +38,17 @@ class WeddingController {
         res.status(deleted.code).json({ message: deleted.message });
     }
     
-    // addImage = async (req: Request, res: Response) => {
-    //     const { id } = req.params;
-    //     // const namePhoto = `${id}.jpg`;
-    //     const { image } = req.body;
-    //     console.log(image, 'REQ.BODY CHEGANDO');
+    addImage = async (req: Request, res: Response) => {
+        const { id } = req.params;
         
-    //     const addImage = await this.weddingService.addImage(Number(id), image);
-
-    //     if (addImage.erro) return res.status(addImage.code).json({ erro: addImage.erro });
-    //     return res.status(addImage.code).json({ message: addImage.message });
-    // }
-
-    // addImage = async (req: Request, res: Response) => {
-    //     const { id } = req.params;
-    //     const photo = req.body;
+        const namePhoto = `../assets/images/casamentos/${id}.jpg`;
         
-    //     const addImage = await this.weddingService.addImage(photo, Number(id));
+        const addImage = await this.weddingService.addImage(Number(id), namePhoto);
 
-    //     if (addImage.erro) return res.status(addImage.code).json({ erro: addImage.erro });
-    //     return res.status(addImage.code).json({ message: addImage.message });
-    // }
+        if (addImage.erro) return res.status(addImage.code).json({ erro: addImage.erro });
+        return res.status(addImage.code).json({ message: addImage.message });
+    }
+
 
 }
 
