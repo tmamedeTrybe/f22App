@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import MyContext from '../context/myContext';
+import HeaderLogo from '../components/HeaderLogo';
+import styles from '../modules/WeddingImage.module.css';
 
 function WeddingImage() {
   const [wedding, setWedding] = useState('');
@@ -17,6 +19,8 @@ function WeddingImage() {
     };
     setImage(img);
   };
+
+  const disableButton = !image.preview;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,23 +41,27 @@ function WeddingImage() {
   }, []);
 
   return (
-    <div>
-      <h1>
-        {`${wedding.noiva} & ${wedding.noivo}`}
-      </h1>
-      {image.preview && <img
-        alt="Imagem do casamento"
-        src={ image.preview }
-        width="120"
-        height="90"
-      />}
-      <hr />
-      <form onSubmit={ handleSubmit }>
-        <input type="file" name="file" onChange={ handleFileChange } />
-        <button type="submit">Submit</button>
-      </form>
-      {status && <h4>{status}</h4>}
-      <Link to="/casamentos"> Casamentos</Link>
+    <div className={ styles.container }>
+      <HeaderLogo title="Foto do casamento" />
+      <main className={ styles.main }>
+        <h1>
+          {`${wedding.noiva} & ${wedding.noivo}`}
+        </h1>
+        <form className={ styles.form } onSubmit={ handleSubmit }>
+          <span>
+            <input type="file" name="file" onChange={ handleFileChange } />
+          </span>
+          {image.preview && <img
+            alt="Imagem do casamento"
+            src={ image.preview }
+            width="240"
+            height="160"
+          />}
+          <button type="submit" disabled={ disableButton }>Enviar foto</button>
+        </form>
+        {status && <h4>{status}</h4>}
+      </main>
+      <Link className={ styles.WeddingsLink } to="/casamentos"> Casamentos </Link>
     </div>
   );
 }

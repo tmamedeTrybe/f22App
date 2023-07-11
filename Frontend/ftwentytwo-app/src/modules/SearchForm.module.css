@@ -68,14 +68,3 @@
   color: rgb(252, 255, 252);
   background-color: var(--buttonSubmit);
 }
-
-.weddings {
-  align-items: center;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 10px;
-  width: 80%;
-  padding: 5rem;
-}
