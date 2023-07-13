@@ -7,6 +7,7 @@
   color: rgb(247, 235, 236);
   font-family: Tajawal;
   width: 414px;
+  height: 100%;
 }
 
 .main {
@@ -16,7 +17,6 @@
   width: 80%;
   margin: auto;
   justify-content: center;
-  /* border: solid 1px red; */
 }
 
 .headerDetails {
@@ -77,11 +77,12 @@
 }
 
 .venues td, th {
-  border: solid 0.1px rgba(247, 235, 236, 0.276);
+  border: none;
   border-radius: 5px;
   padding: 5px;
   text-align: center;
-  background-image: linear-gradient(var(--dark), var(--green));
+  background: rgb(202, 207, 214);
+  color: var(--dark);
 }
 
 .WeddingsLink {
@@ -128,4 +129,8 @@
 .message {
   font-size: 25px;
   margin-bottom: 20px;
+}
+
+.cameraIcon {
+  transform: translateY(30px);
 }

@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.container td:first-child {
+  background: var(--buttonSubmit);
+  width: 30px;
+  color: var(--ligth)
+
+}

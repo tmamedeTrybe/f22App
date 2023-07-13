@@ -16,6 +16,7 @@ function Header({ title }) {
         {`Olá ${user}`}
       </h2>
       <h1>{title}</h1>
+      <hr width="180" color="rgb(252, 255, 252)" />
     </div>
   );
 }

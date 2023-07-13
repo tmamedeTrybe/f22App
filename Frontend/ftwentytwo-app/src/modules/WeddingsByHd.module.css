@@ -16,9 +16,20 @@
 }
   
 .container td, th {
-  border: solid 0.1px rgba(247, 235, 236, 0.276);
   border-radius: 5px;
   padding: 5px;
   text-align: center;
-  background-image: linear-gradient(var(--dark), var(--green));
+  background: rgb(202, 207, 214);
+  color: var(--dark);
+}
+
+.container button {
+  margin-top: 10px;
+  border: 0.1px solid rgb(252, 255, 252);
+  border-radius: 5px;
+  width: 10rem;
+  height: 2rem;
+  color: rgb(252, 255, 252);
+  background-color: var(--buttonSubmit);
+  font-family: Tajawal;
 }

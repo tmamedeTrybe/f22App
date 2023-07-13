@@ -13,7 +13,6 @@ function WeddingEdit() {
   const [cidade, setCidade] = useState('');
   const [noiva, setNoiva] = useState('');
   const [noivo, setNoivo] = useState('');
-  const [imagem, setImagem] = useState('');
   const [localCerimonia, setLocalCerimonia] = useState('');
   const [localRecepcao, setLocalRecepcao] = useState('');
   const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState(0);
@@ -33,7 +32,6 @@ function WeddingEdit() {
     setCidade(wedding.cidade);
     setNoiva(wedding.noiva);
     setNoivo(wedding.noivo);
-    setImagem(wedding.imagem);
     setLocalCerimonia(wedding.localCerimonia);
     setLocalRecepcao(wedding.localRecepcao);
     setPrimeiroBackupBruto(wedding.primeiroBackupBruto);
@@ -54,7 +52,6 @@ function WeddingEdit() {
       cidade,
       noiva,
       noivo,
-      imagem,
       localCerimonia,
       localRecepcao,
       primeiroBackupBruto: primeiroBackupBruto || null,
@@ -143,17 +140,6 @@ function WeddingEdit() {
               type="text"
               id="noivo"
               value={ noivo }
-            />
-          </label>
-          <label htmlFor="imagem">
-            Imagem
-            <input
-              onFocus={ () => setImagem('') }
-              placeholder="Imagem"
-              onChange={ (event) => setImagem(event.target.value) }
-              type="upload"
-              id="imagem"
-              value={ imagem }
             />
           </label>
           <label htmlFor="localCerimonia">

@@ -2,10 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styles from '../modules/HdsTable.module.css';
 
 function HdsTable({ HdsList }) {
   return (
-    <div>
+    <div className={ styles.container }>
       <table>
         <thead>
           <tr>
@@ -17,7 +18,11 @@ function HdsTable({ HdsList }) {
         <tbody>
           {HdsList.map((hd) => (
             <tr key={ hd.id }>
-              <td><Link to={ `/hds/details/${hd.id}` }>{hd.name}</Link></td>
+              <Link to={ `/hds/details/${hd.id}` }>
+                <td className={ styles.hdLink }>
+                  {hd.name}
+                </td>
+              </Link>
               <td>{hd.label}</td>
               <td>{hd.available}</td>
             </tr>

@@ -1,3 +1,5 @@
+/* eslint-disable no-magic-numbers */
+/* eslint-disable no-nested-ternary */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable react/jsx-max-depth */
 /* eslint-disable max-len */
@@ -11,9 +13,11 @@ import HeaderLogo from '../components/HeaderLogo';
 import styles from '../modules/WeddingDetail.module.css';
 import icon from '../assets/images/casamentos/wedding-icon.jpg';
 import BackupCard from '../components/BackupCard';
+import Loading from '../components/Loading';
 
 function WeddingDetail() {
   const [wedding, setWedding] = useState('');
+  const [loading, setLoading] = useState(true);
   const { filterJob } = useContext(MyContext);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -21,6 +25,7 @@ function WeddingDetail() {
 
   useEffect(() => {
     setWedding(filterJob(id));
+    setLoading(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -43,7 +48,7 @@ function WeddingDetail() {
         message ? <section className={ styles.message }>
           <p>{ message }</p>
         </section>
-          : <main className={ styles.main }>
+          : loading ? <Loading /> : <main className={ styles.main }>
             <section className={ styles.headerDetails }>
               <h1>{`${wedding.noiva} & ${wedding.noivo}`}</h1>
               <p>
@@ -60,7 +65,7 @@ function WeddingDetail() {
                 onClick={ () => navigate(`/casamentos/imagem/${id}`) }
                 width="10px"
               >
-                <FaCamera size="20px" color="rgba(0, 0, 0, 0.6)" />
+                <FaCamera className={ styles.cameraIcon } size="20px" color="rgba(252, 255, 252, 0.6)" />
               </button>
             </section>
             <section className={ styles.infos }>

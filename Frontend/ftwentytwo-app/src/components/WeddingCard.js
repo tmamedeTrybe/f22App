@@ -13,7 +13,7 @@ function WeddingCard({ wedding }) {
           <h2>{`${wedding.noiva} & ${wedding.noivo}`}</h2>
           <p>{wedding.data}</p>
           <img
-            src={ wedding.imagem === null
+            src={ wedding.imagem === null || wedding.imagem === undefined
               ? icon
               : require(`../assets/images/casamentos/${wedding.id}.jpg`) }
             alt="Imagem do casamento"

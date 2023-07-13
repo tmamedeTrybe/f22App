@@ -32,6 +32,8 @@ function NewHd() {
     }
   };
 
+  const disableButton = !label || !capacity;
+
   return (
     <div className={ styles.container }>
       <HeaderLogo title="Novo HD" />
@@ -57,6 +59,7 @@ function NewHd() {
           </label>
           <button
             type="submit"
+            disabled={ disableButton }
           >
             Cadastrar
           </button>
