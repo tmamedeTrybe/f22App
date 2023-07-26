@@ -32,8 +32,8 @@ function HdDetails() {
 
   return (
     <div className={ styles.container }>
-      <HeaderLogo title="HD Details" />
-      <Link className={ styles.hdsLink } to="/hds">Back to HDs</Link>
+      <HeaderLogo title="HD Informações" />
+      <Link className={ styles.hdsLink } to="/hds">Hd´s</Link>
       {
         deleteMessage ? <p>{ deleteMessage }</p>
           : <main className={ styles.main }>

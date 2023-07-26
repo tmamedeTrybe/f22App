@@ -18,7 +18,7 @@ function Home() {
 
   return (
     <div className={ styles.container }>
-      <HeaderLogo title="Home" />
+      <HeaderLogo title="Início" />
       <main className={ styles.main }>
         {
           loading ? <Loading />

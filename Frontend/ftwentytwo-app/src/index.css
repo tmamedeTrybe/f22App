@@ -2,6 +2,12 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /* background-image: linear-gradient(var(--dark), var(--grey), var(--green)); */
+  background-color: var(--green);
+  /* width: 414px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 code {

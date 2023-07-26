@@ -1,6 +1,6 @@
 .container {
   align-items: center;
-  background-image: linear-gradient(var(--dark), var(--grey), var(--green));
+  /* background-image: linear-gradient(var(--dark), var(--grey), var(--green)); */
   display: flex;
   height: 100vh;
   justify-content: center;

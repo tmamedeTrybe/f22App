@@ -11,7 +11,7 @@
 .container {
   width: 414px;
   margin: auto;
-  background-image: linear-gradient(var(--dark), var(--grey), var(--green));
+  /* background-image: linear-gradient(var(--dark), var(--grey), var(--green)); */
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -11,7 +11,7 @@ function Header({ title }) {
   return (
     <div className={ styles.header }>
       <Logo size="150px" />
-      <Link to="/home">Home</Link>
+      <Link to="/home">Início</Link>
       <h2>
         {`Olá ${user}`}
       </h2>
