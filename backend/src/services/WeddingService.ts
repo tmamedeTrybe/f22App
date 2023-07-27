@@ -2,7 +2,7 @@ import { Op } from 'sequelize';
 import Hd from '../database/models/hd';
 import Wedding from '../database/models/wedding';
 import newWedding from '../interfaces/newWedding';
-import searchWeddingbyDate from '../interfaces/searchWedding';
+import search from '../interfaces/search';
 import weddingUpdate from '../interfaces/weddingUpdate';
 import validateNewWedding from '../validations/validateNewWedding';
 import validateUpdateWedding from '../validations/validateUpdateWedding';
@@ -21,12 +21,13 @@ class WeddingService {
       return { code: 200, weddings };
     };
 
-    public getWeddingBy = async (search: searchWeddingbyDate) => {
+    public getWeddingBy = async (search: search) => {
       const { searchBy, valueSearch } = search;
       
       const result: Wedding[] | null = await this.weddingModel.findAll(
         { 
-          where: { [searchBy]: { [Op.substring]: valueSearch } },
+          where: { [searchBy]: { [Op.substring]: valueSearch }
+        },
           include:
         [
           { model: Hd, as: 'rawBackupOne', attributes: ['id','name'] },
