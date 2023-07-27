@@ -6,19 +6,6 @@ import HdService from "../services/HdService";
 import WeddingService from "../services/WeddingService";
 import uploads from "../middlewares/uploads";
 
-// const multer = require('multer');
-
-// const storage = multer.diskStorage({
-//   destination: (req: any, file: any, cb: (arg0: null, arg1: string) => void) => {
-//     cb(null, './images')
-//   },
-//   filename: (req: any, file: { originalname: any; }, cb: (arg0: null, arg1: any) => void) => {
-//     cb(null, file.originalname)
-//   },
-// })
-
-// const upload = multer({ storage: storage });
-
 const weddingRoutes = Router();
 
 const weddingController = new WeddingController(new WeddingService(Wedding, new HdService(Hd)));

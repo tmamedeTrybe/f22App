@@ -15,4 +15,5 @@ app.use(middlewareErro_1.default);
 app.use(routes_1.userRoutes);
 app.use(routes_1.weddingRoutes);
 app.use(routes_1.hdRoutes);
+app.use(routes_1.familyRoutes);
 exports.default = app;
