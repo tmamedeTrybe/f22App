@@ -4,7 +4,7 @@ import styles from '../modules/SearchForm.module.css';
 import MyContext from '../context/myContext';
 
 function SearchForm({ searchOptions, url }) {
-  const [searchBy, setSearchBy] = useState('noiva');
+  const [searchBy, setSearchBy] = useState('data');
   const [valueSearch, setValueSearch] = useState('');
   const [jobsFounded, setjobsFounded] = useState('');
   const [erro, setErro] = useState('');

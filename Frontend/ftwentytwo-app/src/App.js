@@ -1,12 +1,15 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { Route, Routes } from 'react-router-dom';
 import MyProvider from './context/myProvider';
+import Family from './pages/Family';
+import FamilyDetail from './pages/Familydetail';
 import HdDetails from './pages/HdDetails';
 import Hds from './pages/Hds';
 import HdUpdate from './pages/HdUpdate';
 import Home from './pages/Home';
 import Initial from './pages/Initial';
 import Login from './pages/Login';
+import NewFamily from './pages/NewFamily';
 import NewHd from './pages/NewHd';
 import NewWedding from './pages/NewWedding';
 import Register from './pages/Register';
@@ -33,6 +36,9 @@ function App() {
           <Route path="/hds/new" element={ <NewHd /> } />
           <Route path="/hds/details/:id" element={ <HdDetails /> } />
           <Route path="/hds/details/:id/update" element={ <HdUpdate /> } />
+          <Route path="/familia" element={ <Family /> } />
+          <Route path="/familia/detalhe/:id" element={ <FamilyDetail /> } />
+          <Route path="/familia/novo" element={ <NewFamily /> } />
         </Routes>
       </div>
     </MyProvider>

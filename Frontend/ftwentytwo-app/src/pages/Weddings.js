@@ -9,8 +9,8 @@ import HeaderLogo from '../components/HeaderLogo';
 
 function Weddings() {
   const [weddingsFounded, setWeddingsFounded] = useState('');
-  const searchOptions = ['Noiva', 'Noivo',
-    'Data', 'Cidade', 'Local_cerimonia', 'Local_recepcao', 'Primeiro_backup'];
+  const searchOptions = ['Data', 'Noiva', 'Noivo',
+    'Cidade', 'Local_cerimonia', 'Local_recepcao', 'Primeiro_backup'];
   const { jobsFounded } = useContext(MyContext);
 
   useEffect(() => {
