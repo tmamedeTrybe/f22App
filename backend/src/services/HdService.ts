@@ -1,8 +1,10 @@
 import { Op } from 'sequelize';
+import Family from '../database/models/family';
 import Hd from '../database/models/hd';
 import Wedding from '../database/models/wedding';
 import hd from '../interfaces/hd';
 import hdUpdate from '../interfaces/hdUpdate';
+import hdWithJobs from '../interfaces/hdWithWedding';
 import hdWithWedding from '../interfaces/hdWithWedding';
 import newHd from '../interfaces/newHd';
 import searchHd from '../interfaces/searchHd';
@@ -117,43 +119,79 @@ class HdService {
 	}
 
 	public updateUsedGb = async (id:number) => {
-		let totalSizeFirstRaw;
-		let totalSizeSecondRaw;
-		let totalSizeFirstEdit;
-		let totalSizeSecondEdit;
+		let totalWeddingsSizeFirstRaw;
+		let totalFamiliesSizeFirtsRaw;
 
-		const hd:hdWithWedding | null = await this.HdModel.findOne(
+		let totalWeddingsSizeSecondRaw;
+		let totalFamiliesSizeSecondRaw;
+
+		let totalWeddingsSizeFirstEdit;
+		let totalFamiliesSizeFirstEdit;
+
+		let totalWeddingsSizeSecondEdit;
+		let totalFamiliesSizeSecondEdit;
+
+		const hd:hdWithJobs | null = await this.HdModel.findOne(
 			{ 
 				where: { id },
 				include: [ 
 					{ model: Wedding, as: 'rawWeddingsOne', attributes: ['primeiroBackupBrutoTamanho'] },
+					{ model: Family, as: 'rawFamilyOne', attributes: ['primeiroBackupBrutoTamanho'] },
 					{ model: Wedding, as: 'rawWeddingsTwo', attributes: ['segundoBackupBrutoTamanho'] },
+					{ model: Family, as: 'rawFamilyTwo', attributes: ['segundoBackupBrutoTamanho'] },
 					{ model: Wedding, as: 'editWeddingsOne', attributes: ['primeiroBackupTamanho'] },
+					{ model: Family, as: 'editFamilyOne', attributes: ['primeiroBackupTamanho'] },
 					{ model: Wedding, as: 'editWeddingsTwo', attributes: ['segundoBackupTamanho'] },
+					{ model: Family, as: 'editFamilyTwo', attributes: ['segundoBackupTamanho'] }
 				] 
 		  },
     );
 
 		if (hd) {
 			if(hd.rawWeddingsOne && hd.rawWeddingsOne.length > 0) {
-				const values = hd.rawWeddingsOne.reduce((acc, cur) => cur.primeiroBackupBrutoTamanho + acc, 0) ;
-				totalSizeFirstRaw = values;
-			} else totalSizeFirstRaw = 0;
+				const values = hd.rawWeddingsOne.reduce((acc, cur) => cur.primeiroBackupBrutoTamanho + acc, 0);
+				totalWeddingsSizeFirstRaw = values;
+			} else totalWeddingsSizeFirstRaw = 0;
+
+			if(hd.rawFamilyOne && hd.rawFamilyOne.length > 0) {
+				const values = hd.rawFamilyOne.reduce((acc, cur) => cur.primeiroBackupBrutoTamanho + acc, 0 );
+				totalFamiliesSizeFirtsRaw = values;
+			} else totalFamiliesSizeFirtsRaw = 0;
 
 			if(hd.rawWeddingsTwo && hd.rawWeddingsTwo.length > 0) {
 				const values = hd.rawWeddingsTwo.reduce((acc, cur) => cur.segundoBackupBrutoTamanho + acc, 0) ;
-				totalSizeSecondRaw = values;
-			} else totalSizeSecondRaw = 0;
+				totalWeddingsSizeSecondRaw = values;
+			} else totalWeddingsSizeSecondRaw = 0;
+
+			if(hd.rawFamilyTwo && hd.rawFamilyTwo.length > 0) {
+				const values = hd.rawFamilyTwo.reduce((acc, cur) => cur.segundoBackupBrutoTamanho + acc, 0) ;
+				totalFamiliesSizeSecondRaw = values;
+			} else totalFamiliesSizeSecondRaw = 0;
 
 			if(hd.editWeddingsOne && hd.editWeddingsOne.length > 0) {
 				const values = hd.editWeddingsOne.reduce((acc, cur) => cur.primeiroBackupTamanho + acc, 0) ;
-				totalSizeFirstEdit = values;
-			} else totalSizeFirstEdit = 0;
+				totalWeddingsSizeFirstEdit = values;
+			} else totalWeddingsSizeFirstEdit = 0;
+
+			if(hd.editFamilyOne && hd.editFamilyOne.length > 0) {
+				const values = hd.editFamilyOne.reduce((acc, cur) => cur.primeiroBackupTamanho + acc, 0) ;
+				totalFamiliesSizeFirstEdit = values;
+			} else totalFamiliesSizeFirstEdit = 0;
 
 			if(hd.editWeddingsTwo && hd.editWeddingsTwo.length > 0) {
 				const values = hd.editWeddingsTwo.reduce((acc, cur) => cur.segundoBackupTamanho + acc, 0) ;
-				totalSizeSecondEdit = values;
-			} else totalSizeSecondEdit = 0;
+				totalWeddingsSizeSecondEdit = values;
+			} else totalWeddingsSizeSecondEdit = 0;
+
+			if(hd.editFamilyTwo && hd.editFamilyTwo.length > 0) {
+				const values = hd.editFamilyTwo.reduce((acc, cur) => cur.segundoBackupTamanho + acc, 0) ;
+				totalFamiliesSizeSecondEdit = values;
+			} else totalFamiliesSizeSecondEdit = 0;
+
+			const totalSizeFirstRaw = totalWeddingsSizeFirstRaw + totalFamiliesSizeFirtsRaw;
+			const totalSizeSecondRaw = totalWeddingsSizeSecondRaw + totalFamiliesSizeSecondRaw;
+			const totalSizeFirstEdit = totalWeddingsSizeFirstEdit + totalFamiliesSizeFirstEdit;
+			const totalSizeSecondEdit = totalWeddingsSizeSecondEdit + totalFamiliesSizeSecondEdit;
 
 			const result = totalSizeFirstRaw + totalSizeSecondRaw + totalSizeFirstEdit + totalSizeSecondEdit;
 
@@ -169,6 +207,10 @@ class HdService {
 		return hdUpdated;
 		}
 	};
+
+	public updateFamilyUsedGb = async (id:number) => {
+
+	}
 
 	public deleteHd = async (id: number) => {
 		await this.HdModel.destroy({ where: { id } });
