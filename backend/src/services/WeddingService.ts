@@ -4,7 +4,7 @@ import Wedding from '../database/models/wedding';
 import newWedding from '../interfaces/newWedding';
 import search from '../interfaces/search';
 import weddingUpdate from '../interfaces/weddingUpdate';
-import validateNewWedding from '../validations/validateNewWedding';
+// import validateNewWedding from '../validations/validateNewWedding';
 import validateUpdateWedding from '../validations/validateUpdateWedding';
 import HdService from './HdService';
 
@@ -52,25 +52,25 @@ class WeddingService {
         });
         if (weddingExist) return { code: 400, erro: 'Evento já cadastrado' };
 
-        const hdRawOneExist = await this.hdService.validateHdNewWedding(
+        const hdRawOneExist = await this.hdService.validateHdNewJob(
           Number(newWeddingCreated.primeiroBackupBruto),
           Number(newWeddingCreated.primeiroBackupBrutoTamanho
         ));
         if (hdRawOneExist?.erro) return { code: hdRawOneExist.code, erro: hdRawOneExist.erro };
 
-        const hdRawTwoExist = await this.hdService.validateHdNewWedding(
+        const hdRawTwoExist = await this.hdService.validateHdNewJob(
           Number(newWeddingCreated.segundoBackupBruto),
           Number(newWeddingCreated.segundoBackupBrutoTamanho
         ));
         if (hdRawTwoExist?.erro) return { code: hdRawTwoExist.code, erro: hdRawTwoExist.erro };
 
-        const hdEditOneExist = await this.hdService.validateHdNewWedding(
+        const hdEditOneExist = await this.hdService.validateHdNewJob(
           Number(newWeddingCreated.primeiroBackup),
           Number(newWeddingCreated.primeiroBackupTamanho
         ));
         if (hdEditOneExist?.erro) return { code: hdEditOneExist.code, erro: hdEditOneExist.erro };
 
-        const hdEditTwoExist = await this.hdService.validateHdNewWedding(
+        const hdEditTwoExist = await this.hdService.validateHdNewJob(
           Number(newWeddingCreated.segundoBackup),
           Number(newWeddingCreated.segundoBackupTamanho
         ));

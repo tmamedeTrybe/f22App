@@ -29,7 +29,8 @@ class WeddingService {
         this.getWeddingBy = (search) => __awaiter(this, void 0, void 0, function* () {
             const { searchBy, valueSearch } = search;
             const result = yield this.weddingModel.findAll({
-                where: { [searchBy]: { [sequelize_1.Op.substring]: valueSearch } },
+                where: { [searchBy]: { [sequelize_1.Op.substring]: valueSearch }
+                },
                 include: [
                     { model: hd_1.default, as: 'rawBackupOne', attributes: ['id', 'name'] },
                 ],

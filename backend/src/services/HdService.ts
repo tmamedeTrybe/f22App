@@ -56,7 +56,7 @@ class HdService {
 		}
 	};
 
-	public validateHdNewWedding = async (id:number, newSize:number) => {
+	public validateHdNewJob = async (id:number, newSize:number) => {
 		if (id) {
 			const hdexist: Hd | null = await this.HdModel.findOne({ where:{ id } });
 		

@@ -13,15 +13,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const family_1 = __importDefault(require("../database/models/family"));
-const hd_1 = __importDefault(require("../database/models/hd"));
+// import Hd from "../database/models/hd";
 const FamilyService_1 = __importDefault(require("../services/FamilyService"));
-const HdService_1 = __importDefault(require("../services/HdService"));
+// import HdService from "../services/HdService";
 class FamilyController {
-    constructor(familyService = new FamilyService_1.default(family_1.default, new HdService_1.default(hd_1.default))) {
+    // constructor(private familyService = new FamilyService(Family, new HdService(Hd))) {}
+    constructor(familyService = new FamilyService_1.default(family_1.default)) {
         this.familyService = familyService;
-        this.getFamily = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            const family = yield this.familyService.getFamilies();
-            return res.status(family.code).json(family.family);
+        this.getFamilies = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const families = yield this.familyService.getFamilies();
+            return res.status(families.code).json(families.families);
+        });
+        this.getFamilyBy = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const families = yield this.familyService.getFamilyBy(req.body);
+            if (families.erro)
+                return res.status(families.code).json({ erro: families.erro });
+            return res.status(families.code).json(families.family);
         });
     }
 }
