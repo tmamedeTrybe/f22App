@@ -22,8 +22,8 @@ class FamilyController {
   createFamily =  async (req: Request, res: Response) => {
     const created = await this.familyService.createFamily(req.body as newFamily);
     if (created.erro) return res.status(created.code).json({ erro: created.erro });
-    return res.status(created.code).json({ message: 'Criado com sucesso!' });
-  }
+    return res.status(created.code).json({ message: 'Criado com sucesso!', family: created.family });
+  };
 
   
 };
