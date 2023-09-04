@@ -28,7 +28,14 @@ function FamilyDetail() {
   }, []);
 
   const deleteFamily = async () => {
-    setMessage('deletado');
+    const response = await fetch(`http://localhost:3001/familia/detalhe/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    setMessage(data.message);
   };
 
   return (

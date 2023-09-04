@@ -25,6 +25,12 @@ class FamilyController {
     return res.status(created.code).json({ message: 'Criado com sucesso!', family: created.family });
   };
 
+  deleteFamily = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const deleted = await this.familyService.deleteFamily(Number(id));
+    return res.status(deleted.code).json({ message: deleted.message });
+  };
+
   
 };
 

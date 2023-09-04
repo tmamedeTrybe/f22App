@@ -94,6 +94,19 @@ class FamilyService {
 
   };
 
+  public deleteFamily = async (id: number) => {
+    const family = await this.familyModel.findOne({ where: { id } });
+
+    await this.familyModel.destroy({ where: { id } });
+
+    await this.hdService.updateUsedGb(Number(family?.primeiroBackupBruto));
+    await this.hdService.updateUsedGb(Number(family?.segundoBackupBruto));
+    await this.hdService.updateUsedGb(Number(family?.primeiroBackup));
+    await this.hdService.updateUsedGb(Number(family?.segundoBackup));
+
+    return { code: 201, message: "Evento deletado" };
+  };
+
 
 };
 

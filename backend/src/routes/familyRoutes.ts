@@ -12,6 +12,7 @@ const familyController = new FamilyController(new FamilyService(Family, new HdSe
 familyRoutes.get('/familia', familyController.getFamilies);
 familyRoutes.post('/familia/novo', familyController.createFamily);
 familyRoutes.post('/familia', familyController.getFamilyBy);
+familyRoutes.delete('/familia/detalhe/:id', familyController.deleteFamily);
 
 
 export default familyRoutes;
