@@ -1,9 +1,9 @@
 import { INTEGER, Model, STRING } from "sequelize";
 import hd from '../../interfaces/hd';
 import db from '.';
-import hdWithWedding from '../../interfaces/hdWithWedding';
+import hdWithJobs from '../../interfaces/hdWithJobs';
 
-class Hd extends Model implements hd, hdWithWedding {
+class Hd extends Model implements hd, hdWithJobs {
 	id!:number;
 	name?: string;
 	label!: string;

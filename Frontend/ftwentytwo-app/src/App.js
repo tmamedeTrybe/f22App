@@ -2,7 +2,7 @@
 import { Route, Routes } from 'react-router-dom';
 import MyProvider from './context/myProvider';
 import Family from './pages/Family';
-import FamilyDetail from './pages/Familydetail';
+import FamilyDetail from './pages/FamilyDetail';
 import HdDetails from './pages/HdDetails';
 import Hds from './pages/Hds';
 import HdUpdate from './pages/HdUpdate';

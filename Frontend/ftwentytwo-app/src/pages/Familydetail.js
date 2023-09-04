@@ -1,7 +1,108 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable indent */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable react/jsx-max-depth */
+/* eslint-disable max-len */
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { FaCamera } from 'react-icons/fa';
+import MyContext from '../context/myContext';
+import HeaderLogo from '../components/HeaderLogo';
+import Loading from '../components/Loading';
+import icon from '../assets/images/familia/family-icon.jpg';
+import BackupCard from '../components/BackupCard';
+import styles from '../modules/FamilyDetail.module.css';
+
 function FamilyDetail() {
+  const [family, setFamily] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState('');
+  const { filterJob } = useContext(MyContext);
+  const { id } = useParams();
+
+  useEffect(() => {
+    setFamily(filterJob(id));
+    setLoading(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const deleteFamily = async () => {
+    setMessage('deletado');
+  };
+
   return (
-    <div>
-      <h1>Informações</h1>
+    <div className={ styles.container }>
+      <HeaderLogo title="Informações" />
+      <Link className={ styles.WeddingsLink } to="/familia">Família</Link>
+      {
+        message ? <section className={ styles.message }>
+          <p>{ message }</p>
+                  </section>
+          : loading ? <Loading /> : <main className={ styles.main }>
+            <section className={ styles.headerDetails }>
+              <h1>{family.nome}</h1>
+              <h2>{family.categoria}</h2>
+              <p>
+                { family.data }
+              </p>
+              <img
+                alt="foto do evento"
+                src={ family.imagem === null || wedding.imagem === undefined
+                  ? icon
+                  // eslint-disable-next-line global-require
+                  : require(`../assets/images/familia/${id}.jpg`) }
+                width="200px"
+              />
+              <button
+                onClick={ () => navigate(`/familia/imagem/${id}`) }
+                width="10px"
+              >
+                <FaCamera className={ styles.cameraIcon } size="20px" color="rgba(252, 255, 252, 0.6)" />
+              </button>
+            </section>
+            <section className={ styles.infos }>
+              <section className={ styles.venues }>
+                <h3>{family.local}</h3>
+              </section>
+              <section className={ styles.backupCards }>
+                <BackupCard
+                  hdNumber={ family.primeiroBackupBruto }
+                  backupSize={ family.primeiroBackupBrutoTamanho }
+                  backup="Primeiro Backup Bruto"
+                />
+                <BackupCard
+                  hdNumber={ family.segundoBackupBruto }
+                  backupSize={ family.segundoBackupBrutoTamanho }
+                  backup="Segundo Backup Bruto"
+                />
+                <BackupCard
+                  hdNumber={ family.primeiroBackup }
+                  backupSize={ family.primeiroBackupTamanho }
+                  backup="Primeiro Backup Editado"
+                />
+                <BackupCard
+                  hdNumber={ family.segundoBackup }
+                  backupSize={ family.segundoBackupTamanho }
+                  backup="Segundo Backup Editado"
+                />
+              </section>
+            </section>
+            <section className={ styles.buttons }>
+              <button
+                onClick={ () => navigate(`/familia/detalhe/${id}/editar`) }
+              >
+                Editar
+              </button>
+              <button
+                onClick={ deleteFamily }
+              >
+                Deletar
+              </button>
+            </section>
+                                    </main>
+      }
+
     </div>
   );
 }

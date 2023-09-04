@@ -4,8 +4,7 @@ import Hd from '../database/models/hd';
 import Wedding from '../database/models/wedding';
 import hd from '../interfaces/hd';
 import hdUpdate from '../interfaces/hdUpdate';
-import hdWithJobs from '../interfaces/hdWithWedding';
-import hdWithWedding from '../interfaces/hdWithWedding';
+import hdWithJobs from '../interfaces/hdWithJobs';
 import newHd from '../interfaces/newHd';
 import searchHd from '../interfaces/searchHd';
 import validateNewHd from '../validations/validateNewHd';
@@ -23,7 +22,7 @@ class HdService {
             ],
         });
 		hds.forEach(async (hd:Hd) => await this.updateUsedGb(hd.id));
-		return { code: 200, hds: hds.sort((a: hdWithWedding, b: hdWithWedding) => a.id - b.id) }
+		return { code: 200, hds: hds.sort((a: hdWithJobs, b: hdWithJobs) => a.id - b.id) }
   	};
 
 	public getHdBy = async (search: searchHd ) => {
@@ -207,10 +206,6 @@ class HdService {
 		return hdUpdated;
 		}
 	};
-
-	public updateFamilyUsedGb = async (id:number) => {
-
-	}
 
 	public deleteHd = async (id: number) => {
 		await this.HdModel.destroy({ where: { id } });
