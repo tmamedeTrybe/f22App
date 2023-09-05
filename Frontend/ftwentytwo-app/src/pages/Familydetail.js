@@ -5,7 +5,7 @@
 /* eslint-disable react/jsx-max-depth */
 /* eslint-disable max-len */
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FaCamera } from 'react-icons/fa';
 import MyContext from '../context/myContext';
 import HeaderLogo from '../components/HeaderLogo';
@@ -20,6 +20,7 @@ function FamilyDetail() {
   const [message, setMessage] = useState('');
   const { filterJob } = useContext(MyContext);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setFamily(filterJob(id));

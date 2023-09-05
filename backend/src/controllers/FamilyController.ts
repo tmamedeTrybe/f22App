@@ -31,6 +31,13 @@ class FamilyController {
     return res.status(deleted.code).json({ message: deleted.message });
   };
 
+  updateFamily = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const updated = await this.familyService.updateFamily(Number(id), req.body);
+    if (updated.erro) return res.status(updated.code).json({ message: updated.erro });
+    return res.status(updated.code).json({ message: updated.message })
+  };
+
   
 };
 

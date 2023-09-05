@@ -13,6 +13,7 @@ familyRoutes.get('/familia', familyController.getFamilies);
 familyRoutes.post('/familia/novo', familyController.createFamily);
 familyRoutes.post('/familia', familyController.getFamilyBy);
 familyRoutes.delete('/familia/detalhe/:id', familyController.deleteFamily);
+familyRoutes.patch('/familia/detalhe/:id/editar', familyController.updateFamily);
 
 
 export default familyRoutes;

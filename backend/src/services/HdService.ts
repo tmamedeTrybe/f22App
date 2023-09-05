@@ -72,11 +72,11 @@ class HdService {
 	
 	public validateHd = async (id:number, oldSize:number, newSize:number) => {
 		if (id) {
-			const hdexist: Hd | null = await this.HdModel.findOne({ where:{ id } });
+			const hdExist: Hd | null = await this.HdModel.findOne({ where:{ id } });
 		
-			if (!hdexist) return { code: 400, erro: `Hd${id} não existe` };
+			if (!hdExist) return { code: 400, erro: `Hd${id} não existe` };
 
-			const difference = (hdexist.dataValues.available + oldSize) - newSize;
+			const difference = (hdExist.dataValues.available + oldSize) - newSize;
 			
 			if (difference < 0) return { code: 400, erro: `Hd${id} não tem ${newSize}GB disponíveis` };
 			

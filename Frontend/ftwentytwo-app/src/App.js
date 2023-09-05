@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import MyProvider from './context/myProvider';
 import Family from './pages/Family';
 import FamilyDetail from './pages/FamilyDetail';
+import FamilyEdit from './pages/FamilyEdit';
 import HdDetails from './pages/HdDetails';
 import Hds from './pages/Hds';
 import HdUpdate from './pages/HdUpdate';
@@ -37,6 +38,7 @@ function App() {
           <Route path="/hds/details/:id" element={ <HdDetails /> } />
           <Route path="/hds/details/:id/update" element={ <HdUpdate /> } />
           <Route path="/familia" element={ <Family /> } />
+          <Route path="/familia/detalhe/:id/editar" element={ <FamilyEdit /> } />
           <Route path="/familia/detalhe/:id" element={ <FamilyDetail /> } />
           <Route path="/familia/novo" element={ <NewFamily /> } />
         </Routes>
