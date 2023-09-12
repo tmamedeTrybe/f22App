@@ -19,6 +19,10 @@ class HdService {
               { model: Wedding, as: 'rawWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupBrutoTamanho'] },
               { model: Wedding, as: 'editWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupTamanho'] },
               { model: Wedding, as: 'editWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupTamanho'] },
+							{ model: Family, as: 'rawFamilyOne', attributes: ['id','categoria','nome', 'data', 'primeiroBackupBrutoTamanho'] },
+							{ model: Family, as: 'rawFamilyTwo', attributes: ['id','categoria','nome', 'data', 'segundoBackupBrutoTamanho'] },
+							{ model: Family, as: 'editFamilyOne', attributes: ['id','categoria','nome', 'data', 'primeiroBackupTamanho'] },
+							{ model: Family, as: 'editFamilyTwo', attributes: ['id','categoria','nome', 'data', 'segundoBackupTamanho'] },
             ],
         });
 		hds.forEach(async (hd:Hd) => await this.updateUsedGb(hd.id));
@@ -36,6 +40,10 @@ class HdService {
 					{ model: Wedding, as: 'rawWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupBrutoTamanho'] },
 					{ model: Wedding, as: 'editWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupTamanho'] },
 					{ model: Wedding, as: 'editWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupTamanho'] },
+					{ model: Family, as: 'rawFamilyOne', attributes: ['id','categoria','nome', 'data', 'primeiroBackupBrutoTamanho'] },
+					{ model: Family, as: 'rawFamilyTwo', attributes: ['id','categoria','nome', 'data', 'segundoBackupBrutoTamanho'] },
+					{ model: Family, as: 'editFamilyOne', attributes: ['id','categoria','nome', 'data', 'primeiroBackupTamanho'] },
+					{ model: Family, as: 'editFamilyTwo', attributes: ['id','categoria','nome', 'data', 'segundoBackupTamanho'] },
 				] 
 			});
 			if (!result.length) return { code: 400, erro: 'Hd não encontrado' };
@@ -49,6 +57,10 @@ class HdService {
             { model: Wedding, as: 'rawWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupBrutoTamanho'] },
             { model: Wedding, as: 'editWeddingsOne', attributes: ['id','noiva','noivo', 'data', 'primeiroBackupTamanho'] },
             { model: Wedding, as: 'editWeddingsTwo', attributes: ['id','noiva','noivo', 'data', 'segundoBackupTamanho'] },
+						{ model: Family, as: 'rawFamilyOne', attributes: ['id','categoria','nome', 'data', 'primeiroBackupBrutoTamanho'] },
+						{ model: Family, as: 'rawFamilyTwo', attributes: ['id','categoria','nome', 'data', 'segundoBackupBrutoTamanho'] },
+						{ model: Family, as: 'editFamilyOne', attributes: ['id','categoria','nome', 'data', 'primeiroBackupTamanho'] },
+						{ model: Family, as: 'editFamilyTwo', attributes: ['id','categoria','nome', 'data', 'segundoBackupTamanho'] },
           ]
 			});
 			if (!result.length) return { code: 400, erro: 'Hd não encontrado' };

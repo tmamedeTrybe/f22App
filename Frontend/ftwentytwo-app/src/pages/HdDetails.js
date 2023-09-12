@@ -3,6 +3,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import FamiliesByHd from '../components/FamiliesByHd';
 import HeaderLogo from '../components/HeaderLogo';
 import WeddingsByHd from '../components/WeddingsByHd';
 import HdContext from '../context/HdContext';
@@ -55,6 +56,7 @@ function HdDetails() {
               </table>
             </section>
             <WeddingsByHd hd={ hd } />
+            <FamiliesByHd hd={ hd } />
             <section className={ styles.changesButtons }>
               <button
                 onClick={ () => navigate(`/hds/details/${id}/update`) }
