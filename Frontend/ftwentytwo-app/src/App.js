@@ -4,6 +4,7 @@ import MyProvider from './context/myProvider';
 import Family from './pages/Family';
 import FamilyDetail from './pages/FamilyDetail';
 import FamilyEdit from './pages/FamilyEdit';
+import FamilyImage from './pages/FamilyImage';
 import HdDetails from './pages/HdDetails';
 import Hds from './pages/Hds';
 import HdUpdate from './pages/HdUpdate';
@@ -41,6 +42,7 @@ function App() {
           <Route path="/familia/detalhe/:id/editar" element={ <FamilyEdit /> } />
           <Route path="/familia/detalhe/:id" element={ <FamilyDetail /> } />
           <Route path="/familia/novo" element={ <NewFamily /> } />
+          <Route path="/familia/imagem/:id" element={ <FamilyImage /> } />
         </Routes>
       </div>
     </MyProvider>

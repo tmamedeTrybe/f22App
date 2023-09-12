@@ -17,7 +17,7 @@ function FamilyCard({ family }) {
             alt="Imagem do evento"
             src={ family.imagem === null || family.imagem === undefined
               ? icon
-              : require(`../assets/images/casamentos/${family.id}.jpg`) }
+              : require(`../assets/images/familia/${family.id}.jpg`) }
           />
         </section>
       </div>

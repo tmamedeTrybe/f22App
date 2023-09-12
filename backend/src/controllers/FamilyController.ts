@@ -38,6 +38,17 @@ class FamilyController {
     return res.status(updated.code).json({ message: updated.message })
   };
 
+  addImage = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    
+    const namePhoto = `../assets/images/familia/${id}.jpg`;
+    
+    const addImage = await this.familyService.addImage(Number(id), namePhoto);
+
+    // if (addImage.erro) return res.status(addImage.code).json({ erro: addImage.erro });
+    return res.status(addImage.code).json({ message: addImage.message });
+  };
+
   
 };
 

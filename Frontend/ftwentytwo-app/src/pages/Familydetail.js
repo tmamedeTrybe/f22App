@@ -56,7 +56,7 @@ function FamilyDetail() {
               </p>
               <img
                 alt="foto do evento"
-                src={ family.imagem === null || wedding.imagem === undefined
+                src={ family.imagem === null || family.imagem === undefined
                   ? icon
                   // eslint-disable-next-line global-require
                   : require(`../assets/images/familia/${id}.jpg`) }

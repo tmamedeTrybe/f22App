@@ -172,8 +172,19 @@ class FamilyService {
     await this.hdService.updateUsedGb(Number(newInfo.segundoBackup));
     
     return { code: 201, message: "Evento alterado" }
-  }
+  };
 
+  public async addImage(id: number, namePhoto: string) {
+    await this.familyModel.update(
+      {
+        imagem: namePhoto,
+      },
+      {
+        where: { id },
+      }
+    );
+    return { code: 201, message: 'Imagem atualizada' }
+  };
 
 };
 
