@@ -4,43 +4,53 @@ import styles from '../modules/NewWedding.module.css';
 import HeaderLogo from '../components/HeaderLogo';
 
 function NewWedding() {
-  const [data, setData] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [noiva, setNoiva] = useState('');
-  const [noivo, setNoivo] = useState('');
-  const [localCerimonia, setLocalCerimonia] = useState('');
-  const [localRecepcao, setLocalRecepcao] = useState('');
-  const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState(null);
-  const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState(0);
-  const [segundoBackupBruto, setSegundoBackupBruto] = useState(null);
-  const [segundoBackupBrutoTamanho, setSegundoBackupBrutoTamanho] = useState(0);
-  const [primeiroBackup, setPrimeiroBackup] = useState(null);
-  const [primeiroBackupTamanho, setPrimeiroBackupTamanho] = useState(0);
-  const [segundoBackup, setSegundoBackup] = useState(null);
-  const [segundoBackupTamanho, setSegundoBackupTamanho] = useState(0);
+  const [formInfo, setFormInfo] = useState({
+    data: '',
+    cidade: '',
+    noiva: '',
+    noivo: '',
+    localCerimonia: '',
+    localRecepcao: '',
+    primeiroBackupBruto: null,
+    primeiroBackupBrutoTamanho: 0,
+    segundoBackupBruto: null,
+    segundoBackupBrutoTamanho: 0,
+    primeiroBackup: null,
+    primeiroBackupTamanho: 0,
+    segundoBackup: null,
+    segundoBackupTamanho: 0,
+  });
   const [erro, setErro] = useState('');
   const [message, setMessage] = useState('');
 
-  const disabledButton = !data || !noiva || !noivo;
+  const disabledButton = !formInfo.data || !formInfo.noiva || !formInfo.noivo;
+
+  const handleChange = (event) => {
+    setFormInfo({
+      ...formInfo,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const submitForm = async (event) => {
     event.preventDefault();
 
-    const newWedding = { data,
-      cidade,
-      noiva,
-      noivo,
+    const newWedding = {
+      data: formInfo.data,
+      cidade: formInfo.cidade,
+      noiva: formInfo.noiva,
+      noivo: formInfo.noivo,
       imagem: null,
-      localCerimonia,
-      localRecepcao,
-      primeiroBackupBruto,
-      primeiroBackupBrutoTamanho,
-      segundoBackupBruto,
-      segundoBackupBrutoTamanho,
-      primeiroBackup,
-      primeiroBackupTamanho,
-      segundoBackup,
-      segundoBackupTamanho,
+      localCerimonia: formInfo.localCerimonia,
+      localRecepcao: formInfo.localRecepcao,
+      primeiroBackupBruto: formInfo.primeiroBackupBruto,
+      primeiroBackupBrutoTamanho: formInfo.primeiroBackupBrutoTamanho,
+      segundoBackupBruto: formInfo.segundoBackupBruto,
+      segundoBackupBrutoTamanho: formInfo.segundoBackupBrutoTamanho,
+      primeiroBackup: formInfo.primeiroBackup,
+      primeiroBackupTamanho: formInfo.primeiroBackupTamanho,
+      segundoBackup: formInfo.segundoBackup,
+      segundoBackupTamanho: formInfo.segundoBackupTamanho,
     };
 
     const response = await fetch('http://localhost:3001/casamentos/novo', {
@@ -72,127 +82,141 @@ function NewWedding() {
           <label htmlFor="data">
             <input
               placeholder="Data - YYYYMMDD"
-              onChange={ (event) => setData(event.target.value) }
               type="text"
               id="data"
-              value={ data }
+              value={ formInfo.data }
+              name="data"
+              onChange={ handleChange }
             />
           </label>
           <label htmlFor="cidade">
             <input
               placeholder="Cidade"
-              onChange={ (event) => setCidade(event.target.value) }
+              onChange={ handleChange }
               type="text"
               id="cidade"
-              value={ cidade }
+              value={ formInfo.cidade }
+              name="cidade"
             />
           </label>
           <label htmlFor="noiva">
             <input
               placeholder="Noiva"
-              onChange={ (event) => setNoiva(event.target.value) }
+              onChange={ handleChange }
               type="text"
               id="noiva"
-              value={ noiva }
+              value={ formInfo.noiva }
+              name="noiva"
             />
           </label>
           <label htmlFor="noivo">
             <input
               placeholder="Noivo"
-              onChange={ (event) => setNoivo(event.target.value) }
+              onChange={ handleChange }
               type="text"
               id="noivo"
-              value={ noivo }
+              value={ formInfo.noivo }
+              name="noivo"
             />
           </label>
           <label htmlFor="localCerimonia">
             <input
               placeholder="Local da Cerimônia"
-              onChange={ (event) => setLocalCerimonia(event.target.value) }
+              onChange={ handleChange }
               type="text"
               id="localCerimonia"
-              value={ localCerimonia }
+              value={ formInfo.localCerimonia }
+              name="localCerimonia"
             />
           </label>
           <label htmlFor="localRecepcao">
             <input
               placeholder="Local da Recepção"
-              onChange={ (event) => setLocalRecepcao(event.target.value) }
+              onChange={ handleChange }
               type="text"
               id="localRecepcao"
-              value={ localRecepcao }
+              value={ formInfo.localRecepcao }
+              name="localRecepcao"
             />
           </label>
           <label htmlFor="primeiroBackupBruto">
             <input
               placeholder="Primeiro Backup Bruto"
-              onChange={ (event) => setPrimeiroBackupBruto(event.target.value) }
+              onChange={ handleChange }
               type="number"
               id="primeiroBackupBruto"
-              value={ primeiroBackupBruto }
+              value={ formInfo.primeiroBackupBruto }
+              name="primeiroBackupBruto"
             />
           </label>
           <label htmlFor="primeiroBackupBrutoTamanho">
             <input
               placeholder="Tamanho"
-              onChange={ (event) => setPrimeiroBackupBrutoTamanho(event.target.value) }
+              onChange={ handleChange }
               type="number"
               id="primeiroBackupBrutoTamanho"
-              value={ primeiroBackupBrutoTamanho }
+              value={ formInfo.primeiroBackupBrutoTamanho }
+              name="primeiroBackupBrutoTamanho"
             />
           </label>
           <label htmlFor="segundoBackupBruto">
             <input
               placeholder="Segundo Backup Bruto"
-              onChange={ (event) => setSegundoBackupBruto(event.target.value) }
+              onChange={ handleChange }
               type="number"
               id="segundoBackupBruto"
-              value={ segundoBackupBruto }
+              value={ formInfo.segundoBackupBruto }
+              name="segundoBackupBruto"
             />
           </label>
           <label htmlFor="segundoBackupBrutoTamanho">
             <input
               placeholder="Tamanho"
-              onChange={ (event) => setSegundoBackupBrutoTamanho(event.target.value) }
+              onChange={ handleChange }
               type="number"
               id="segundoBackupBrutoTamanho"
-              value={ segundoBackupBrutoTamanho }
+              value={ formInfo.segundoBackupBrutoTamanho }
+              name="segundoBackupBrutoTamanho"
             />
           </label>
           <label htmlFor="primeiroBackup">
             <input
               placeholder="Primeiro Backup"
-              onChange={ (event) => setPrimeiroBackup(event.target.value) }
+              onChange={ handleChange }
               type="number"
               id="primeiroBackup"
-              value={ primeiroBackup }
+              value={ formInfo.primeiroBackup }
+              name="primeiroBackup"
             />
           </label>
           <label htmlFor="primeiroBackupTamanho">
             <input
               placeholder="Tamanho"
-              onChange={ (event) => setPrimeiroBackupTamanho(event.target.value) }
+              onChange={ handleChange }
               type="number"
               id="primeiroBackupTamanho"
-              value={ primeiroBackupTamanho }
+              value={ formInfo.primeiroBackupTamanho }
+              name="primeiroBackupTamanho"
             />
           </label>
           <label htmlFor="segundoBackup">
             <input
               placeholder="Segundo Backup"
-              onChange={ (event) => setSegundoBackup(event.target.value) }
+              onChange={ handleChange }
               type="number"
               id="segundoBackup"
-              value={ segundoBackup }
+              value={ formInfo.segundoBackup }
+              name="segundoBackup"
             />
           </label>
           <label htmlFor="segundoBackupTamanho">
             <input
               placeholder="Tamanho"
-              onChange={ (event) => setSegundoBackupTamanho(event.target.value) }
+              onChange={ handleChange }
               type="number"
               id="segundoBackupTamanho"
-              value={ segundoBackupTamanho }
+              value={ formInfo.segundoBackupTamanho }
+              name="segundoBackupTamanho"
             />
           </label>
           <button
