@@ -1,13 +1,12 @@
 /* eslint-disable max-lines */
-import { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import MyContext from '../context/myContext';
+import { useEffect, useState } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import HeaderLogo from '../components/HeaderLogo';
 import styles from '../modules/FamilyEdit.module.css';
 
 function FamilyEdit() {
   const { id } = useParams();
-  const { filterJob } = useContext(MyContext);
+  const { state } = useLocation();
 
   const [data, setData] = useState('');
   const [categoria, setCategoria] = useState('');
@@ -27,7 +26,7 @@ function FamilyEdit() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const family = filterJob(id);
+    const family = state.job;
     setData(family.data);
     setCategoria(family.categoria);
     setNome(family.nome);

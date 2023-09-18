@@ -7,7 +7,11 @@ import styles from '../modules/FamilyCard.module.css';
 
 function FamilyCard({ family }) {
   return (
-    <Link className={ styles.link } to={ `/familia/detalhe/${family.id}` }>
+    <Link
+      className={ styles.link }
+      to={ `/familia/detalhe/${family.id}` }
+      state={ { job: family } }
+    >
       <div className={ styles.container }>
         <section className={ styles.card }>
           <h2>{ family.categoria }</h2>

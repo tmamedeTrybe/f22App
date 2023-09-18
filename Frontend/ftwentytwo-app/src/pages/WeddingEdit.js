@@ -1,13 +1,12 @@
 /* eslint-disable max-lines */
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import HeaderLogo from '../components/HeaderLogo';
-import MyContext from '../context/myContext';
 import styles from '../modules/WeddingEdit.module.css';
 
 function WeddingEdit() {
-  const { jobsFounded } = useContext(MyContext);
   const { id } = useParams();
+  const { state } = useLocation();
 
   const [data, setData] = useState('');
   const [cidade, setCidade] = useState('');
@@ -27,7 +26,7 @@ function WeddingEdit() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const wedding = jobsFounded.find((job) => job.id === Number(id));
+    const wedding = state.job;
     setData(wedding.data);
     setCidade(wedding.cidade);
     setNoiva(wedding.noiva);

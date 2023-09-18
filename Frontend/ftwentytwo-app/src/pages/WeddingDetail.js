@@ -5,10 +5,9 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable global-require */
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { FaCamera } from 'react-icons/fa';
-import MyContext from '../context/myContext';
 import HeaderLogo from '../components/HeaderLogo';
 import styles from '../modules/WeddingDetail.module.css';
 import icon from '../assets/images/casamentos/wedding-icon.jpg';
@@ -18,13 +17,14 @@ import Loading from '../components/Loading';
 function WeddingDetail() {
   const [wedding, setWedding] = useState('');
   const [loading, setLoading] = useState(true);
-  const { filterJob } = useContext(MyContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
 
+  const { state } = useLocation();
+
   useEffect(() => {
-    setWedding(filterJob(id));
+    setWedding(state.job);
     setLoading(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -110,7 +110,7 @@ function WeddingDetail() {
             </section>
             <section className={ styles.buttons }>
               <button
-                onClick={ () => navigate(`/casamentos/detalhe/${id}/editar`) }
+                onClick={ () => navigate(`/casamentos/detalhe/${id}/editar`, { state: { job: wedding } }) }
               >
                 Editar
               </button>

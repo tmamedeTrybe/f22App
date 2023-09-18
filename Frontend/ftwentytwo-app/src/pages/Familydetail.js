@@ -4,10 +4,9 @@
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable react/jsx-max-depth */
 /* eslint-disable max-len */
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { FaCamera } from 'react-icons/fa';
-import MyContext from '../context/myContext';
 import HeaderLogo from '../components/HeaderLogo';
 import Loading from '../components/Loading';
 import icon from '../assets/images/familia/family-icon.jpg';
@@ -18,12 +17,13 @@ function FamilyDetail() {
   const [family, setFamily] = useState('');
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
-  const { filterJob } = useContext(MyContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const { state } = useLocation();
+
   useEffect(() => {
-    setFamily(filterJob(id));
+    setFamily(state.job);
     setLoading(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -98,7 +98,7 @@ function FamilyDetail() {
             </section>
             <section className={ styles.buttons }>
               <button
-                onClick={ () => navigate(`/familia/detalhe/${id}/editar`) }
+                onClick={ () => navigate(`/familia/detalhe/${id}/editar`, { state: { job: family } }) }
               >
                 Editar
               </button>

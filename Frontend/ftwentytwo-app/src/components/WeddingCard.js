@@ -7,7 +7,11 @@ import icon from '../assets/images/casamentos/wedding-icon.jpg';
 
 function WeddingCard({ wedding }) {
   return (
-    <Link className={ styles.link } to={ `/casamentos/detalhe/${wedding.id}` }>
+    <Link
+      className={ styles.link }
+      to={ `/casamentos/detalhe/${wedding.id}` }
+      state={ { job: wedding } }
+    >
       <div className={ styles.container }>
         <section className={ styles.card }>
           <h2>{`${wedding.noiva} & ${wedding.noivo}`}</h2>
