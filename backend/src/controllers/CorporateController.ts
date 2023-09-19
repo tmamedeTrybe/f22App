@@ -10,6 +10,12 @@ class CorporateController {
     return res.status(corporates.code).json(corporates.corporates);
   };
 
+  getCorporatesBy = async (req: Request, res: Response) => {
+    const corporates = await this.corporateService.getCorporatesBy(req.body);
+    if(corporates.erro) return res.status(corporates.code).json({ erro: corporates.erro });
+    return res.status(corporates.code).json(corporates.corporate);
+  };
+
 };
 
 export default CorporateController;

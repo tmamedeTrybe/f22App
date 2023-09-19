@@ -8,6 +8,7 @@ const corporateRoutes = Router();
 const corporateController = new CorporateController(new CorporateService(Corporate));
 
 corporateRoutes.get('/corporate', corporateController.getCorporates);
+corporateRoutes.post('/corporate', corporateController.getCorporatesBy);
 
 export default corporateRoutes;
 
