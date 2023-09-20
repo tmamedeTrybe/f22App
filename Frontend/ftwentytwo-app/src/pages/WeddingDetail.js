@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
 import { FaCamera } from 'react-icons/fa';
 import HeaderLogo from '../components/HeaderLogo';
-import styles from '../modules/WeddingDetail.module.css';
+import styles from '../modules/JobDetail.module.css';
 import icon from '../assets/images/casamentos/wedding-icon.jpg';
 import BackupCard from '../components/BackupCard';
 import Loading from '../components/Loading';
@@ -43,7 +43,7 @@ function WeddingDetail() {
   return (
     <div className={ styles.container }>
       <HeaderLogo title="Informações" />
-      <Link className={ styles.WeddingsLink } to="/casamentos"> Casamentos </Link>
+      <Link className={ styles.jobLink } to="/casamentos"> Casamentos </Link>
       {
         message ? <section className={ styles.message }>
           <p>{ message }</p>

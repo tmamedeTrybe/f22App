@@ -2,9 +2,10 @@ import { Op } from "sequelize";
 import Corporate from "../database/models/corporate";
 import Hd from "../database/models/hd";
 import search from "../interfaces/search";
+import HdService from "./HdService";
 
 class CorporateService {
-  constructor(private corporateModel: typeof Corporate) {}
+  constructor(private corporateModel: typeof Corporate, private hdService: HdService) {}
 
   public getCorporates = async () => {
     // Falta incluir a chave corresponde do HD no rawBackupOne
@@ -34,7 +35,19 @@ class CorporateService {
     return { code: 200, corporate: result }
   };
 
-  
+  public deleteCorporate = async (id: number) => {
+    const corporate = await this.corporateModel.findOne({ where: { id } });
+
+    await this.corporateModel.destroy({ where: { id } });
+
+    await this.hdService.updateUsedGb(Number(corporate?.primeiroBackupBruto));
+    await this.hdService.updateUsedGb(Number(corporate?.segundoBackupBruto));
+    await this.hdService.updateUsedGb(Number(corporate?.primeiroBackup));
+    await this.hdService.updateUsedGb(Number(corporate?.segundoBackup));
+
+    return { code: 201, message: "Evento deletado" };
+  };
+
 
 };
 
