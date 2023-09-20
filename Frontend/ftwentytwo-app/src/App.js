@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { Route, Routes } from 'react-router-dom';
 import MyProvider from './context/myProvider';
+import Corporate from './pages/Corporate';
 import Family from './pages/Family';
 import FamilyDetail from './pages/FamilyDetail';
 import FamilyEdit from './pages/FamilyEdit';
@@ -43,6 +44,7 @@ function App() {
           <Route path="/familia/detalhe/:id" element={ <FamilyDetail /> } />
           <Route path="/familia/novo" element={ <NewFamily /> } />
           <Route path="/familia/imagem/:id" element={ <FamilyImage /> } />
+          <Route path="/corporativo" element={ <Corporate /> } />
         </Routes>
       </div>
     </MyProvider>

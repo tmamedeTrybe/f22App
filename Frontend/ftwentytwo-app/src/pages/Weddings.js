@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import WeddingCard from '../components/WeddingCard';
 import MyContext from '../context/myContext';
-import styles from '../modules/Weddings.module.css';
+import styles from '../modules/Jobs.module.css';
 import SearchForm from '../components/SearchForm';
 import HeaderLogo from '../components/HeaderLogo';
 
@@ -24,7 +24,7 @@ function Weddings() {
         <SearchForm searchOptions={ searchOptions } url="http://localhost:3001/casamentos" />
         {
           weddingsFounded.length > 0
-          && <section className={ styles.weddings }>
+          && <section className={ styles.job }>
             { weddingsFounded.map((job, i) => (<WeddingCard
               wedding={ job }
               key={ i }
@@ -34,7 +34,7 @@ function Weddings() {
       </main>
       <Link
         to="/casamentos/novo"
-        className={ styles.newWeddingLink }
+        className={ styles.newJobLink }
       >
         Cadastre novo casamento
       </Link>

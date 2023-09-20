@@ -6,7 +6,7 @@ import HeaderLogo from '../components/HeaderLogo';
 import SearchForm from '../components/SearchForm';
 import FamilyCard from '../components/FamilyCard';
 import MyContext from '../context/myContext';
-import styles from '../modules/Family.module.css';
+import styles from '../modules/Jobs.module.css';
 
 function Family() {
   const [familiesFounded, setFamiliesFounded] = useState('');
@@ -24,7 +24,7 @@ function Family() {
         <SearchForm searchOptions={ searchOptions } url="http://localhost:3001/familia" />
         {
           familiesFounded.length > 0
-        && <section className={ styles.weddings }>
+        && <section className={ styles.job }>
           { familiesFounded.map((job, i) => (<FamilyCard
             family={ job }
             key={ i }
@@ -34,9 +34,9 @@ function Family() {
       </main>
       <Link
         to="/familia/novo"
-        className={ styles.newWeddingLink }
+        className={ styles.newJobLink }
       >
-        Cadastre novo evento
+        Cadastre novo Família
       </Link>
     </div>
   );

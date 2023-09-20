@@ -1,24 +1,32 @@
 import { Op } from "sequelize";
 import Corporate from "../database/models/corporate";
+import Hd from "../database/models/hd";
 import search from "../interfaces/search";
-// import Hd from "../database/models/hd";
 
 class CorporateService {
   constructor(private corporateModel: typeof Corporate) {}
 
   public getCorporates = async () => {
     // Falta incluir a chave corresponde do HD no rawBackupOne
-    const corporates: Corporate[] = await this.corporateModel.findAll();
+    const corporates: Corporate[] = await this.corporateModel.findAll({ include:
+      [
+        { model: Hd, as: 'editBackupOne', attributes: ['id','name'] },
+      ],
+    });
     return { code: 200, corporates }
   };
 
   public getCorporatesBy = async (search: search) => {
-     // Falta incluir a chave corresponde do HD no rawBackupOne
     const { searchBy, valueSearch } = search;
 
     const result: Corporate[] | null = await this.corporateModel.findAll(
       {
-        where: { [searchBy]: { [Op.substring]: valueSearch } }
+        where: { [searchBy]: { [Op.substring]: valueSearch }
+      },
+       include:
+        [
+          { model: Hd, as: 'editBackupOne', attributes: ['id','name'] },
+        ],
       },
     );
     

@@ -15,7 +15,7 @@ class WeddingService {
     public getWeddings = async () => {
       const weddings = await this.weddingModel.findAll({ include:
         [
-          { model: Hd, as: 'rawBackupOne', attributes: ['id','name'] },
+          { model: Hd, as: 'editBackupOne', attributes: ['id','name'] },
         ],
       });
       return { code: 200, weddings };
@@ -30,7 +30,7 @@ class WeddingService {
         },
           include:
         [
-          { model: Hd, as: 'rawBackupOne', attributes: ['id','name'] },
+          { model: Hd, as: 'editBackupOne', attributes: ['id','name'] },
         ],
         },
       );

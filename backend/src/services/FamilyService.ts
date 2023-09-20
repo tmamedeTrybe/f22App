@@ -14,7 +14,7 @@ class FamilyService {
   public getFamilies = async () => {
     const families = await this.familyModel.findAll({ include:
       [
-        { model: Hd, as: 'rawBackupOne', attributes: ['id','name', 'used'] },
+        { model: Hd, as: 'editBackupOne', attributes: ['id','name', 'used'] },
       ],
     });
     return { code: 200, families };
@@ -27,7 +27,7 @@ class FamilyService {
       {
         where: {[searchBy]: { [Op.substring]: valueSearch }
       },
-        include: [{ model: Hd, as: 'rawBackupOne', attributes: ['id','name']}],
+        include: [{ model: Hd, as: 'editBackupOne', attributes: ['id','name']}],
     });
 
     if (!result.length) return { code: 400, erro: 'Evento não encontrado' };
