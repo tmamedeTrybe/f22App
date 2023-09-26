@@ -10,7 +10,7 @@ import CorporateCard from '../components/CorporateCard';
 
 function Corporate() {
   const [corporatesFounded, setCorporatesFounded] = useState('');
-  const searchOptions = ['Data', 'Empresa', 'Evento', 'Local', 'Primeiro_backup'];
+  const searchOptions = ['Data', 'Empresa', 'Evento', 'Cidade', 'Primeiro_backup'];
   const { jobsFounded } = useContext(MyContext);
 
   useEffect(() => {

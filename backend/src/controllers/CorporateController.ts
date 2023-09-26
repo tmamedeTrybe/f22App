@@ -3,6 +3,7 @@ import CorporateService from '../services/CorporateService';
 import Corporate from '../database/models/corporate';
 import HdService from '../services/HdService';
 import Hd from '../database/models/hd';
+import corporate from '../interfaces/corporate';
 
 class CorporateController {
   constructor(private corporateService = new CorporateService(Corporate, new HdService(Hd))) {}
@@ -22,6 +23,12 @@ class CorporateController {
     const { id } = req.params;
     const deleted = await this.corporateService.deleteCorporate(Number(id));
     return res.status(deleted.code).json({ message: deleted.message });
+  };
+
+  createCorporate = async (req: Request, res: Response) => {
+    const created = await this.corporateService.createCorporate(req.body as corporate);
+    if (created.erro) return res.status(created.code).json({ erro: created.erro });
+    return res.status(created.code).json({ message: 'Criado com sucesso!', corporate: created.corporate });
   };
 
 };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../modules/NewWedding.module.css';
+import styles from '../modules/NewJob.module.css';
 import HeaderLogo from '../components/HeaderLogo';
 
 function NewWedding() {
@@ -73,7 +73,7 @@ function NewWedding() {
   return (
     <div className={ styles.container }>
       <HeaderLogo title="Novo casamento" />
-      <Link className={ styles.weddingsLink } to="/casamentos"> Casamentos </Link>
+      <Link className={ styles.jobLink } to="/casamentos"> Casamentos </Link>
       <section className={ styles.main }>
         <form
           onSubmit={ submitForm }

@@ -10,8 +10,10 @@ const corporateRoutes = Router();
 const corporateController = new CorporateController(new CorporateService(Corporate, new HdService(Hd)));
 
 corporateRoutes.get('/corporate', corporateController.getCorporates);
+corporateRoutes.post('/corporate/novo', corporateController.createCorporate);
 corporateRoutes.post('/corporate', corporateController.getCorporatesBy);
-corporateRoutes.delete('/corporativo/detalhe/:id', corporateController.deleteCorporate);
+corporateRoutes.delete('/corporate/detalhe/:id', corporateController.deleteCorporate);
+
 
 export default corporateRoutes;
 

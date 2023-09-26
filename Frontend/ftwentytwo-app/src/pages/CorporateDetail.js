@@ -29,7 +29,7 @@ function CorporateDetail() {
   }, []);
 
   const deleteCorporate = async () => {
-    const response = await fetch(`http://localhost:3001/corporativo/detalhe/${id}`, {
+    const response = await fetch(`http://localhost:3001/corporate/detalhe/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

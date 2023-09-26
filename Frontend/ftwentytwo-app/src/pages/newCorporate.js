@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../modules/NewJob.module.css';
 import HeaderLogo from '../components/HeaderLogo';
+import styles from '../modules/NewJob.module.css';
 
-function NewFamily() {
+function NewCorporate() {
   const [data, setData] = useState('');
-  const [categoria, setCategoria] = useState('');
-  const [nome, setNome] = useState('');
+  const [empresa, setEmpresa] = useState('');
+  const [evento, setEvento] = useState('');
   const [contratante, setContratante] = useState('');
   const [local, setLocal] = useState('');
+  const [cidade, setCidade] = useState('');
   const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState(null);
   const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState(0);
   const [segundoBackupBruto, setSegundoBackupBruto] = useState(null);
@@ -20,17 +21,18 @@ function NewFamily() {
   const [erro, setErro] = useState('');
   const [message, setMessage] = useState('');
 
-  const disabledButton = !data || !categoria || !categoria;
+  const disabledButton = !data || !empresa;
 
   const submitForm = async (event) => {
     event.preventDefault();
 
-    const newFamily = {
+    const newCorporate = {
       data,
-      categoria,
-      nome,
+      empresa,
+      evento,
       contratante,
       local,
+      cidade,
       imagem: null,
       primeiroBackupBruto,
       primeiroBackupBrutoTamanho,
@@ -42,27 +44,27 @@ function NewFamily() {
       segundoBackupTamanho,
     };
 
-    const response = await fetch('http://localhost:3001/familia/novo', {
+    const response = await fetch('http://localhost:3001/corporate/novo', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-type': 'application/json',
       },
-      body: JSON.stringify(newFamily),
+      body: JSON.stringify(newCorporate),
     });
-    const familyData = await response.json();
+    const corporateData = await response.json();
 
-    if (familyData.erro) {
-      setErro(familyData.erro);
+    if (corporateData.erro) {
+      setErro(corporateData.erro);
     } else {
-      setMessage(familyData.message);
+      setMessage(corporateData.message);
       setErro('');
     }
   };
 
   return (
     <div className={ styles.container }>
-      <HeaderLogo title="Novo evento Família" />
-      <Link className={ styles.jobLink } to="/familia"> Família </Link>
+      <HeaderLogo title="Novo evento Corporativo" />
+      <Link className={ styles.jobLink } to="/corporativo"> Corporativo </Link>
       <section className={ styles.main }>
         <form
           className={ styles.form }
@@ -77,22 +79,22 @@ function NewFamily() {
               value={ data }
             />
           </label>
-          <label htmlFor="categoria">
+          <label htmlFor="empresa">
             <input
-              placeholder="Categoria"
-              onChange={ (event) => setCategoria(event.target.value) }
+              placeholder="Empresa"
+              onChange={ (event) => setEmpresa(event.target.value) }
               type="text"
-              id="categoria"
-              value={ categoria }
+              id="empresa"
+              value={ empresa }
             />
           </label>
-          <label htmlFor="nome">
+          <label htmlFor="evento">
             <input
-              placeholder="Nome"
-              onChange={ (event) => setNome(event.target.value) }
+              placeholder="Evento"
+              onChange={ (event) => setEvento(event.target.value) }
               type="text"
-              id="nome"
-              value={ nome }
+              id="evento"
+              value={ evento }
             />
           </label>
           <label htmlFor="contratante">
@@ -111,6 +113,15 @@ function NewFamily() {
               type="text"
               id="local"
               value={ local }
+            />
+          </label>
+          <label htmlFor="cidade">
+            <input
+              placeholder="Cidade"
+              onChange={ (event) => setCidade(event.target.value) }
+              type="text"
+              id="cidade"
+              value={ cidade }
             />
           </label>
           <label htmlFor="primeiroBackupBruto">
@@ -206,4 +217,4 @@ function NewFamily() {
   );
 }
 
-export default NewFamily;
+export default NewCorporate;

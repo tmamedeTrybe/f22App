@@ -13,6 +13,7 @@ import HdUpdate from './pages/HdUpdate';
 import Home from './pages/Home';
 import Initial from './pages/Initial';
 import Login from './pages/Login';
+import NewCorporate from './pages/newCorporate';
 import NewFamily from './pages/NewFamily';
 import NewHd from './pages/NewHd';
 import NewWedding from './pages/NewWedding';
@@ -47,6 +48,7 @@ function App() {
           <Route path="/familia/imagem/:id" element={ <FamilyImage /> } />
           <Route path="/corporativo" element={ <Corporate /> } />
           <Route path="/corporativo/detalhe/:id" element={ <CorporateDetail /> } />
+          <Route path="/corporativo/novo" element={ <NewCorporate /> } />
         </Routes>
       </div>
     </MyProvider>
