@@ -5,9 +5,9 @@ import Weddings from '../pages/Weddings';
 import { renderWithContext } from './helpers/renderWithContext';
 
 describe('Testando a rota Home', () => {
-  test('Se o título "Home" é renderizado na tela', () => {
+  test('Se o título "Inicio" é renderizado na tela', () => {
     renderWithContext(<Home />);
-    const titleHome = screen.getByRole('heading', { level: 1, name: 'Home' });
+    const titleHome = screen.getByRole('heading', { level: 1, name: 'Início' });
     expect(titleHome).toBeInTheDocument();
   });
   test('Se existe um card para "Casamentos', () => {

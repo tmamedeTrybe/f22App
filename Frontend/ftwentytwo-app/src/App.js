@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import MyProvider from './context/myProvider';
 import Corporate from './pages/Corporate';
 import CorporateDetail from './pages/CorporateDetail';
+import CorporateEdit from './pages/CorporateEdit';
 import Family from './pages/Family';
 import FamilyDetail from './pages/FamilyDetail';
 import FamilyEdit from './pages/FamilyEdit';
@@ -48,6 +49,7 @@ function App() {
           <Route path="/familia/imagem/:id" element={ <FamilyImage /> } />
           <Route path="/corporativo" element={ <Corporate /> } />
           <Route path="/corporativo/detalhe/:id" element={ <CorporateDetail /> } />
+          <Route path="/corporativo/detalhe/:id/editar" element={ <CorporateEdit /> } />
           <Route path="/corporativo/novo" element={ <NewCorporate /> } />
         </Routes>
       </div>

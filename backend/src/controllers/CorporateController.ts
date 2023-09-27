@@ -4,6 +4,7 @@ import Corporate from '../database/models/corporate';
 import HdService from '../services/HdService';
 import Hd from '../database/models/hd';
 import corporate from '../interfaces/corporate';
+import { json } from 'sequelize';
 
 class CorporateController {
   constructor(private corporateService = new CorporateService(Corporate, new HdService(Hd))) {}
@@ -30,6 +31,13 @@ class CorporateController {
     if (created.erro) return res.status(created.code).json({ erro: created.erro });
     return res.status(created.code).json({ message: 'Criado com sucesso!', corporate: created.corporate });
   };
+
+  updateCorporate = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const updated = await this.corporateService.updateCorporate(Number(id), req.body);
+    if(updated.erro) return res.status(updated.code).json({ message: updated.erro });
+    return res.status(updated.code).json({ message: updated.message });
+  }
 
 };
 

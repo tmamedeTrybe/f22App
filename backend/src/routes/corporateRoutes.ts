@@ -13,6 +13,7 @@ corporateRoutes.get('/corporate', corporateController.getCorporates);
 corporateRoutes.post('/corporate/novo', corporateController.createCorporate);
 corporateRoutes.post('/corporate', corporateController.getCorporatesBy);
 corporateRoutes.delete('/corporate/detalhe/:id', corporateController.deleteCorporate);
+corporateRoutes.patch('/corporate/detalhe/:id/editar', corporateController.updateCorporate);
 
 
 export default corporateRoutes;

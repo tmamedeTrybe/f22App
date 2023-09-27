@@ -3,6 +3,7 @@ import Corporate from "../database/models/corporate";
 import Hd from "../database/models/hd";
 import corporate from "../interfaces/corporate";
 import search from "../interfaces/search";
+import validateUpdateCorporate from "../validations/validateUpdateCorporate";
 import HdService from "./HdService";
 
 class CorporateService {
@@ -111,6 +112,72 @@ class CorporateService {
 
   };
 
+  public updateCorporate = async (id: number, newInfo: corporate) => {
+    const { error } = validateUpdateCorporate(newInfo);
+    if (error) return { code: 400, erro: error.message };
+
+    const corporate = await this.corporateModel.findOne({ where: { id } }) as Corporate;
+
+    const hdRawOneExist = await this.hdService.validateHd(
+      Number(newInfo.primeiroBackupBruto),
+      Number(corporate.primeiroBackupBrutoTamanho),
+      Number(newInfo.primeiroBackupBrutoTamanho),
+    );
+    if (hdRawOneExist?.erro) return { code: hdRawOneExist.code, erro: hdRawOneExist.erro}
+
+    const hdRawTwoExist = await this.hdService.validateHd(
+      Number(newInfo.segundoBackupBruto),
+      Number(corporate.segundoBackupBrutoTamanho),
+      Number(newInfo.segundoBackupBrutoTamanho)
+    );
+    if (hdRawTwoExist?.erro) return { code: hdRawTwoExist.code, erro: hdRawTwoExist.erro}
+    
+    const hdEditOneExist = await this.hdService.validateHd(
+      Number(newInfo.primeiroBackup),
+      Number(corporate.primeiroBackupTamanho),
+      Number(newInfo.primeiroBackupTamanho)
+    );
+    if (hdEditOneExist?.erro) return { code: hdEditOneExist.code, erro: hdEditOneExist.erro}
+
+    const hdEditTwoExist = await this.hdService.validateHd(
+      Number(newInfo.segundoBackup),
+      Number(corporate.segundoBackupTamanho),
+      Number(newInfo.segundoBackupTamanho));
+    if (hdEditTwoExist?.erro) return { code: hdEditTwoExist.code, erro: hdEditTwoExist.erro}
+
+    await this.corporateModel.update(
+      {
+        data: newInfo.data,
+        empresa: newInfo.empresa,
+        evento: newInfo.evento,
+        contratante: newInfo.contratante,
+        local: newInfo.local,
+        cidade: newInfo.cidade,
+        primeiroBackupBruto: newInfo.primeiroBackupBruto === 0 ? null : newInfo.primeiroBackupBruto,
+        primeiroBackupBrutoTamanho: newInfo.primeiroBackupBrutoTamanho,
+        segundoBackupBruto: newInfo.segundoBackupBruto === 0 ? null : newInfo.segundoBackupBruto ,
+        segundoBackupBrutoTamanho: newInfo.segundoBackupBrutoTamanho,
+        primeiroBackup: newInfo.primeiroBackup === 0 ? null : newInfo.primeiroBackup,
+        primeiroBackupTamanho: newInfo.primeiroBackupTamanho,
+        segundoBackup: newInfo.segundoBackup === 0 ? null : newInfo.segundoBackup,
+        segundoBackupTamanho: newInfo.segundoBackupTamanho
+      },
+      { where: { id } },
+    );
+
+    await this.hdService.updateUsedGb(Number(corporate?.primeiroBackupBruto));
+    await this.hdService.updateUsedGb(Number(corporate?.segundoBackupBruto));
+    await this.hdService.updateUsedGb(Number(corporate?.primeiroBackup));
+    await this.hdService.updateUsedGb(Number(corporate?.segundoBackup));
+
+    await this.hdService.updateUsedGb(Number(newInfo.primeiroBackupBruto));
+    await this.hdService.updateUsedGb(Number(newInfo.segundoBackupBruto));
+    await this.hdService.updateUsedGb(Number(newInfo.primeiroBackup));
+    await this.hdService.updateUsedGb(Number(newInfo.segundoBackup));
+    
+    return { code: 201, message: "Evento alterado" }
+
+  }
 
 };
 

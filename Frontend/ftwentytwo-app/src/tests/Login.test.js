@@ -35,7 +35,7 @@ describe('Testando a página de Login', () => {
 
     userEvent.click(button);
 
-    const title = screen.getByRole('heading', { name: 'Home', level: 1 });
+    const title = screen.getByRole('heading', { name: 'Início', level: 1 });
     expect(title).toBeInTheDocument();
   });
   test('Se o existe o link para Cadastrar novo usuário e se ao clica-lo é direcionado para a página de registro', () => {

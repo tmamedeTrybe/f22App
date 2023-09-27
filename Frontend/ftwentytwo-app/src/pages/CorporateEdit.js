@@ -1,18 +1,19 @@
 /* eslint-disable max-lines */
-import { useEffect, useState } from 'react';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import HeaderLogo from '../components/HeaderLogo';
 import styles from '../modules/EditJob.module.css';
 
-function FamilyEdit() {
+function CorporateEdit() {
   const { id } = useParams();
   const { state } = useLocation();
 
   const [data, setData] = useState('');
-  const [categoria, setCategoria] = useState('');
-  const [nome, setNome] = useState('');
+  const [empresa, setEmpresa] = useState('');
+  const [evento, setEvento] = useState('');
   const [contratante, setContratante] = useState('');
   const [local, setLocal] = useState('');
+  const [cidade, setCidade] = useState('');
   const [primeiroBackupBruto, setPrimeiroBackupBruto] = useState(0);
   const [primeiroBackupBrutoTamanho, setPrimeiroBackupBrutoTamanho] = useState(0);
   const [segundoBackupBruto, setSegundoBackupBruto] = useState(0);
@@ -26,30 +27,33 @@ function FamilyEdit() {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    const family = state.job;
-    setData(family.data);
-    setCategoria(family.categoria);
-    setNome(family.nome);
-    setContratante(family.contratante);
-    setLocal(family.local);
-    setPrimeiroBackupBruto(family.primeiroBackupBruto);
-    setPrimeiroBackupBrutoTamanho(family.primeiroBackupBrutoTamanho);
-    setSegundoBackupBruto(family.segundoBackupBruto);
-    setSegundoBackupBrutoTamanho(family.segundoBackupBrutoTamanho);
-    setPrimeiroBackup(family.primeiroBackup);
-    setPrimeiroBackupTamanho(family.primeiroBackupTamanho);
-    setSegundoBackup(family.segundoBackup);
-    setSegundoBackupTamanho(family.segundoBackupTamanho);
+    const corporate = state.job;
+    setData(corporate.data);
+    setEmpresa(corporate.empresa);
+    setEvento(corporate.evento);
+    setContratante(corporate.contratante);
+    setLocal(corporate.local);
+    setCidade(corporate.cidade);
+    setPrimeiroBackupBruto(corporate.primeiroBackupBruto);
+    setPrimeiroBackupBrutoTamanho(corporate.primeiroBackupBrutoTamanho);
+    setSegundoBackupBruto(corporate.segundoBackupBruto);
+    setSegundoBackupBrutoTamanho(corporate.segundoBackupBrutoTamanho);
+    setPrimeiroBackup(corporate.primeiroBackup);
+    setPrimeiroBackupTamanho(corporate.primeiroBackupTamanho);
+    setSegundoBackup(corporate.segundoBackup);
+    setSegundoBackupTamanho(corporate.segundoBackupTamanho);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const submitForm = async (event) => {
-    const familyEdited = {
+    event.preventDefault();
+    const corporateEdited = {
       data,
-      categoria,
-      nome,
+      empresa,
+      evento,
       contratante,
       local,
+      cidade,
       primeiroBackupBruto: primeiroBackupBruto || null,
       primeiroBackupBrutoTamanho: primeiroBackupBrutoTamanho || 0,
       segundoBackupBruto: segundoBackupBruto || null,
@@ -59,18 +63,18 @@ function FamilyEdit() {
       segundoBackup: segundoBackup || null,
       segundoBackupTamanho: segundoBackupTamanho || 0,
     };
-    event.preventDefault();
-    const response = await fetch(`http://localhost:3001/familia/detalhe/${id}/editar`, {
+
+    const response = await fetch(`http://localhost:3001/corporate/detalhe/${id}/editar`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(familyEdited),
+      body: JSON.stringify(corporateEdited),
     });
-    const familyData = await response.json();
+    const corporateData = await response.json();
 
-    if (familyData.erro) {
-      setErro(familyData.erro);
+    if (corporateData.erro) {
+      setErro(corporateData.erro);
     } else {
-      setMessage(familyData.message);
+      setMessage(corporateData.message);
       setErro('');
     }
   };
@@ -87,11 +91,11 @@ function FamilyEdit() {
 
   return (
     <div className={ styles.container }>
-      <HeaderLogo title="Editar evento Família" />
-      <Link className={ styles.jobLink } to="/familia"> Família</Link>
+      <HeaderLogo title="Editar evento Corporativo" />
+      <Link className={ styles.jobLink } to="/corporativo"> Corporativo</Link>
       <main className={ styles.main }>
-        <h3>{ nome }</h3>
-        <h2>{ categoria }</h2>
+        <h3>{ empresa }</h3>
+        <h2>{ evento }</h2>
         <form onSubmit={ submitForm } className={ styles.form }>
           <label htmlFor="data">
             Data
@@ -104,26 +108,26 @@ function FamilyEdit() {
               value={ data }
             />
           </label>
-          <label htmlFor="categoria">
-            Categoria
+          <label htmlFor="empresa">
+            Empresa
             <input
-              onFocus={ () => setCategoria('') }
-              placeholder="categoria"
-              onChange={ (event) => setCategoria(event.target.value) }
+              onFocus={ () => setEmpresa('') }
+              placeholder="Empresa"
+              onChange={ (event) => setEmpresa(event.target.value) }
               type="text"
-              id="categoria"
-              value={ categoria }
+              id="empresa"
+              value={ empresa }
             />
           </label>
-          <label htmlFor="nome">
-            Nome
+          <label htmlFor="evento">
+            Evento
             <input
-              onFocus={ () => setNome('') }
-              placeholder="nome"
-              onChange={ (event) => setNome(event.target.value) }
+              onFocus={ () => setEvento('') }
+              placeholder="Evento"
+              onChange={ (event) => setEvento(event.target.value) }
               type="text"
-              id="nome"
-              value={ nome }
+              id="evento"
+              value={ evento }
             />
           </label>
           <label htmlFor="contratante">
@@ -146,6 +150,17 @@ function FamilyEdit() {
               type="text"
               id="local"
               value={ local }
+            />
+          </label>
+          <label htmlFor="cidade">
+            Cidade
+            <input
+              onFocus={ () => setCidade('') }
+              placeholder="Cidade da Cerimônia"
+              onChange={ (event) => setCidade(event.target.value) }
+              type="text"
+              id="cidade"
+              value={ cidade }
             />
           </label>
           <label htmlFor="primeiroBackupBruto">
@@ -261,4 +276,4 @@ function FamilyEdit() {
   );
 }
 
-export default FamilyEdit;
+export default CorporateEdit;
