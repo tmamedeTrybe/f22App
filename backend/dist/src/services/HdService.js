@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
+const corporate_1 = __importDefault(require("../database/models/corporate"));
 const family_1 = __importDefault(require("../database/models/family"));
 const wedding_1 = __importDefault(require("../database/models/wedding"));
 const validateNewHd_1 = __importDefault(require("../validations/validateNewHd"));
@@ -29,6 +30,10 @@ class HdService {
                     { model: family_1.default, as: 'rawFamilyTwo', attributes: ['id', 'categoria', 'nome', 'data', 'segundoBackupBrutoTamanho'] },
                     { model: family_1.default, as: 'editFamilyOne', attributes: ['id', 'categoria', 'nome', 'data', 'primeiroBackupTamanho'] },
                     { model: family_1.default, as: 'editFamilyTwo', attributes: ['id', 'categoria', 'nome', 'data', 'segundoBackupTamanho'] },
+                    { model: corporate_1.default, as: 'rawCorporateOne', attributes: ['id', 'empresa', 'evento', 'data', 'primeiroBackupBrutoTamanho'] },
+                    { model: corporate_1.default, as: 'rawCorporateTwo', attributes: ['id', 'empresa', 'evento', 'data', 'segundoBackupBrutoTamanho'] },
+                    { model: corporate_1.default, as: 'editCorporateOne', attributes: ['id', 'empresa', 'evento', 'data', 'primeiroBackupTamanho'] },
+                    { model: corporate_1.default, as: 'editCorporateTwo', attributes: ['id', 'empresa', 'evento', 'data', 'segundoBackupTamanho'] },
                 ],
             });
             hds.forEach((hd) => __awaiter(this, void 0, void 0, function* () { return yield this.updateUsedGb(hd.id); }));
@@ -48,6 +53,10 @@ class HdService {
                         { model: family_1.default, as: 'rawFamilyTwo', attributes: ['id', 'categoria', 'nome', 'data', 'segundoBackupBrutoTamanho'] },
                         { model: family_1.default, as: 'editFamilyOne', attributes: ['id', 'categoria', 'nome', 'data', 'primeiroBackupTamanho'] },
                         { model: family_1.default, as: 'editFamilyTwo', attributes: ['id', 'categoria', 'nome', 'data', 'segundoBackupTamanho'] },
+                        { model: corporate_1.default, as: 'rawCorporateOne', attributes: ['id', 'empresa', 'evento', 'data', 'primeiroBackupBrutoTamanho'] },
+                        { model: corporate_1.default, as: 'rawCorporateTwo', attributes: ['id', 'empresa', 'evento', 'data', 'segundoBackupBrutoTamanho'] },
+                        { model: corporate_1.default, as: 'editCorporateOne', attributes: ['id', 'empresa', 'evento', 'data', 'primeiroBackupTamanho'] },
+                        { model: corporate_1.default, as: 'editCorporateTwo', attributes: ['id', 'empresa', 'evento', 'data', 'segundoBackupTamanho'] },
                     ]
                 });
                 if (!result.length)
@@ -67,6 +76,10 @@ class HdService {
                         { model: family_1.default, as: 'rawFamilyTwo', attributes: ['id', 'categoria', 'nome', 'data', 'segundoBackupBrutoTamanho'] },
                         { model: family_1.default, as: 'editFamilyOne', attributes: ['id', 'categoria', 'nome', 'data', 'primeiroBackupTamanho'] },
                         { model: family_1.default, as: 'editFamilyTwo', attributes: ['id', 'categoria', 'nome', 'data', 'segundoBackupTamanho'] },
+                        { model: corporate_1.default, as: 'rawCorporateOne', attributes: ['id', 'empresa', 'evento', 'data', 'primeiroBackupBrutoTamanho'] },
+                        { model: corporate_1.default, as: 'rawCorporateTwo', attributes: ['id', 'empresa', 'evento', 'data', 'segundoBackupBrutoTamanho'] },
+                        { model: corporate_1.default, as: 'editCorporateOne', attributes: ['id', 'empresa', 'evento', 'data', 'primeiroBackupTamanho'] },
+                        { model: corporate_1.default, as: 'editCorporateTwo', attributes: ['id', 'empresa', 'evento', 'data', 'segundoBackupTamanho'] },
                     ]
                 });
                 if (!result.length)
@@ -127,23 +140,31 @@ class HdService {
         this.updateUsedGb = (id) => __awaiter(this, void 0, void 0, function* () {
             let totalWeddingsSizeFirstRaw;
             let totalFamiliesSizeFirtsRaw;
+            let totalCorporateSizeFirstRaw;
             let totalWeddingsSizeSecondRaw;
             let totalFamiliesSizeSecondRaw;
+            let totalCorporateSizeSecondRaw;
             let totalWeddingsSizeFirstEdit;
             let totalFamiliesSizeFirstEdit;
+            let totalCorporteSizeFirstEdit;
             let totalWeddingsSizeSecondEdit;
             let totalFamiliesSizeSecondEdit;
+            let totalCorporateSizeSecondEdit;
             const hd = yield this.HdModel.findOne({
                 where: { id },
                 include: [
                     { model: wedding_1.default, as: 'rawWeddingsOne', attributes: ['primeiroBackupBrutoTamanho'] },
                     { model: family_1.default, as: 'rawFamilyOne', attributes: ['primeiroBackupBrutoTamanho'] },
+                    { model: corporate_1.default, as: 'rawCorporateOne', attributes: ['primeiroBackupBrutoTamanho'] },
                     { model: wedding_1.default, as: 'rawWeddingsTwo', attributes: ['segundoBackupBrutoTamanho'] },
                     { model: family_1.default, as: 'rawFamilyTwo', attributes: ['segundoBackupBrutoTamanho'] },
+                    { model: corporate_1.default, as: 'rawCorporateTwo', attributes: ['segundoBackupBrutoTamanho'] },
                     { model: wedding_1.default, as: 'editWeddingsOne', attributes: ['primeiroBackupTamanho'] },
                     { model: family_1.default, as: 'editFamilyOne', attributes: ['primeiroBackupTamanho'] },
+                    { model: corporate_1.default, as: 'editCorporateOne', attributes: ['primeiroBackupTamanho'] },
                     { model: wedding_1.default, as: 'editWeddingsTwo', attributes: ['segundoBackupTamanho'] },
-                    { model: family_1.default, as: 'editFamilyTwo', attributes: ['segundoBackupTamanho'] }
+                    { model: family_1.default, as: 'editFamilyTwo', attributes: ['segundoBackupTamanho'] },
+                    { model: corporate_1.default, as: 'editCorporateTwo', attributes: ['segundoBackupTamanho'] },
                 ]
             });
             if (hd) {
@@ -159,6 +180,12 @@ class HdService {
                 }
                 else
                     totalFamiliesSizeFirtsRaw = 0;
+                if (hd.rawCorporateOne && hd.rawCorporateOne.length > 0) {
+                    const values = hd.rawCorporateOne.reduce((acc, cur) => cur.primeiroBackupBrutoTamanho + acc, 0);
+                    totalCorporateSizeFirstRaw = values;
+                }
+                else
+                    totalCorporateSizeFirstRaw = 0;
                 if (hd.rawWeddingsTwo && hd.rawWeddingsTwo.length > 0) {
                     const values = hd.rawWeddingsTwo.reduce((acc, cur) => cur.segundoBackupBrutoTamanho + acc, 0);
                     totalWeddingsSizeSecondRaw = values;
@@ -171,6 +198,12 @@ class HdService {
                 }
                 else
                     totalFamiliesSizeSecondRaw = 0;
+                if (hd.rawCorporateTwo && hd.rawCorporateTwo.length > 0) {
+                    const values = hd.rawCorporateTwo.reduce((acc, cur) => cur.segundoBackupBrutoTamanho + acc, 0);
+                    totalCorporateSizeSecondRaw = values;
+                }
+                else
+                    totalCorporateSizeSecondRaw = 0;
                 if (hd.editWeddingsOne && hd.editWeddingsOne.length > 0) {
                     const values = hd.editWeddingsOne.reduce((acc, cur) => cur.primeiroBackupTamanho + acc, 0);
                     totalWeddingsSizeFirstEdit = values;
@@ -183,6 +216,12 @@ class HdService {
                 }
                 else
                     totalFamiliesSizeFirstEdit = 0;
+                if (hd.editCorporateOne && hd.editCorporateOne.length > 0) {
+                    const values = hd.editCorporateOne.reduce((acc, cur) => cur.primeiroBackupTamanho + acc, 0);
+                    totalCorporteSizeFirstEdit = values;
+                }
+                else
+                    totalCorporteSizeFirstEdit = 0;
                 if (hd.editWeddingsTwo && hd.editWeddingsTwo.length > 0) {
                     const values = hd.editWeddingsTwo.reduce((acc, cur) => cur.segundoBackupTamanho + acc, 0);
                     totalWeddingsSizeSecondEdit = values;
@@ -195,10 +234,16 @@ class HdService {
                 }
                 else
                     totalFamiliesSizeSecondEdit = 0;
-                const totalSizeFirstRaw = totalWeddingsSizeFirstRaw + totalFamiliesSizeFirtsRaw;
-                const totalSizeSecondRaw = totalWeddingsSizeSecondRaw + totalFamiliesSizeSecondRaw;
-                const totalSizeFirstEdit = totalWeddingsSizeFirstEdit + totalFamiliesSizeFirstEdit;
-                const totalSizeSecondEdit = totalWeddingsSizeSecondEdit + totalFamiliesSizeSecondEdit;
+                if (hd.editCorporateTwo && hd.editCorporateTwo.length > 0) {
+                    const values = hd.editCorporateTwo.reduce((acc, cur) => cur.segundoBackupTamanho + acc, 0);
+                    totalCorporateSizeSecondEdit = values;
+                }
+                else
+                    totalCorporateSizeSecondEdit = 0;
+                const totalSizeFirstRaw = totalWeddingsSizeFirstRaw + totalFamiliesSizeFirtsRaw + totalCorporateSizeFirstRaw;
+                const totalSizeSecondRaw = totalWeddingsSizeSecondRaw + totalFamiliesSizeSecondRaw + totalCorporateSizeSecondRaw;
+                const totalSizeFirstEdit = totalWeddingsSizeFirstEdit + totalFamiliesSizeFirstEdit + totalCorporteSizeFirstEdit;
+                const totalSizeSecondEdit = totalWeddingsSizeSecondEdit + totalFamiliesSizeSecondEdit + totalCorporateSizeSecondEdit;
                 const result = totalSizeFirstRaw + totalSizeSecondRaw + totalSizeFirstEdit + totalSizeSecondEdit;
                 const hdUpdated = yield this.HdModel.update({
                     used: result,

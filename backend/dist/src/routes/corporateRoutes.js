@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const CorporateController_1 = __importDefault(require("../controllers/CorporateController"));
+const corporate_1 = __importDefault(require("../database/models/corporate"));
+const hd_1 = __importDefault(require("../database/models/hd"));
+const uploadsCorporate_1 = __importDefault(require("../middlewares/uploadsCorporate"));
+const CorporateService_1 = __importDefault(require("../services/CorporateService"));
+const HdService_1 = __importDefault(require("../services/HdService"));
+const corporateRoutes = (0, express_1.Router)();
+const corporateController = new CorporateController_1.default(new CorporateService_1.default(corporate_1.default, new HdService_1.default(hd_1.default)));
+corporateRoutes.get('/corporate', corporateController.getCorporates);
+corporateRoutes.post('/corporate/novo', corporateController.createCorporate);
+corporateRoutes.post('/corporate', corporateController.getCorporatesBy);
+corporateRoutes.delete('/corporate/detalhe/:id', corporateController.deleteCorporate);
+corporateRoutes.patch('/corporate/detalhe/:id/editar', corporateController.updateCorporate);
+corporateRoutes.post('/corporate/imagem/:id', uploadsCorporate_1.default.single('file'), corporateController.addImage);
+exports.default = corporateRoutes;

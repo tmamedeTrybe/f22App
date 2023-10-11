@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const multer = require('multer');
 const storage = multer.diskStorage({
     destination: function (_req, _file, cb) {
-        cb(null, '../Frontend/ftwentytwo-app/src/assets/images/familia');
+        cb(null, '../Frontend/ftwentytwo-app/src/assets/images/corporativo');
     },
     filename: function (req, file, cb) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -21,5 +21,5 @@ const storage = multer.diskStorage({
         });
     },
 });
-const uploadsFamily = multer({ storage: storage });
-exports.default = uploadsFamily;
+const uploadsCorporate = multer({ storage: storage });
+exports.default = uploadsCorporate;

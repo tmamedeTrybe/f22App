@@ -22,7 +22,7 @@ class WeddingService {
         this.hdService = hdService;
         this.getWeddings = () => __awaiter(this, void 0, void 0, function* () {
             const weddings = yield this.weddingModel.findAll({ include: [
-                    { model: hd_1.default, as: 'rawBackupOne', attributes: ['id', 'name'] },
+                    { model: hd_1.default, as: 'editBackupOne', attributes: ['id', 'name'] },
                 ],
             });
             return { code: 200, weddings };
@@ -33,7 +33,7 @@ class WeddingService {
                 where: { [searchBy]: { [sequelize_1.Op.substring]: valueSearch }
                 },
                 include: [
-                    { model: hd_1.default, as: 'rawBackupOne', attributes: ['id', 'name'] },
+                    { model: hd_1.default, as: 'editBackupOne', attributes: ['id', 'name'] },
                 ],
             });
             if (!result.length)

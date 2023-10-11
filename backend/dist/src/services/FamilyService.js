@@ -22,7 +22,7 @@ class FamilyService {
         // constructor(private familyModel: typeof Family ) {}
         this.getFamilies = () => __awaiter(this, void 0, void 0, function* () {
             const families = yield this.familyModel.findAll({ include: [
-                    { model: hd_1.default, as: 'rawBackupOne', attributes: ['id', 'name', 'used'] },
+                    { model: hd_1.default, as: 'editBackupOne', attributes: ['id', 'name', 'used'] },
                 ],
             });
             return { code: 200, families };
@@ -32,7 +32,7 @@ class FamilyService {
             const result = yield this.familyModel.findAll({
                 where: { [searchBy]: { [sequelize_1.Op.substring]: valueSearch }
                 },
-                include: [{ model: hd_1.default, as: 'rawBackupOne', attributes: ['id', 'name'] }],
+                include: [{ model: hd_1.default, as: 'editBackupOne', attributes: ['id', 'name'] }],
             });
             if (!result.length)
                 return { code: 400, erro: 'Evento não encontrado' };
