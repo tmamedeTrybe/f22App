@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import MyContext from '../context/myContext';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import HeaderLogo from '../components/HeaderLogo';
 import styles from '../modules/WeddingImage.module.css';
 
@@ -9,8 +8,13 @@ function WeddingImage() {
   const [image, setImage] = useState({ preview: '', data: '' });
   const [status, setStatus] = useState('');
 
-  const { filterJob } = useContext(MyContext);
   const { id } = useParams();
+  const { state } = useLocation();
+
+  useEffect(() => {
+    setWedding(state.job);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleFileChange = (e) => {
     const img = {
@@ -34,11 +38,6 @@ function WeddingImage() {
 
     if (response) setStatus(response.statusText);
   };
-
-  useEffect(() => {
-    setWedding(filterJob(id));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className={ styles.container }>

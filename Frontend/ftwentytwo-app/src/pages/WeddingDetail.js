@@ -62,7 +62,7 @@ function WeddingDetail() {
                 width="200px"
               />
               <button
-                onClick={ () => navigate(`/casamentos/imagem/${id}`) }
+                onClick={ () => navigate(`/casamentos/imagem/${id}`, { state: { job: wedding } }) }
                 width="10px"
               >
                 <FaCamera className={ styles.cameraIcon } size="20px" color="rgba(252, 255, 252, 0.6)" />
