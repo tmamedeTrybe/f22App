@@ -15,6 +15,7 @@ function Weddings() {
 
   useEffect(() => {
     setWeddingsFounded(jobsFounded);
+    console.log('eventos - ', jobsFounded);
   }, [jobsFounded]);
 
   return (
@@ -23,7 +24,7 @@ function Weddings() {
       <main className={ styles.main }>
         <SearchForm searchOptions={ searchOptions } url="http://localhost:3001/casamentos" />
         {
-          weddingsFounded.length > 0
+          weddingsFounded
           && <section className={ styles.job }>
             { weddingsFounded.map((job, i) => (<WeddingCard
               wedding={ job }

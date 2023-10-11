@@ -13,6 +13,9 @@ function SearchForm({ searchOptions, url }) {
 
   useEffect(() => {
     changeJobs(jobsFounded);
+    return () => {
+      changeJobs('');
+    };
   }, [changeJobs, jobsFounded]);
 
   const disabledButton = !valueSearch;
