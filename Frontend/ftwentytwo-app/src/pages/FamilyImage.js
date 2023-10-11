@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import HeaderLogo from '../components/HeaderLogo';
-import MyContext from '../context/myContext';
 import styles from '../modules/FamilyImage.module.css';
 
 function FamilyImage() {
@@ -10,12 +9,13 @@ function FamilyImage() {
   const [status, setStatus] = useState('');
 
   const { id } = useParams();
-  const { filterJob } = useContext(MyContext);
+
+  const { state } = useLocation();
 
   const disableButton = !image.preview;
 
   useEffect(() => {
-    setFamily(filterJob(id));
+    setFamily(state.job);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

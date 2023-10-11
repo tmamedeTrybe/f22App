@@ -63,7 +63,7 @@ function FamilyDetail() {
                 width="200px"
               />
               <button
-                onClick={ () => navigate(`/familia/imagem/${id}`) }
+                onClick={ () => navigate(`/familia/imagem/${id}`, { state: { job: family } }) }
                 width="10px"
               >
                 <FaCamera className={ styles.cameraIcon } size="20px" color="rgba(252, 255, 252, 0.6)" />

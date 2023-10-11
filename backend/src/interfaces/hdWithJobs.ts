@@ -13,6 +13,10 @@ interface hdWithJobs {
   rawFamilyTwo?: Array<any>;
   editFamilyOne?: Array<any>;
   editFamilyTwo?: Array<any>;
+  rawCorporateOne?: Array<any>;
+  rawCorporateTwo?: Array<any>;
+  editCorporateOne?: Array<any>;
+  editCorporateTwo?: Array<any>;
 };
 
 export default hdWithJobs;

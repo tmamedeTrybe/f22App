@@ -177,7 +177,19 @@ class CorporateService {
     
     return { code: 201, message: "Evento alterado" }
 
-  }
+  };
+
+  public async addImage(id: number, namePhoto: string) {
+    await this.corporateModel.update(
+      {
+        imagem: namePhoto,
+      },
+      {
+        where: { id },
+      }
+    );
+    return { code: 201, message: 'Imagem atualizada' }
+  };
 
 };
 

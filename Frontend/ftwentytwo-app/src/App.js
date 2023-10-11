@@ -4,6 +4,7 @@ import MyProvider from './context/myProvider';
 import Corporate from './pages/Corporate';
 import CorporateDetail from './pages/CorporateDetail';
 import CorporateEdit from './pages/CorporateEdit';
+import CorporateImage from './pages/CorporateImage';
 import Family from './pages/Family';
 import FamilyDetail from './pages/FamilyDetail';
 import FamilyEdit from './pages/FamilyEdit';
@@ -51,6 +52,7 @@ function App() {
           <Route path="/corporativo/detalhe/:id" element={ <CorporateDetail /> } />
           <Route path="/corporativo/detalhe/:id/editar" element={ <CorporateEdit /> } />
           <Route path="/corporativo/novo" element={ <NewCorporate /> } />
+          <Route path="/corporativo/imagem/:id" element={ <CorporateImage /> } />
         </Routes>
       </div>
     </MyProvider>

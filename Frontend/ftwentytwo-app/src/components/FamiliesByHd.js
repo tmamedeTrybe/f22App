@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styles from '../modules/WeddingsByHd.module.css';
+import styles from '../modules/JobsByHd.module.css';
 
 function FamiliesByHd({ hd }) {
   const [rawOne, setRawOne] = useState('');

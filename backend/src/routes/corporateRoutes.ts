@@ -2,6 +2,7 @@ import { Router } from "express";
 import CorporateController from "../controllers/CorporateController";
 import Corporate from "../database/models/corporate";
 import Hd from "../database/models/hd";
+import uploadsCorporate from "../middlewares/uploadsCorporate";
 import CorporateService from "../services/CorporateService";
 import HdService from "../services/HdService";
 
@@ -14,6 +15,7 @@ corporateRoutes.post('/corporate/novo', corporateController.createCorporate);
 corporateRoutes.post('/corporate', corporateController.getCorporatesBy);
 corporateRoutes.delete('/corporate/detalhe/:id', corporateController.deleteCorporate);
 corporateRoutes.patch('/corporate/detalhe/:id/editar', corporateController.updateCorporate);
+corporateRoutes.post('/corporate/imagem/:id', uploadsCorporate.single('file'), corporateController.addImage);
 
 
 export default corporateRoutes;

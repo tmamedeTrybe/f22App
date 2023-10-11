@@ -4,7 +4,6 @@ import Corporate from '../database/models/corporate';
 import HdService from '../services/HdService';
 import Hd from '../database/models/hd';
 import corporate from '../interfaces/corporate';
-import { json } from 'sequelize';
 
 class CorporateController {
   constructor(private corporateService = new CorporateService(Corporate, new HdService(Hd))) {}
@@ -37,7 +36,17 @@ class CorporateController {
     const updated = await this.corporateService.updateCorporate(Number(id), req.body);
     if(updated.erro) return res.status(updated.code).json({ message: updated.erro });
     return res.status(updated.code).json({ message: updated.message });
-  }
+  };
+
+  addImage = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    
+    const namePhoto = `../assets/images/corporativo/${id}.jpg`;
+    
+    const addImage = await this.corporateService.addImage(Number(id), namePhoto);
+
+    return res.status(addImage.code).json({ message: addImage.message });
+  };
 
 };
 
