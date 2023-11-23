@@ -1,6 +1,6 @@
 import express from 'express';
 import { Request, Response } from 'express';
-import { familyRoutes, hdRoutes, userRoutes, weddingRoutes, corporateRoutes } from './routes';
+import { familyRoutes, hdRoutes, userRoutes, weddingRoutes, corporateRoutes, gastronomyRoutes } from './routes';
 import cors from 'cors';
 import middlewareErro from './middlewares/middlewareErro';
 
@@ -17,5 +17,6 @@ app.use(weddingRoutes);
 app.use(hdRoutes);
 app.use(familyRoutes);
 app.use(corporateRoutes);
+app.use(gastronomyRoutes)
 
 export default app;

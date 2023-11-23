@@ -10,7 +10,6 @@ class CorporateService {
   constructor(private corporateModel: typeof Corporate, private hdService: HdService) {}
 
   public getCorporates = async () => {
-    // Falta incluir a chave corresponde do HD no rawBackupOne
     const corporates: Corporate[] = await this.corporateModel.findAll({ include:
       [
         { model: Hd, as: 'editBackupOne', attributes: ['id','name'] },
@@ -22,10 +21,9 @@ class CorporateService {
   public getCorporatesBy = async (search: search) => {
     const { searchBy, valueSearch } = search;
 
-    const result: Corporate[] | null = await this.corporateModel.findAll(
+    const result = await this.corporateModel.findAll(
       {
-        where: { [searchBy]: { [Op.substring]: valueSearch }
-      },
+        where: { [searchBy]: { [Op.substring]: valueSearch }},
        include:
         [
           { model: Hd, as: 'editBackupOne', attributes: ['id','name'] },

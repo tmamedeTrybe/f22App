@@ -1,6 +1,5 @@
 import { DATEONLY, INTEGER, Model, STRING } from "sequelize";
 import gastronomy from "../../interfaces/gastronomy";
-import Corporate from "./corporate";
 import db from ".";
 import Hd from '../models/hd';
 
@@ -23,7 +22,7 @@ class Gastronomy extends Model implements gastronomy {
   segundoBackupTamanho?: number;
 }
 
-Corporate.init({
+Gastronomy.init({
   id: { type: INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
   date: { type: DATEONLY, allowNull: false },
   company: { type: STRING, allowNull: false },
