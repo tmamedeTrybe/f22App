@@ -34,7 +34,7 @@ function Gastronomy() {
         }
       </main>
       <Link
-        to="gastronomy/new"
+        to="/gastronomia/novo"
         className={ styles.newJobLink }
       >
         Cadastre novo Gastronomia

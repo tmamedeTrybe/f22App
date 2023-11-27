@@ -18,6 +18,7 @@ import Initial from './pages/Initial';
 import Login from './pages/Login';
 import NewCorporate from './pages/newCorporate';
 import NewFamily from './pages/NewFamily';
+import NewGastronomy from './pages/NewGastronomy';
 import NewHd from './pages/NewHd';
 import NewWedding from './pages/NewWedding';
 import Register from './pages/Register';
@@ -54,7 +55,8 @@ function App() {
           <Route path="/corporativo/detalhe/:id/editar" element={ <CorporateEdit /> } />
           <Route path="/corporativo/novo" element={ <NewCorporate /> } />
           <Route path="/corporativo/imagem/:id" element={ <CorporateImage /> } />
-          <Route path="gastronomia" element={ <Gastronomy /> } />
+          <Route path="/gastronomia" element={ <Gastronomy /> } />
+          <Route path="/gastronomia/novo" element={ <NewGastronomy /> } />
         </Routes>
       </div>
     </MyProvider>
