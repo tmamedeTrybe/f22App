@@ -9,7 +9,7 @@ function GastronomyCard({ gastronomy }) {
   return (
     <Link
       className={ styles.link }
-      to={ `/gastronomy/detail/${gastronomy.id}` }
+      to={ `/gastronomia/detalhe/${gastronomy.id}` }
       state={ { job: gastronomy } }
     >
       <div className={ styles.container }>

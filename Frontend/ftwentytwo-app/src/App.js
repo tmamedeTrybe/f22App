@@ -10,6 +10,7 @@ import FamilyDetail from './pages/FamilyDetail';
 import FamilyEdit from './pages/FamilyEdit';
 import FamilyImage from './pages/FamilyImage';
 import Gastronomy from './pages/Gastronomy';
+import GastronomyDetail from './pages/GastronomyDetail';
 import HdDetails from './pages/HdDetails';
 import Hds from './pages/Hds';
 import HdUpdate from './pages/HdUpdate';
@@ -57,6 +58,7 @@ function App() {
           <Route path="/corporativo/imagem/:id" element={ <CorporateImage /> } />
           <Route path="/gastronomia" element={ <Gastronomy /> } />
           <Route path="/gastronomia/novo" element={ <NewGastronomy /> } />
+          <Route path="/gastronomia/detalhe/:id" element={ <GastronomyDetail /> } />
         </Routes>
       </div>
     </MyProvider>
