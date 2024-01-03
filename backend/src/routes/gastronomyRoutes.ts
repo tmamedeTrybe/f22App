@@ -12,5 +12,6 @@ const gastronomyController = new GastronomyController(new GastronomyService(Gast
 gastronomyRoutes.get('/gastronomy', gastronomyController.getGastronomies);
 gastronomyRoutes.post('/gastronomy/new', gastronomyController.createGastronomy);
 gastronomyRoutes.post('/gastronomy', gastronomyController.getGastronomyBy);
+gastronomyRoutes.delete('/gastronomy/detalhe/:id', gastronomyController.deleteGastronomy);
 
 export default gastronomyRoutes;

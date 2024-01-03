@@ -96,6 +96,20 @@ class GastronomyService {
 
   };
 
+  public deleteGastronomy = async (id: number) => {
+    const gastronomy = await this.gastronomyModel.findOne({ where: { id } });
+
+    await this.gastronomyModel.destroy({ where: { id } });
+
+    await this.hdService.updateUsedGb(Number(gastronomy?.primeiroBackupBruto));
+    await this.hdService.updateUsedGb(Number(gastronomy?.segundoBackupBruto));
+    await this.hdService.updateUsedGb(Number(gastronomy?.primeiroBackup));
+    await this.hdService.updateUsedGb(Number(gastronomy?.segundoBackup));
+
+    return { code:  201, message: "Evento deletado" };
+  };
+
+
 };
 
 export default GastronomyService;

@@ -29,7 +29,7 @@ function GastronomyDetail() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const deleteCorporate = async () => {
+  const deleteGastronomy = async () => {
     const response = await fetch(`http://localhost:3001/gastronomy/detalhe/${id}`, {
       method: 'DELETE',
       headers: {
@@ -101,7 +101,7 @@ function GastronomyDetail() {
                 Editar
               </button>
               <button
-                onClick={ deleteCorporate }
+                onClick={ deleteGastronomy }
               >
                 Deletar
               </button>
