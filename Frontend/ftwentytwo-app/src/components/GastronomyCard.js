@@ -14,13 +14,13 @@ function GastronomyCard({ gastronomy }) {
     >
       <div className={ styles.container }>
         <section className={ styles.card }>
-          <h2>{ gastronomy.company }</h2>
-          <p>{ gastronomy.event }</p>
-          <p>{ gastronomy.date }</p>
+          <h2>{ gastronomy.empresa }</h2>
+          <p>{ gastronomy.evento }</p>
+          <p>{ gastronomy.data }</p>
           <img
             alt="Imagem do evento"
             src={
-              gastronomy.image === null || gastronomy.image === undefined
+              gastronomy.imagem === null || gastronomy.imagem === undefined
                 ? icon
                 : require(`../assets/images/gastronomy/${gastronomy.id}.jpg`)
             }
@@ -34,10 +34,10 @@ function GastronomyCard({ gastronomy }) {
 GastronomyCard.propTypes = {
   gastronomy: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired,
-    company: PropTypes.string.isRequired,
-    event: PropTypes.string.isRequired,
-    image: PropTypes.string,
+    data: PropTypes.string.isRequired,
+    empresa: PropTypes.string.isRequired,
+    evento: PropTypes.string.isRequired,
+    imagem: PropTypes.string,
   }).isRequired,
 };
 

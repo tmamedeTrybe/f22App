@@ -37,6 +37,15 @@ class GastronomyController {
     res.status(updated.code).json({ message: updated.message });
   };
 
+  addImage = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const namePhoto = `../assets/images/gastronomy/${id}.jpg`;
+
+    const addImage = await this.gastronomyService.addImage(Number(id), namePhoto);
+
+    return res.status(addImage.code).json({ message: addImage.message });
+  }
+
 };
 
 export default GastronomyController;

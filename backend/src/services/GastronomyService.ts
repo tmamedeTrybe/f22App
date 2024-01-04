@@ -171,6 +171,18 @@ class GastronomyService {
 
   };
 
+  public async addImage(id: number, namePhoto: string) {
+    await this.gastronomyModel.update(
+      {
+        imagem: namePhoto,
+      },
+      {
+        where: { id },
+      }
+    );
+    return { code: 201, message: 'Imagem atualizada' }
+  };
+
 
 };
 

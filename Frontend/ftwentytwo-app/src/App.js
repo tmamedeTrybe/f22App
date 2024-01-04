@@ -12,6 +12,7 @@ import FamilyImage from './pages/FamilyImage';
 import Gastronomy from './pages/Gastronomy';
 import GastronomyDetail from './pages/GastronomyDetail';
 import GastronomyEdit from './pages/GastronomyEdit';
+import GastronomyImage from './pages/GastronomyImage';
 import HdDetails from './pages/HdDetails';
 import Hds from './pages/Hds';
 import HdUpdate from './pages/HdUpdate';
@@ -61,6 +62,7 @@ function App() {
           <Route path="/gastronomia/novo" element={ <NewGastronomy /> } />
           <Route path="/gastronomia/detalhe/:id" element={ <GastronomyDetail /> } />
           <Route path="/gastronomia/detalhe/:id/editar" element={ <GastronomyEdit /> } />
+          <Route path="/gastronomia/imagem/:id" element={ <GastronomyImage /> } />
         </Routes>
       </div>
     </MyProvider>
