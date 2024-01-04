@@ -1,12 +1,12 @@
 interface gastronomy {
   id?: number;
-  date: string;
-  company: string;
-  event: string;
-  contact: string;
-  venue: string;
-  city: string;
-  image?: string | null;
+  data: string;
+  empresa: string;
+  evento: string;
+  contato: string;
+  local: string;
+  cidade: string;
+  imagem?: string | null;
   primeiroBackupBruto?: number | null;
   primeiroBackupBrutoTamanho?: number;
   segundoBackupBruto? : number | number;

@@ -3,7 +3,6 @@ import GastronomyService from '../services/GastronomyService';
 import Gastronomy from '../database/models/gastronomy';
 import HdService from '../services/HdService';
 import Hd from '../database/models/hd';
-import { json } from 'sequelize';
 
 class GastronomyController {
   constructor(private gastronomyService = new GastronomyService(Gastronomy, new HdService(Hd))) {}
@@ -29,7 +28,14 @@ class GastronomyController {
     const { id } = req.params;
     const deleted = await this.gastronomyService.deleteGastronomy(Number(id));
     return res.status(deleted.code).json({ message: deleted.message });
-   }
+  };
+
+  public updateGastronomy = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const updated = await this.gastronomyService.updateGastronomy(Number(id), req.body);
+    if(updated.erro) return res.status(updated.code).json({ message: updated.erro });
+    res.status(updated.code).json({ message: updated.message });
+  };
 
 };
 

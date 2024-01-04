@@ -50,13 +50,13 @@ function GastronomyDetail() {
                   </section>
           : loading ? <Loading /> : <main className={ styles.main }>
             <section className={ styles.headerDetails }>
-              <h1>{ gastronomy.company }</h1>
-              <h2>{ gastronomy.event }</h2>
-              <p>{ gastronomy.date }</p>
+              <h1>{ gastronomy.empresa }</h1>
+              <h2>{ gastronomy.evento }</h2>
+              <p>{ gastronomy.data }</p>
               <img
                 alt="Foto do evento"
                 width="200px"
-                src={ gastronomy.image === null || gastronomy.image === undefined
+                src={ gastronomy.imagem === null || gastronomy.imagem === undefined
               ? icon
             : require(`../assets/images/corporativo/${id}.jpg`) }
               />
@@ -69,7 +69,7 @@ function GastronomyDetail() {
             </section>
             <section className={ styles.infos }>
               <section className={ styles.venues }>
-                <h3>{ gastronomy.city }</h3>
+                <h3>{ gastronomy.cidade }</h3>
               </section>
               <section className={ styles.backupCards }>
               <BackupCard

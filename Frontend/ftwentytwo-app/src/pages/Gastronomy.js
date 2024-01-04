@@ -9,7 +9,7 @@ import GastronomyCard from '../components/GastronomyCard';
 
 function Gastronomy() {
   const [gastronomiesFounded, setGastronomiesFounded] = useState('');
-  const searchOptions = ['date', 'company', 'event', 'contact', 'primeiroBackup'];
+  const searchOptions = ['data', 'empresa', 'evento', 'contato', 'primeiroBackup'];
   const { jobsFounded } = useContext(MyContext);
 
   useEffect(() => {

@@ -4,20 +4,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
-const corporate_1 = __importDefault(require("./corporate"));
 const _1 = __importDefault(require("."));
 const hd_1 = __importDefault(require("../models/hd"));
 class Gastronomy extends sequelize_1.Model {
 }
-corporate_1.default.init({
+Gastronomy.init({
     id: { type: sequelize_1.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-    date: { type: sequelize_1.DATEONLY, allowNull: false },
-    company: { type: sequelize_1.STRING, allowNull: false },
-    event: { type: sequelize_1.STRING, allowNull: false },
-    contact: { type: sequelize_1.STRING, allowNull: false },
-    venue: { type: sequelize_1.STRING, allowNull: false },
-    city: { type: sequelize_1.STRING, allowNull: false },
-    image: { type: sequelize_1.STRING },
+    data: { type: sequelize_1.DATEONLY, allowNull: false },
+    empresa: { type: sequelize_1.STRING, allowNull: false },
+    evento: { type: sequelize_1.STRING, allowNull: false },
+    contato: { type: sequelize_1.STRING, allowNull: false },
+    local: { type: sequelize_1.STRING, allowNull: false },
+    cidade: { type: sequelize_1.STRING, allowNull: false },
+    imagem: { type: sequelize_1.STRING },
     primeiroBackupBruto: { type: sequelize_1.INTEGER, field: 'primeiro_backup_bruto' },
     primeiroBackupBrutoTamanho: { type: sequelize_1.INTEGER, field: 'primeiro_backup_bruto_tamanho', defaultValue: 0, allowNull: false },
     segundoBackupBruto: { type: sequelize_1.INTEGER, field: 'segundo_backup_bruto' },

@@ -16,7 +16,7 @@ module.exports = {
         return __awaiter(this, void 0, void 0, function* () {
             yield queryInterface.createTable('gastronomies', {
                 id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, autoIncrement: true },
-                date: {
+                data: {
                     type: Sequelize.DATEONLY,
                     allowNull: false,
                     get() {
@@ -24,12 +24,12 @@ module.exports = {
                             .toLocaleString('en-GB');
                     },
                 },
-                company: { type: Sequelize.STRING, allowNull: false },
-                event: { type: Sequelize.STRING, allowNull: false },
-                contact: { type: Sequelize.STRING, allowNull: false },
-                venue: { type: Sequelize.STRING, allowNull: false },
-                city: { type: Sequelize.STRING, allowNull: false },
-                image: { type: Sequelize.STRING, allowNull: true },
+                empresa: { type: Sequelize.STRING, allowNull: false },
+                evento: { type: Sequelize.STRING, allowNull: false },
+                contato: { type: Sequelize.STRING, allowNull: false },
+                local: { type: Sequelize.STRING, allowNull: false },
+                cidade: { type: Sequelize.STRING, allowNull: false },
+                imagem: { type: Sequelize.STRING, allowNull: true },
                 primeiroBackupBruto: {
                     type: Sequelize.INTEGER,
                     field: 'primeiro_backup_bruto',

@@ -13,5 +13,6 @@ gastronomyRoutes.get('/gastronomy', gastronomyController.getGastronomies);
 gastronomyRoutes.post('/gastronomy/new', gastronomyController.createGastronomy);
 gastronomyRoutes.post('/gastronomy', gastronomyController.getGastronomyBy);
 gastronomyRoutes.delete('/gastronomy/detalhe/:id', gastronomyController.deleteGastronomy);
+gastronomyRoutes.patch('/gastronomy/detalhe/:id/editar', gastronomyController.updateGastronomy);
 
 export default gastronomyRoutes;

@@ -17,4 +17,5 @@ app.use(routes_1.weddingRoutes);
 app.use(routes_1.hdRoutes);
 app.use(routes_1.familyRoutes);
 app.use(routes_1.corporateRoutes);
+app.use(routes_1.gastronomyRoutes);
 exports.default = app;

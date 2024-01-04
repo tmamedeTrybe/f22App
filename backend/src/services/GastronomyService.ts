@@ -3,6 +3,7 @@ import Gastronomy from "../database/models/gastronomy";
 import Hd from "../database/models/hd";
 import gastronomy from "../interfaces/gastronomy";
 import search from "../interfaces/search";
+import validateUpdateGastronomy from "../validations/validateUpdateGastronomy";
 import HdService from "./HdService";
 
 class GastronomyService {
@@ -37,8 +38,8 @@ class GastronomyService {
   public createGastronomy = async (newGastronomy: gastronomy) => {
     const gastronomyExist: Gastronomy | null = await this.gastronomyModel.findOne({
       where: {
-        date: newGastronomy.date,
-        company: newGastronomy.company
+        data: newGastronomy.data,
+        empresa: newGastronomy.empresa
       }
     });
     if (gastronomyExist) return { code: 400, erro: 'Evento já cadastrado'};
@@ -68,13 +69,13 @@ class GastronomyService {
     if(hdEditTwoExist?.erro) return { code: hdEditTwoExist.code, erro: hdEditTwoExist.erro };
 
     const gastronomyCreated = {
-      date: newGastronomy.date,
-      company: newGastronomy.company,
-      event: newGastronomy.event,
-      contact: newGastronomy.contact,
-      venue: newGastronomy.venue,
-      city: newGastronomy.city,
-      image: newGastronomy.image, 
+      data: newGastronomy.data,
+      empresa: newGastronomy.empresa,
+      evento: newGastronomy.evento,
+      contato: newGastronomy.contato,
+      local: newGastronomy.local,
+      cidade: newGastronomy.cidade,
+      imagem: newGastronomy.imagem, 
       primeiroBackupBruto: newGastronomy.primeiroBackupBruto,
       primeiroBackupBrutoTamanho: newGastronomy.primeiroBackupBrutoTamanho,
       segundoBackupBruto: newGastronomy.segundoBackupBruto,
@@ -107,6 +108,67 @@ class GastronomyService {
     await this.hdService.updateUsedGb(Number(gastronomy?.segundoBackup));
 
     return { code:  201, message: "Evento deletado" };
+  };
+
+  public updateGastronomy = async (id: number, newInfo: gastronomy) => {
+    const { error } = validateUpdateGastronomy(newInfo);
+    if (error) return { code: 400, erro: error.message };
+
+    const gastronomy = await this.gastronomyModel.findOne({ where: { id } }) as Gastronomy;
+
+    const hdRawOneExist = await this.hdService.validateHd(
+      Number(newInfo.primeiroBackupBruto),
+      Number(gastronomy.primeiroBackupBrutoTamanho),
+      Number(newInfo.primeiroBackupBrutoTamanho)
+    );
+    if(hdRawOneExist?.erro) return { code: hdRawOneExist.code, erro: hdRawOneExist.erro };
+
+    const hdEditOneExist = await this.hdService.validateHd(
+      Number(newInfo.primeiroBackup),
+      Number(gastronomy.primeiroBackupTamanho),
+      Number(newInfo.primeiroBackupTamanho)
+    );
+    if(hdEditOneExist?.erro) return { code: hdEditOneExist.code, erro: hdEditOneExist.erro };
+
+    const hdEditTwoExist = await this.hdService.validateHd(
+      Number(newInfo.segundoBackup),
+      Number(gastronomy.segundoBackupTamanho),
+      Number(newInfo.segundoBackupTamanho)
+    );
+    if(hdEditTwoExist?.erro) return { code: hdEditTwoExist.code, erro: hdEditTwoExist.erro };
+
+    await this.gastronomyModel.update(
+      {
+        date: newInfo.data,
+        company: newInfo.empresa,
+        event: newInfo.evento,
+        contact: newInfo.contato,
+        venue: newInfo.local,
+        city: newInfo.cidade,
+        primeiroBackupBruto: newInfo.primeiroBackupBruto === 0 ? null : newInfo.primeiroBackupBruto,
+        primeiroBackupBrutoTamanho: newInfo.primeiroBackupBrutoTamanho,
+        segundoBackupBruto: newInfo.segundoBackupBruto === 0 ? null : newInfo.segundoBackupBruto,
+        segundoBackupBrutoTamanho: newInfo.segundoBackupBrutoTamanho,
+        primeiroBackup: newInfo.primeiroBackup === 0 ? null : newInfo.primeiroBackup,
+        primeiroBackupTamanho: newInfo.primeiroBackupTamanho,
+        segundoBackup: newInfo.segundoBackup === 0 ? null : newInfo.segundoBackup,
+        segundoBackupTamanho: newInfo.segundoBackupTamanho
+      },
+      { where: { id } }
+    );
+
+    await this.hdService.updateUsedGb(Number(gastronomy?.primeiroBackupBruto));
+    await this.hdService.updateUsedGb(Number(gastronomy?.segundoBackupBruto));
+    await this.hdService.updateUsedGb(Number(gastronomy?.primeiroBackup));
+    await this.hdService.updateUsedGb(Number(gastronomy?.segundoBackup));
+
+    await this.hdService.updateUsedGb(Number(newInfo.primeiroBackupBruto));
+    await this.hdService.updateUsedGb(Number(newInfo.segundoBackupBruto));
+    await this.hdService.updateUsedGb(Number(newInfo.primeiroBackup));
+    await this.hdService.updateUsedGb(Number(newInfo.segundoBackup));
+
+    return { code: 201, message: "Evento alterado" }
+
   };
 
 

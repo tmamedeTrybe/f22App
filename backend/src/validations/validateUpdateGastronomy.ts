@@ -1,31 +1,31 @@
 import Joi from 'joi';
-import corporate from '../interfaces/corporate';
+import gastronomy from '../interfaces/gastronomy';
 
-const validateUpdateCorporate = (newInfo: corporate) => 
+const validateUpdateGastronomy = (newInfo: gastronomy) =>
   Joi.object({
     data: Joi.date().min(8).required().messages({
-      'date': 'O formato da "Data" deve ser "YYYYMMDD"',
+      'date': 'O formato da Data deve ser "YYYYMMDD',
       'string.required': 'Informar a data do evento',
     }),
     empresa: Joi.string().min(3).messages({
-      'string.min': '"Empresa" deve ter ao menos três letras',
+      'string-min': '"Company" deve ter ao menos três letras',
       'string-required': 'Informar a empresa contratante',
     }),
     evento: Joi.string().min(3).messages({
-      'string.min': '"Nome" deve ter ao menos três letras',
-      'string-required': 'Informar o nome'
+      'string-min': '"Event" deve ter ao menos três letras',
+      'string-required': 'Informar o nome do evento',
     }),
-    contratante: Joi.string().min(3).messages({
-      'string.min': '"Contratante" deve ter ao menos três letras',
-      'string-required': 'Informar o contratante do evento'
+    contato: Joi.string().min(3).messages({
+      'string-min': '"Contact" deve ter ao menos três letras',
+      'string-required': 'Informar o contato contratante',
     }),
     local: Joi.string().min(3).messages({
-      'string.min': '"Local" deve ter ao menos três letras',
-      'string-required': 'Informar o local do evento'
+      'string-min': '"Venue" deve ter ao menos três letras',
+      'string-required': 'Informar o local do evento',
     }),
     cidade: Joi.string().min(3).messages({
-      'string.min': '"Cidade" deve ter ao menos três letras',
-      'string-required': 'Informar a cidade do evento'
+      'string-min': '"City" deve ter ao menos três letras',
+      'string-required': 'Informar a cidade do evento',
     }),
     primeiroBackupBruto: Joi.number().allow(null),
     primeiroBackupBrutoTamanho: Joi.number().messages({
@@ -47,5 +47,4 @@ const validateUpdateCorporate = (newInfo: corporate) =>
     }),
   }).validate(newInfo);
 
-
-export default validateUpdateCorporate;
+  export default validateUpdateGastronomy;

@@ -20,7 +20,6 @@ class CorporateService {
         this.corporateModel = corporateModel;
         this.hdService = hdService;
         this.getCorporates = () => __awaiter(this, void 0, void 0, function* () {
-            // Falta incluir a chave corresponde do HD no rawBackupOne
             const corporates = yield this.corporateModel.findAll({ include: [
                     { model: hd_1.default, as: 'editBackupOne', attributes: ['id', 'name'] },
                 ],
@@ -30,8 +29,7 @@ class CorporateService {
         this.getCorporatesBy = (search) => __awaiter(this, void 0, void 0, function* () {
             const { searchBy, valueSearch } = search;
             const result = yield this.corporateModel.findAll({
-                where: { [searchBy]: { [sequelize_1.Op.substring]: valueSearch }
-                },
+                where: { [searchBy]: { [sequelize_1.Op.substring]: valueSearch } },
                 include: [
                     { model: hd_1.default, as: 'editBackupOne', attributes: ['id', 'name'] },
                 ],

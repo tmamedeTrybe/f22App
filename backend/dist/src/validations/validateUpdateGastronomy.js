@@ -4,30 +4,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const joi_1 = __importDefault(require("joi"));
-const validateUpdateCorporate = (newInfo) => joi_1.default.object({
-    data: joi_1.default.date().min(8).required().messages({
-        'date': 'O formato da "Data" deve ser "YYYYMMDD"',
+const validateUpdateGastronomy = (newInfo) => joi_1.default.object({
+    date: joi_1.default.date().min(8).required().messages({
+        'date': 'O formato da Data deve ser "YYYYMMDD',
         'string.required': 'Informar a data do evento',
     }),
-    empresa: joi_1.default.string().min(3).messages({
-        'string.min': '"Empresa" deve ter ao menos três letras',
+    company: joi_1.default.string().min(3).messages({
+        'string-min': '"Company" deve ter ao menos três letras',
         'string-required': 'Informar a empresa contratante',
     }),
-    evento: joi_1.default.string().min(3).messages({
-        'string.min': '"Nome" deve ter ao menos três letras',
-        'string-required': 'Informar o nome'
+    event: joi_1.default.string().min(3).messages({
+        'string-min': '"Event" deve ter ao menos três letras',
+        'string-required': 'Informar o nome do evento',
     }),
-    contratante: joi_1.default.string().min(3).messages({
-        'string.min': '"Contratante" deve ter ao menos três letras',
-        'string-required': 'Informar o contratante do evento'
+    contact: joi_1.default.string().min(3).messages({
+        'string-min': '"Contact" deve ter ao menos três letras',
+        'string-required': 'Informar o contato contratante',
     }),
-    local: joi_1.default.string().min(3).messages({
-        'string.min': '"Local" deve ter ao menos três letras',
-        'string-required': 'Informar o local do evento'
+    venue: joi_1.default.string().min(3).messages({
+        'string-min': '"Venue" deve ter ao menos três letras',
+        'string-required': 'Informar o local do evento',
     }),
-    cidade: joi_1.default.string().min(3).messages({
-        'string.min': '"Cidade" deve ter ao menos três letras',
-        'string-required': 'Informar a cidade do evento'
+    city: joi_1.default.string().min(3).messages({
+        'string-min': '"City" deve ter ao menos três letras',
+        'string-required': 'Informar a cidade do evento',
     }),
     primeiroBackupBruto: joi_1.default.number().allow(null),
     primeiroBackupBrutoTamanho: joi_1.default.number().messages({
@@ -46,4 +46,4 @@ const validateUpdateCorporate = (newInfo) => joi_1.default.object({
         'number': '"segundoBackupTamanho" deve ser um número inteiro',
     }),
 }).validate(newInfo);
-exports.default = validateUpdateCorporate;
+exports.default = validateUpdateGastronomy;

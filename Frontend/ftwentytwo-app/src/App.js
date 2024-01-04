@@ -11,6 +11,7 @@ import FamilyEdit from './pages/FamilyEdit';
 import FamilyImage from './pages/FamilyImage';
 import Gastronomy from './pages/Gastronomy';
 import GastronomyDetail from './pages/GastronomyDetail';
+import GastronomyEdit from './pages/GastronomyEdit';
 import HdDetails from './pages/HdDetails';
 import Hds from './pages/Hds';
 import HdUpdate from './pages/HdUpdate';
@@ -59,6 +60,7 @@ function App() {
           <Route path="/gastronomia" element={ <Gastronomy /> } />
           <Route path="/gastronomia/novo" element={ <NewGastronomy /> } />
           <Route path="/gastronomia/detalhe/:id" element={ <GastronomyDetail /> } />
+          <Route path="/gastronomia/detalhe/:id/editar" element={ <GastronomyEdit /> } />
         </Routes>
       </div>
     </MyProvider>
