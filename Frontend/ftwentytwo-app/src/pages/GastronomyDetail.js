@@ -58,7 +58,7 @@ function GastronomyDetail() {
                 width="200px"
                 src={ gastronomy.imagem === null || gastronomy.imagem === undefined
               ? icon
-            : require(`../assets/images/corporativo/${id}.jpg`) }
+            : require(`../assets/images/gastronomy/${id}.jpg`) }
               />
               <button
                 onClick={ () => navigate(`/gastronomia/imagem/${id}`, { state: { job: gastronomy } }) }

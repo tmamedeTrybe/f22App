@@ -55,7 +55,7 @@ Hd.hasMany(Corporate, { foreignKey: 'segundoBackupBruto', as: 'rawCorporateTwo' 
 Corporate.belongsTo(Hd, { foreignKey: 'primeiroBackup', as: 'editBackupOne' });
 Hd.hasMany(Corporate, { foreignKey: 'primeiroBackup', as: 'editCorporateOne' });
 
-Corporate.belongsTo(Hd, { foreignKey: 'segundoBackupBruto', as: 'editBackupTwo' });
-Hd.hasMany(Corporate, { foreignKey: 'segundoBackupBruto', as: 'editCorporateTwo' });
+Corporate.belongsTo(Hd, { foreignKey: 'segundoBackup', as: 'editBackupTwo' });
+Hd.hasMany(Corporate, { foreignKey: 'segundoBackup', as: 'editCorporateTwo' });
 
 export default Corporate;

@@ -55,8 +55,8 @@ Hd.hasMany(Gastronomy, { foreignKey: 'segundoBackupBruto', as: 'rawGastronomyTwo
 Gastronomy.belongsTo(Hd, { foreignKey: 'primeiroBackup', as: 'editBackupOne' });
 Hd.hasMany(Gastronomy, { foreignKey: 'primeiroBackup', as: 'editGastronomyOne' });
 
-Gastronomy.belongsTo(Hd, { foreignKey: 'segundoBackupBruto', as: 'editBackupTwo' });
-Hd.hasMany(Gastronomy, { foreignKey: 'segundoBackupBruto', as: 'editGastronomyTwo' });
+Gastronomy.belongsTo(Hd, { foreignKey: 'segundoBackup', as: 'editBackupTwo' });
+Hd.hasMany(Gastronomy, { foreignKey: 'segundoBackup', as: 'editGastronomyTwo' });
 
 export default Gastronomy;
 
